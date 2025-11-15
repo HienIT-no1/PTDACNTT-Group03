@@ -5,28 +5,49 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>ENGLISH GO-E</title>
     <link rel="stylesheet" href="../assets/css/trangchu.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.6.0/css/all.min.css">
     <script src="../assets/js/trangchu.js"></script>
 </head>
 <body>
     <!-- Header -->
     <header class="navbar">
-        <div class="logo">LOGO</div>
-        <nav>
+        <a href="#" class="logo">GO-E</a>
+        <nav class="nav-links">
             <ul>
-                <li><a href="#">Giới thiệu</a></li>
-                <li><a href="#">Khóa học</a></li>
+                <li class="dropdown">
+                    <a href="#">Giới thiệu</a>
+                    <ul class="dropdown-menu">
+                        <li><a href="#">Về trung tâm</a></li>
+                        <li><a href="#">Đội ngũ giảng viên</a></li>
+                    </ul>
+                </li> 
+                <li class="dropdown">
+                    <a href="#">Khóa học</a>
+                    <ul class="dropdown-menu">
+                        <li><a href="#">IELTS</a></li>
+                        <li><a href="#">Khóa tiếng Anh giao tiếp online</a></li>
+                        <li><a href="#">Khóa tiếng Anh trẻ em</a></li>
+                    </ul>
+                </li>
                 <li><a href="#">Cảm nhận học viên</a></li>
-                <li><a href="#">Thư viện</a></li>
+                <li class="dropdown">
+                    <a href="#">Thư viện</a>
+                    <ul class="dropdown-menu">
+                        <li><a href="#">Tài liệu</a></li>
+                        <li><a href="#">Blog</a></li>
+                    </ul>
+                </li>
                 <li><a href="#">Tin tức & Sự kiện</a></li>
             </ul>
         </nav>
-        <div class="search-box">
-            <input type="text" placeholder="Search">
-            <button>🔍</button>
+        <div class="search-container">
+            <div class="search-icon">🔍</div>
+            <input type="text" placeholder="search" id="searchInput">
+            <button class="clear-btn" onclick="clearSearch()">✖</button>
         </div>
     </header>
 
-    <!-- Main Section -->
+    <!-- Main Section (body) -->
     <section class="hero">
         <div class="form-box">
             <h3>Đăng ký nhận tư vấn</h3>
@@ -34,26 +55,34 @@
                 <input type="text" placeholder="Họ và tên" required>
                 <input type="tel" placeholder="Số điện thoại" required>
                 <input type="email" placeholder="Email" required>
-                <input type="text" placeholder="Nơi ở hiện tại">
+                <select id="location" class="form-box_selection">
+                    <option value="" disabled selected>-- Chọn cơ sở học --</option>
+                    <option value="hanoi">Số 44, Ngõ 40, Tạ Quang Bửu, Bách Khoa, Hà Nội</option>
+                    <option value="hcm">Số 9C8, ngõ 261 Trần Quốc Hoàn, Cầu Giấy, Hà Nội</option>
+                    <option value="danang">Số 3, ngõ 34 Nguyễn Hoàng, Mỹ Đình, Hà Nội</option>
+                </select>
                 <input type="text" placeholder="Mong muốn học tập">
                 <button type="submit">Đăng ký ngay</button>
             </form>
         </div>
 
         <div class="hero-content">
-            <h1>UNLOCK ENGLISH,<br>UNLEASH POTENTIAL</h1>
-            <p>Hơn 16 năm kinh nghiệm, đào tạo thành công 80,000+ học viên.</p>
-            <p>Giáo viên đạt chuẩn Quốc tế, phương pháp học hiện đại và linh hoạt.</p>
-            <p>Cam kết đầu ra bằng văn bản.</p>
+            <div class="hero-text"><h1>UNLOCK ENGLISH,</div>
+            <div class="hero-text"><h1>UNLEASH POTENTIAL</div>
+            <div class="hero-line"></div> <br>
+            <p><i class="fa-solid fa-square-check"></i>Hơn 16 năm kinh nghiệm, đào tạo thành công 80,000+ học viên.</p>
+            <p><i class="fa-solid fa-square-check"></i>Lộ trình học chuẩn Quốc tế, phù hợp với nhu cầu thực tiễn</p>
+            <p><i class="fa-solid fa-square-check"></i>Giáo viên đạt chuẩn Quốc tế với chất lượng top đầu thị trường, giàu kinh nghiệm.</p>
+            <p><i class="fa-solid fa-square-check"></i>Phương pháp học hiện đại và linh hoạt, cam kết đầu ra bằng văn bản.</p>
+            <p><i class="fa-solid fa-square-check"></i>Chi phí tương đối - chất lượng tuyệt đối, học thử miễn phí trước khi quyết định</p>
         </div>
 
         <div class="hero-img">
-            <img src="student.jpg" alt="Cahaya Dewi">
-            <p class="hero-name">Cahaya Dewi</p>
+            <img src="../assets/img/img-body-trangchu2.jpg" alt="Cahaya Dewi">
         </div>
     </section>
 
-    <!-- Stats -->
+    <!-- Stats (under-body) -->
     <section class="stats">
         <div><h2>16+</h2><p>NĂM KINH NGHIỆM</p></div>
         <div><h2>80,000+</h2><p>HỌC VIÊN ƯU TÚ</p></div>
@@ -62,31 +91,99 @@
     </section>
 
     <!-- Footer -->
-    <footer>
-        <div class="footer-left">
-            <div class="footer-logo">ece</div>
-            <p>Trung tâm ngoại ngữ ECE có Đoàn Nương sáng lập là địa chỉ học tiếng Anh uy tín tại Hà Nội.</p>
+<footer class="footer">
+    <div class="footer-container">
+        <!-- column left -->
+        <div class="footer-column branding-column">
+            <h3 class="logo">GO-E</h3>
+            <p class="slogan">English for Life & Future</p>
+            <p class="description">
+                Go-E là hệ sinh thái đào tạo tiếng Anh toàn diện với 16+ năm uy tín, 
+                bao gồm các chương trình: Tiếng Anh giao tiếp, khóa học IELTS và tiếng Anh trẻ em.
+            </p>
+            <div class="branding-column_child">
+                <h4>VỀ GO-E</h4>
+                <ul class="footer-links">
+                    <li><a href="#">Giới thiệu</a></li>
+                    <li><a href="#">Chính sách bảo mật</a></li>
+                    <li><a href="#">Trách nhiệm và cam kết</a></li>
+                    <li><a href="#">Thông tin thanh toán</a></li>
+                </ul>
+            </div>
         </div>
 
-        <div class="footer-contact">
-            <h4>Thông tin liên hệ</h4>
-            <p>Head Office: Tầng 5, tòa nhà 29T1 Hoàng Đạo Thúy, Hà Nội</p>
-            <p>Hotline: 0912 771 556</p>
-            <p>Email: info@ece.edu.vn</p>
+        <div class="footer-column about-column">
+            <!-- media network -->
+            <h5>Social networking</h5>
+            <div class="social-links">
+                <a href="#" aria-label="Facebook"><i class="fab fa-facebook-f"></i></a>
+                <a href="#" aria-label="TikTok"><i class="fab fa-tiktok"></i></a>
+                <a href="#" aria-label="YouTube"><i class="fab fa-youtube"></i></a>
+                <a href="#" aria-label="Instagram"><i class="fa-brands fa-square-instagram"></i></a>
+                <!-- video tiktok -->
+                <div class="video-container" id="tiktok-player">
+                    <div class="loading">Đang tải video...</div>
+                </div>                
+            </div>
         </div>
 
-        <div class="footer-courses">
-            <h4>Khóa học tại ECE</h4>
-            <ul>
-                <li>Khóa học Tiếng Anh IELTS</li>
-                <li>Khóa học SAT</li>
-                <li>Lớp tiếng Anh thiếu nhi</li>
-                <li>Khóa học tiếng Anh tổng quát</li>
-                <li>Khóa IELTS cấp tốc</li>
+        <div class="footer-column contact-column">
+            <h4>HỌC TIẾNG ANH GO-E</h4>
+            <ul class="contact-info">
+                <li>
+                    <i class="fas fa-home"></i>
+                    Cơ sở 1: Số 44, Ngõ 40, Tạ Quang Bửu, Bách Khoa, Hà Nội
+                </li>
+                <li>
+                    <i class="fas fa-home"></i>
+                    Cơ sở 2: Số 9C8, ngõ 261 Trần Quốc Hoàn, Cầu Giấy, Hà Nội
+                </li>
+                <li>
+                    <i class="fas fa-home"></i>
+                    Cơ sở 3: Số 3, ngõ 34 Nguyễn Hoàng, Mỹ Đình, Hà Nội
+                </li>
+                <li>
+                    <i class="fas fa-phone"></i>
+                    <a href="tel:0962154168">0962.154.168</a> - <a href="tel:0962152222">0962.152.222</a>
+                </li>
+                <li>
+                    <i class="fas fa-envelope"></i>
+                    <a href="mailto:info@go-e.edu.vn">info@go-e.edu.vn</a>
+                </li>
             </ul>
         </div>
-    </footer>
+    </div>
 
-    <script src="script.js"></script>
+    <!-- floating buttons -->
+    <div class="floating-buttons">
+        <a href="tel:0962154168" class="call-btn" aria-label="Gọi điện"><i class="fas fa-phone-alt"></i></a>
+        <a href="#" class="chat-btn" aria-label="Chat Zalo/Messenger"><i class="fas fa-comment-dots"></i></a>
+    </div>
+</footer>
+
+<!-- Modal for signup form (appears after 5 seconds) -->
+    <div id="modal-overlay" class="modal-overlay">
+        <div class="modal-content">
+            <button class="modal-close" id="modal-close-btn">&times;</button>
+            <h3>Đăng ký nhận tư vấn</h3>
+            <form id="modalRegisterForm">
+                <input type="text" placeholder="Họ và tên" required>
+                <input type="tel" placeholder="Số điện thoại" required>
+                <input type="email" placeholder="Email" required>
+                <select class="form-box_selection">
+                    <option value="" disabled selected>-- Chọn cơ sở học --</option>
+                    <option value="hanoi">Số 44, Ngõ 40, Tạ Quang Bửu, Bách Khoa, Hà Nội</option>
+                    <option value="hcm">Số 9C8, ngõ 261 Trần Quốc Hoàn, Cầu Giấy, Hà Nội</option>
+                    <option value="danang">Số 3, ngõ 34 Nguyễn Hoàng, Mỹ Đình, Hà Nội</option>
+                </select>
+                <input type="text" placeholder="Mong muốn học tập">
+                <button type="submit">Đăng ký ngay</button>
+            </form>
+        </div>
+    </div>
+
+    <script src="../assets/js/trangchu.js"></script>
+
+
 </body>
 </html>
