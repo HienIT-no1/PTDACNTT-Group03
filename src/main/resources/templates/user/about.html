@@ -1,0 +1,292 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Giới thiệu - Trung Tâm Ngoại Ngữ E-Go</title>
+    
+    <link rel="stylesheet" href="/css/common.css"> 
+    <link rel="stylesheet" href="/css/user/about.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+</head>
+<body>
+
+    <header class="navbar">
+        <a th:href="@{/user/home}" class="logo">GO-E</a>
+        <nav class="nav-links">
+            <ul>
+                <li class="dropdown">
+                    <a>Giới thiệu</a>
+                    <ul class="dropdown-menu">
+                        <li><a th:href="@{/user/about}">Về trung tâm</a></li>
+                        <li><a href="@{/user/i-teacher}">Đội ngũ giảng viên</a></li>
+                    </ul>
+                </li> 
+                <li class="dropdown">
+                    <a href="#">Khóa học</a>
+                    <ul class="dropdown-menu">
+                        <li><a href="#">IELTS</a></li>
+                        <li><a href="#">Khóa tiếng Anh giao tiếp online</a></li>
+                        <li><a href="#">Khóa tiếng Anh trẻ em</a></li>
+                    </ul>
+                </li>
+                <li><a href="#">Cảm nhận học viên</a></li>
+                <li class="dropdown">
+                    <a href="#">Thư viện</a>
+                    <ul class="dropdown-menu">
+                        <li><a href="#">Tài liệu</a></li>
+                        <li><a href="#">Blog</a></li>
+                    </ul>
+                </li>
+                <li><a href="#">Tin tức & Sự kiện</a></li>
+            </ul>
+        </nav>
+        <div class="search-container">
+            <div class="search-icon">🔍</div>
+            <input type="text" placeholder="search" id="searchInput">
+            <button class="clear-btn" onclick="clearSearch()">✖</button>
+        </div>
+    </header>
+
+    <main>
+        <section class="about-hero">
+            <div class="container hero-container">
+                <div class="hero-text">
+                    <span class="logo-text">Logo</span>
+                    <h1>TRUNG TÂM NGOẠI NGỮ <br> DÀNH CHO MỌI NGƯỜI</h1>
+                    <p>Với phương châm 'English Center for Everyone', trung tâm ngoại ngữ ECE hướng tới việc tổ chức các lớp học Tiếng Anh phù hợp với tất cả mọi người. Đặc biệt, khóa học IELTS – sản phẩm chủ lực của trung tâm – được thiết kế để đáp ứng đa dạng mục tiêu và trình độ của học viên.</p>
+                    <a href="/khoa-hoc" class="btn btn-primary">
+                        Xem ngay khóa học <i class="fa-solid fa-paper-plane"></i>
+                    </a>
+                </div>
+                <div class="hero-image-wrapper">
+                    <img src="/images/giam-doc-ece.jpg" alt="Giám đốc trung tâm ECE">
+                    <div class="stat-box stat-1">
+                        <strong>15K+</strong>
+                        <span>Khách hàng</span>
+                    </div>
+                    <div class="stat-box stat-2">
+                        <strong>15 năm</strong>
+                        <span>Kinh nghiệm</span>
+                    </div>
+                    <div class="stat-box stat-3">
+                        <strong>3 cơ sở</strong>
+                        <span></span>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section class="why-us">
+            <div class="container">
+                <h2>Tại sao nên học tiếng Anh tại ECE</h2>
+                <div class="tabs-container">
+                    <div class="tabs-nav">
+                        <button class="tab-link active" data-tab="tab-1">
+                            <i class="fa-solid fa-user-tie"></i>
+                            <span>Đội ngũ giảng viên trình độ cao</span>
+                        </button>
+                        <button class="tab-link" data-tab="tab-2">
+                            <i class="fa-solid fa-file-lines"></i>
+                            <span>Giáo trình thiết kế độc quyền</span>
+                        </button>
+                        <button class="tab-link" data-tab="tab-3">
+                            <i class="fa-solid fa-crown"></i>
+                            <span>Quản lý chất lượng</span>
+                        </button>
+                    </div>
+
+                    <div class="tabs-content">
+                        <div id="tab-1" class="tab-pane active">
+                            <h3>Đội ngũ giảng viên trình độ cao</h3>
+                            <p>Đội ngũ Giáo viên được đào tạo bài bản từ các trường Đại học dạy ngoại ngữ hàng đầu trong và ngoài nước và có kinh nghiệm ôn luyện IELTS, AEF,... có thể cung cấp cho học viên những kiến thức và kỹ năng cần thiết để đạt được mục tiêu học tập của mình.</p>
+                        </div>
+                        <div id="tab-2" class="tab-pane">
+                            <h3>Giáo trình thiết kế độc quyền</h3>
+                            <p>Giáo trình được biên soạn kỹ lưỡng, bám sát thực tế và cập nhật liên tục, giúp học viên tiếp cận kiến thức một cách hiệu quả và có hệ thống.</p>
+                        </div>
+                        <div id="tab-3" class="tab-pane">
+                            <h3>Quản lý chất lượng</h3>
+                            <p>Quy trình quản lý chất lượng nghiêm ngặt từ đầu vào đến đầu ra, đảm bảo mọi học viên đều nhận được sự hỗ trợ tốt nhất và đạt được tiến bộ rõ rệt.</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section class="values">
+            <div class="container">
+                <h2>Giá trị ECE mang lại</h2>
+                <div class="values-grid">
+                    <div class="value-card">
+                        <div class="value-icon"><i class="fa-solid fa-shield-halved"></i></div>
+                        <h3>TIN CẬY</h3>
+                        <p>Nền tảng phát triển giáo dục kinh nghiệm và uy tín đối với học viên, phụ huynh, nhà trường và các tổ chức, đối tác.</p>
+                    </div>
+                    <div class="value-card">
+                        <div class="value-icon"><i class="fa-solid fa-rocket"></i></div>
+                        <h3>ĐỘT PHÁ</h3>
+                        <p>Luôn không ngừng nỗ lực nghiên cứu, sáng tạo, cải tiến về chất lượng giảng dạy và dịch vụ khách hàng.</p>
+                    </div>
+                    <div class="value-card">
+                        <div class="value-icon"><i class="fa-solid fa-bullseye"></i></div>
+                        <h3>HIỆU QUẢ</h3>
+                        <p>Phương pháp giảng dạy nhắm tới kết quả, giúp học viên giao tiếp tự tin, thành thạo và thành công tại bất cứ môi trường nào.</p>
+                    </div>
+                    <div class="value-card">
+                        <div class="value-icon"><i class="fa-solid fa-book-open-reader"></i></div>
+                        <h3>TOÀN DIỆN</h3>
+                        <p>Giáo trình, học liệu và học cụ phong phú, đa dạng, hỗ trợ học viên phát triển năng lực Anh ngữ một cách toàn diện.</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section class="info-blocks">
+            <div class="info-block">
+                <div class="info-image">
+                    <img src="/images/lop-hoc-1.jpg" alt="Lớp học tại ECE">
+                </div>
+                <div class="info-text bg-yellow">
+                    <h3>Tầm nhìn</h3>
+                    <ul>
+                        <li>Xây dựng chương trình và phương pháp giảng dạy khoa học, đa dạng, liên tục cập nhật để đạt hiệu quả giáo dục tốt nhất.</li>
+                        <li>Truyền cảm hứng và chia sẻ những giá trị tích cực đến cộng đồng những người có niềm yêu thích với tiếng Anh học thuật.</li>
+                        <li>Phát triển năng lực và phẩm chất của đội ngũ Giáo viên/CBNV, đề cao giá trị đạo đức và quyền lợi của mỗi học viên.</li>
+                    </ul>
+                </div>
+            </div>
+            
+            <div class="info-block reverse">
+                <div class="info-image">
+                    <img src="/images/lop-hoc-2.jpg" alt="Học viên ECE">
+                </div>
+                <div class="info-text">
+                    <h3>Sứ mệnh</h3>
+                    <p>Trở thành Hệ thống Giáo dục Tiếng Anh học thuật chất lượng và đáng tin cậy hàng đầu Việt Nam trong việc phát triển năng lực sử dụng tiếng Anh học thuật một cách tự chủ, ứng dụng cao trong thực tiễn; đồng thời phát triển tư duy học tập ngôn ngữ nhanh nhạy cho các đối tượng học viên từ mọi trình độ và mọi cấp bậc.</p>
+                </div>
+            </div>
+
+            <div class="info-block">
+                <div class="info-image">
+                    <img src="/images/lop-hoc-3.jpg" alt="Học viên ECE chụp ảnh tốt nghiệp">
+                </div>
+                <div class="info-text bg-yellow">
+                    <h3>Địa điểm & hình thức học</h3>
+                    <p>ECE tập trung hoạt động chính tại Hà Nội, với các lớp học tổ chức offline. Tuy nhiên, chúng tôi cũng mang đến cơ hội học tập chất lượng cho học viên trên toàn quốc thông qua hình thức học trực tuyến (online) linh hoạt qua Zoom.</p>
+                    <p>Hiện tại, trung tâm ECE có 3 cơ sở khang trang tại Hà Nội:</p>
+                    <ul>
+                        <li><strong>Cơ sở 1:</strong> Số 43, Ngõ 91 Trần Duy Hưng, Phường Yên Hoà, Hà Nội.</li>
+                        <li><strong>Cơ sở 2:</strong> Số 16N8B, Ngõ 7 Hoàng Minh Giám, Phường Yên Hoà, Hà Nội.</li>
+                        <li><strong>Cơ sở 3:</strong> Nhà CL-11-A2, Ngõ 118 phố Đ. Nguyễn Khánh Toàn (Sau Honda 120 Nguyễn Khánh Toàn), Phường Nghĩa Đô, Hà Nội.</li>
+                    </ul>
+                </div>
+            </div>
+
+            <div class="info-block reverse">
+                <div class="info-image">
+                    <img src="/images/doi-ngu-ece.jpg" alt="Đội ngũ giảng viên ECE">
+                </div>
+                <div class="info-text">
+                    <h3>Đội ngũ chuyên nghiệp</h3>
+                    <p>ECE tự hào sở hữu một đội ngũ nhân sự hùng hậu, chuyên nghiệp và được tổ chức bài bản với quy mô gần 120 thành viên. Lực lượng nòng cốt là 18 giáo viên toàn thời gian (full-time) và 20 giáo viên bán thời gian (part-time), tất cả đều có trình độ chuyên môn cao, sở hữu các chứng chỉ giảng dạy quốc tế uy tín như TESOL, CELTA,... và bằng cấp liên quan.</p>
+                </div>
+            </div>
+        </section>
+    </main>
+    
+    <footer>
+        <div class="footer-container">
+            <!-- column left -->
+            <div class="footer-column branding-column">
+                <h3 class="logo">GO-E</h3>
+                <p class="slogan">English for Life & Future</p>
+                <p class="description">
+                    Go-E là hệ sinh thái đào tạo tiếng Anh toàn diện với 16+ năm uy tín, 
+                    bao gồm các chương trình: Tiếng Anh giao tiếp, khóa học IELTS và tiếng Anh trẻ em.
+                </p>
+                <div class="branding-column_child">
+                    <h4>VỀ GO-E</h4>
+                    <ul class="footer-links">
+                        <li><a href="#">Giới thiệu</a></li>
+                        <li><a href="#">Chính sách bảo mật</a></li>
+                        <li><a href="#">Trách nhiệm và cam kết</a></li>
+                        <li><a href="#">Thông tin thanh toán</a></li>
+                    </ul>
+                </div>
+            </div>
+
+            <div class="footer-column about-column">
+                <!-- media network -->
+                <h5>Social networking</h5>
+                <div class="social-links">
+                    <a href="#" aria-label="Facebook"><i class="fab fa-facebook-f"></i></a>
+                    <a href="#" aria-label="TikTok"><i class="fab fa-tiktok"></i></a>
+                    <a href="#" aria-label="YouTube"><i class="fab fa-youtube"></i></a>
+                    <a href="#" aria-label="Instagram"><i class="fa-brands fa-square-instagram"></i></a>
+                    <!-- video tiktok -->
+                    <div class="video-container" id="tiktok-player">
+                        <div class="loading">Đang tải video...</div>
+                    </div>                
+                </div>
+            </div>
+
+            <div class="footer-column contact-column">
+                <h4>HỌC TIẾNG ANH GO-E</h4>
+                <ul class="contact-info">
+                    <li>
+                        <i class="fas fa-home"></i>
+                        Cơ sở 1: Số 44, Ngõ 40, Tạ Quang Bửu, Bách Khoa, Hà Nội
+                    </li>
+                    <li>
+                        <i class="fas fa-home"></i>
+                        Cơ sở 2: Số 9C8, ngõ 261 Trần Quốc Hoàn, Cầu Giấy, Hà Nội
+                    </li>
+                    <li>
+                        <i class="fas fa-home"></i>
+                        Cơ sở 3: Số 3, ngõ 34 Nguyễn Hoàng, Mỹ Đình, Hà Nội
+                    </li>
+                    <li>
+                        <i class="fas fa-phone"></i>
+                        <a href="tel:0962154168">0962.154.168</a> - <a href="tel:0962152222">0962.152.222</a>
+                    </li>
+                    <li>
+                        <i class="fas fa-envelope"></i>
+                        <a href="mailto:info@go-e.edu.vn">info@go-e.edu.vn</a>
+                    </li>
+                </ul>
+            </div>
+        </div>
+
+        <!-- floating buttons -->
+        <div class="floating-buttons">
+            <a href="tel:0962154168" class="call-btn" aria-label="Gọi điện"><i class="fas fa-phone-alt"></i></a>
+            <a href="#" class="chat-btn" aria-label="Chat Zalo/Messenger"><i class="fas fa-comment-dots"></i></a>
+        </div>
+    </footer>
+
+</body>
+<script>
+document.addEventListener("DOMContentLoaded", function() {
+    
+    const tabLinks = document.querySelectorAll(".tab-link");
+    const tabPanes = document.querySelectorAll(".tab-pane");
+
+    tabLinks.forEach(link => {
+        link.addEventListener("click", function() {
+            const tabId = this.getAttribute("data-tab");
+
+            // Xóa active khỏi tất cả link và pane
+            tabLinks.forEach(link => link.classList.remove("active"));
+            tabPanes.forEach(pane => pane.classList.remove("active"));
+
+            // Thêm active vào link và pane được chọn
+            this.classList.add("active");
+            document.getElementById(tabId).classList.add("active");
+        });
+    });
+
+});
+</script>
+
+</html>

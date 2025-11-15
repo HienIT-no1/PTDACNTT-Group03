@@ -6,42 +6,47 @@ import org.springframework.web.bind.annotation.GetMapping;
 public class UserController {
     @GetMapping("/")
     public String redirectToHome() {
-        return "redirect:/user/Home";
+        return "redirect:/user/home";
     }
 
     // User Dashboard------------------------------------------------------------
-    @GetMapping("/user/Home")
+    @GetMapping("/user/home")
     public String userHome() {
-        return "user/Home";
+        return "user/home";
     }
 
-    @GetMapping("/user/Blog")
+    @GetMapping("/user/blog")
     public String userBlog() {
-        return "user/Blog";
+        return "user/blog";
     }
 
-    @GetMapping("/user/Courses")
+    @GetMapping("/user/courses")
     public String userCourses() {
-        return "user/Courses";
+        return "user/courses";
     }
 
-    @GetMapping("/user/CourseDetails")
+    @GetMapping("/user/course-details")
     public String userCourseDetails() {
-        return "user/CourseDetails";
+        return "user/course-details";
     }
 
-    @GetMapping("/user/Document")
+    @GetMapping("/user/document")
     public String userDocument() {
-        return "user/Document";
+        return "user/document";
     }
 
-    @GetMapping("/user/ITeacher")
+    @GetMapping("/user/about")
+    public String userAbout(){
+        return "user/about";
+    }
+
+    @GetMapping("/user/i-teacher")
     public String userITeacher() {
-        return "user/ITeacher";
+        return "user/i-teacher";
     }
 
-    @GetMapping("/user/NewEvents")
+    @GetMapping("/user/new-events")
     public String userNewEvents() {
-        return "user/NewEvents";
+        return "user/new-events";
     }
 }
