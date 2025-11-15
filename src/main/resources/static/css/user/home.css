@@ -1,0 +1,119 @@
+/* Hero Section-body*/
+.hero {
+  background: linear-gradient(#eef6fe);
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 40px;
+  flex-wrap: wrap;
+  /* border: 1px solid #333; */
+  position: relative;
+  min-height: 500px;
+  gap: 30px;
+  overflow: hidden;
+}
+/* Chỉnh form đk */
+.form-box {
+  background: white;
+  padding: 20px;
+  border-radius: 10px;
+  box-shadow: 0 3px 10px rgba(0,0,0,0.1);
+  width: 350px;
+  position: absolute;
+}
+.form-box h3 {
+  text-align: center;
+  margin-bottom: 15px;
+}
+.form-box input,
+.form-box_selection {
+  display: block;
+  width: 100%;
+  margin-bottom: 10px;
+  padding: 8px;
+  border: 1px solid #ccc;
+  border-radius: 5px;
+}
+.form-box button {
+  width: 100%;
+  padding: 10px;
+  background: #007bff;
+  border: none;
+  border-radius: 5px;
+  color: white;
+  font-size: 15px;
+  font-weight: 600;
+  cursor: pointer;
+}
+.form-box button:hover {
+  background: #0056c1;
+}
+/* Chỉnh hero-mid */
+.hero-content {
+  height: 400px;
+  max-width: 400px;
+  /* border: 1px solid #333; */
+  margin: 0px 377px;
+  z-index: 1;
+}
+.hero-text {
+  display: block;
+  justify-content: center;
+  text-align: center;
+  height: 33px;
+  /* border: 1px solid #333; */
+  color: #004aad;
+  font-size: 13px;
+}
+.hero-line {
+  width: 100px;
+  height: 4px;
+  background-color: #5592d3;
+  margin: 12px auto;
+  border-radius: 2px;
+  margin-top: 5px;
+}
+.hero-content i {
+  color: #5592d3;      /* màu xanh dương */
+  font-size: 20px;     /* kích thước icon */
+  margin-right: 8px;   /* khoảng cách với chữ */
+  vertical-align: middle; /* canh giữa với dòng chữ */
+}
+.hero-content p {
+  color: #333;
+  margin-bottom: 8px;
+  line-height: 1.4;
+}
+/* Chỉnh hero-img_left */
+.hero-img img {
+  display: block;
+  position: absolute;
+  height: 100%;
+  width: auto;
+  right: 0;
+  top: 0;
+  bottom: 0;
+}
+
+
+
+/* Stats Section-under_body */
+.stats {
+  display: flex;
+  justify-content: space-around;
+  background: rgba(173, 242, 247, 0.5);
+  height: 120px;
+  padding: 25px 0;
+  flex-wrap: wrap;
+  text-align: center;
+  align-items: center;
+}
+.stats div h2 {
+  color: #004aad;
+  font-size: 26px;
+}
+.stats div p {
+  color: #333;
+  font-weight: 700;
+  font-size: 17px;
+}
