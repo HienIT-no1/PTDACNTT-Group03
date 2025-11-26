@@ -49,4 +49,9 @@ public class UserController {
     public String userNewEvents() {
         return "user/new-events";
     }
+
+    @GetMapping("/user/new-events-details01")
+    public String userNewEventsDetails01() {
+        return "user/new-events-details01";
+    }
 }

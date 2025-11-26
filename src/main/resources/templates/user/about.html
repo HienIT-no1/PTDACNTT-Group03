@@ -4,14 +4,15 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Giới thiệu - Trung Tâm Ngoại Ngữ E-Go</title>
-    
     <link rel="stylesheet" href="/css/common.css"> 
     <link rel="stylesheet" href="/css/user/about.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+
 </head>
 <body>
 
-    <header class="navbar">
+    <!-- nav -->
+    <header class="navbar">  
         <a th:href="@{/user/home}" class="logo">GO-E</a>
         <nav class="nav-links">
             <ul>
@@ -19,7 +20,7 @@
                     <a>Giới thiệu</a>
                     <ul class="dropdown-menu">
                         <li><a th:href="@{/user/about}">Về trung tâm</a></li>
-                        <li><a href="@{/user/i-teacher}">Đội ngũ giảng viên</a></li>
+                        <li><a th:href="@{/user/i-teacher}">Đội ngũ giảng viên</a></li>
                     </ul>
                 </li> 
                 <li class="dropdown">
@@ -48,6 +49,7 @@
         </div>
     </header>
 
+    <!-- main -->
     <main>
         <section class="about-hero">
             <div class="container hero-container">
@@ -77,6 +79,7 @@
             </div>
         </section>
 
+        <!-- Why -->
         <section class="why-us">
             <div class="container">
                 <h2>Tại sao nên học tiếng Anh tại ECE</h2>
@@ -114,12 +117,13 @@
             </div>
         </section>
 
+        <!-- Values -->
         <section class="values">
             <div class="container">
-                <h2>Giá trị ECE mang lại</h2>
+                <h2>Giá trị GO-E mang lại</h2>
                 <div class="values-grid">
                     <div class="value-card">
-                        <div class="value-icon"><i class="fa-solid fa-shield-halved"></i></div>
+                        <div class="value-icon"><i class="fa-regular fa-handshake"></i></div>
                         <h3>TIN CẬY</h3>
                         <p>Nền tảng phát triển giáo dục kinh nghiệm và uy tín đối với học viên, phụ huynh, nhà trường và các tổ chức, đối tác.</p>
                     </div>

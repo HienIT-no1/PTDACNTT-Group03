@@ -1,0 +1,311 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Tin tức & Sự kiện/details</title>
+    <link rel="stylesheet" href="/css/common.css">
+    <link rel="stylesheet" href="/css/user/new-events-details01.css">
+    <!-- <link rel="stylesheet" href="/css/user/new-events.css"> -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.6.0/css/all.min.css">
+</head>
+<body>
+
+    <!-- header -->
+    <header class="navbar">
+        <a th:href="@{/user/home}" class="logo">GO-E</a>
+        <nav class="nav-links">
+            <ul>
+                <li class="dropdown">
+                    <a href="#">Giới thiệu</a>
+                    <ul class="dropdown-menu">
+                        <li><a th:href="@{/user/about}">Về trung tâm</a></li>
+                        <li><a th:href="@{/user/i-teacher}">Đội ngũ giảng viên</a></li>
+                    </ul>
+                </li> 
+                <li class="dropdown">
+                    <a href="#">Khóa học</a>
+                    <ul class="dropdown-menu">
+                        <li><a href="#">IELTS</a></li>
+                        <li><a href="#">Khóa tiếng Anh giao tiếp online</a></li>
+                        <li><a href="#">Khóa tiếng Anh trẻ em</a></li>
+                    </ul>
+                </li>
+                <li><a href="#">Cảm nhận học viên</a></li>
+                <li class="dropdown">
+                    <a href="#">Thư viện</a>
+                    <ul class="dropdown-menu">
+                        <li><a href="#">Tài liệu</a></li>
+                        <li><a href="#">Blog</a></li>
+                    </ul>
+                </li>
+                <li><a th:href="@{/user/new-events}">Tin tức & Sự kiện</a></li>
+            </ul>
+        </nav>
+        <div class="search-container">
+            <div class="search-icon">🔍</div>
+            <input type="text" placeholder="search" id="searchInput">
+            <button class="clear-btn" onclick="clearSearch()">✖</button>
+        </div>
+    </header>
+
+    <!-- body -->
+    <div class="main-body">
+
+        <!-- banner -->
+        <div class="banner">
+            TƯNG BỪNG KHUYẾN MÃI - GO-E ĐÓN NĂM MỚI VỚI ƯU ĐÃI KHỦNG CHƯA TỪNG CÓ!!!
+        </div>
+
+        <!-- mục lục -->
+        <div class="toc-container">
+            <div class="toc-title">
+                Mục lục <span id="btn-toggle" class="toggle-btn">[Ẩn]</span>
+            </div>
+            
+            <div id="toc-list" class="toc-content">
+                <ol>
+                    <li>Đầu Xuân Khai Trí - Học Tiếng Anh Hết Ý</li>
+                    <li>Tết Rộn Ràng - Ngập Tràn Khuyến Mãi Từ GO-E</li>
+                    <li>Lý Do Nên Học Tiếng Anh Tại GO-E Ngay Hôm Nay</li>
+                </ol>
+            </div>
+        </div>
+
+        <!-- main content -->
+        <div class="page-container">
+            <h2>1. Đầu Xuân Khai Trí - Học Tiếng Anh Hết Ý</h2>
+            <p>Tiếng Anh không chỉ là một ngôn ngữ, mà còn là chìa khóa mở ra vô vàn cơ hội trong cuộc sống và sự nghiệp. Trong năm mới, 
+                hãy để tiếng Anh trở thành hành trang giúp bạn:</p> <br>
+            <ul class="danh-sach-loi-ich">
+                <li>
+                    <b>Mở rộng cánh cửa sự nghiệp:</b> Tiếng Anh giúp bạn tiếp cận các cơ hội việc làm tại các tập đoàn đa quốc gia, nâng cao mức lương và tự tin cạnh tranh trên thị trường lao động.
+                </li>
+                <li>
+                    <b>Kết nối toàn cầu:</b> Không gì tuyệt vời hơn khi bạn có thể giao tiếp tự nhiên với bạn bè quốc tế, tham gia các hội thảo, hoặc du lịch mà không bị rào cản ngôn ngữ.
+                </li>
+                <li>
+                    <b>Phát triển bản thân toàn diện:</b> Thành thạo tiếng Anh giúp bạn dễ dàng tiếp cận kho tàng kiến thức khổng lồ, từ các khóa học trực tuyến đến tài liệu chuyên ngành, mang lại lợi thế vượt trội trong mọi lĩnh vực. 
+                </li>
+            </ul>
+            <br>
+            <p>Thay vì chỉ tất bật với việc mua sắm hay vui chơi, tại sao không đầu tư vào chính mình, mở ra cơ hội để thay đổi tương lai? 
+                Học tiếng Anh không chỉ là việc trau dồi kiến thức, mà còn là hành trình giúp bạn chạm đến những ước mơ lớn lao.</p> <br>
+            <p>
+                Với GO-E, bạn không chỉ học tiếng Anh, mà còn biến nó thành một phần trong cuộc sống. Đây là nơi bạn rèn luyện sự tự tin, bứt 
+                phá mọi giới hạn và sẵn sàng vươn xa hơn trên hành trình của mình. Hãy để năm mới này trở thành cột mốc đáng nhớ cho sự phát triển và thành công của bạn!
+            </p>
+
+            <h2>2. Tết Rộn Ràng - Ngập Tràn Khuyến Mãi Từ GO-E</h2>
+
+            <div id="img1-events-details01" class="image-placeholder"></div>
+
+            <p>Nhân dịp Tết 2026, GO-E dành tặng bạn siêu ưu đãi chưa từng có để khởi động năm mới đầy hứng khởi:</p> <br>
+            <ul class="danh-sach-loi-ich">
+                <li>
+                    <b>Khuyến mãi Khai Xuân: Giảm thêm 500.000đ</b> trên giá sau giảm với các khách hàng đăng ký và đặt cọc tối thiểu 2.000.000đ từ ngày 25/01/2026 đến 15/02/2026.
+                </li>
+                <li>
+                    <b>Giảm thêm 200.000đ/người</b> khi đăng ký và đặt cọc <b>theo nhóm từ 2 người trở lên.</b>
+                </li>
+                <li>
+                    Chính sách dành cho học viên GO-E khi giới thiệu học viên mới: <b>Tặng 500.000đ</b> & trao thưởng trực tiếp trên lớp, hoặc <b>tặng voucher 700.000đ.</b> 
+                </li>
+                <li>
+                     Đối với học viên cũ tại GO-E khi đăng ký thêm khóa học mới: <b>Tặng 500.000đ - 700.000đ</b> tùy từng khóa học.
+                </li>
+                <li>
+                    <b>Miễn phí học thử</b> khóa tiếng Anh giao tiếp trực tuyến nhóm, không vượt quá 10 người/buổi học
+                </li>
+                <li>
+                    <b>Miễn phí tài liệu học tập</b> trên website, youtube và các nền tảng khác.
+                </li>
+            </ul>
+            <br>
+            <p><b>Thời gian áp dụng: Từ 01/01 đến 31/01/2026. Riêng khuyến mãi khai xuân từ ngày 25/01/2026 đến 15/02/2026.</b></p>
+
+            <h2>3. Lý Do Nên Học Tiếng Anh Tại GO-E Ngay Hôm Nay</h2>
+
+            <p>GO-E tự hào là trung tâm tiếng Anh uy tín với hơn 15 năm kinh nghiệm, đồng hành cùng +800.000 học viên trên con đường 
+                chinh phục ngoại ngữ. GO-E tự hào mang đến trải nghiệm học tập toàn diện và đột phá, giúp bạn nâng cấp trình độ tiếng 
+                Anh một cách dễ dàng, hiệu quả nhất. 
+            </p> 
+            <p>Đặc biệt, với khóa học tại GO-E, bạn sẽ được trải nghiệm:</p> <br>
+            <ul class="danh-sach-loi-ich"> 
+                <li>
+                    <b>Linh Hoạt Thời Gian Và Địa Điểm Học</b> <br> 
+                    Khóa học tiếng Anh giao tiếp online tại Langmaster cho phép bạn học mọi lúc, mọi nơi, chỉ cần có thiết bị kết nối Internet. 
+                    Đây là giải pháp lý tưởng cho những người bận rộn, không thể tham gia các lớp học trực tiếp hoặc cần linh hoạt điều chỉnh thời gian học theo lịch trình cá nhân. Bạn có thể học tại nhà, nơi làm việc, hoặc bất kỳ đâu mà không bị giới hạn bởi địa điểm và thời gian cố định.
+                </li>
+                <li>
+                    <b>Đội Ngũ Giảng Viên Xuất Sắc</b> <br>
+                    GO-E tự hào sở hữu đội ngũ giảng viên chất lượng cao với trình độ chuyên môn đạt 7.0+ IELTS hoặc 900+ TOEIC. Các giảng viên không chỉ giàu kinh nghiệm giảng dạy mà còn được đào tạo bài bản về kỹ năng sư phạm. 
+                    Với sự tận tâm và chuyên nghiệp, giảng viên sẽ hỗ trợ bạn vượt qua rào cản tâm lý, giúp bạn cải thiện khả năng giao tiếp một cách tự nhiên và hiệu quả.
+                </li>
+                <li>
+                    <b>Cam Kết Đầu Ra Rõ Ràng</b> <br> 
+                    Tham gia khóa học tại GO-E, bạn sẽ được cam kết đầu ra chuẩn CEFR – khung tham chiếu ngôn ngữ châu Âu. Điều này đảm bảo bạn sẽ sử dụng tiếng Anh thành thạo trong các tình huống giao tiếp hàng ngày, công việc hay khi đi du lịch. 
+                    Cam kết rõ ràng không chỉ mang lại sự an tâm mà còn là động lực để bạn đạt được mục tiêu học tập của mình.
+                </li>
+                <li>
+                    <b>Phương Pháp Giảng Dạy Hiện Đại, Tương Tác Cao</b> <br>
+                    GO-E áp dụng các phương pháp giảng dạy tiên tiến như Phương pháp Siêu Phản Xạ, Lập Trình Ngôn Ngữ Tư Duy (NLP) và các kỹ thuật học tập thực tế khác. 
+                    Các buổi học được thiết kế với mức độ tương tác cao, kết hợp những hoạt động thú vị như thảo luận nhóm, đóng vai và mô phỏng các tình huống giao tiếp thực tế. 
+                    Nhờ đó, bạn sẽ cải thiện khả năng sử dụng tiếng Anh một cách nhanh chóng và tự nhiên.
+                </li>
+                <li>
+                    <b>Lộ Trình Học Cá Nhân Hóa Và Bài Bản</b> <br>
+                    Khóa học tiếng Anh giao tiếp online tại GO-E được xây dựng theo lộ trình rõ ràng, từ cơ bản đến nâng cao, phù hợp với mọi trình độ học viên. Với mô hình học 1 kèm 1, giáo viên sẽ xây dựng kế hoạch học tập dựa trên khả năng, điểm mạnh và mục tiêu riêng của bạn. 
+                </li>
+            </ul>
+
+            <div id="img2-events-details01" class="image-placeholder"></div>
+            <p>Đừng chần chừ thêm nữa, vì <b>thời gian ưu đãi có hạn!</b> Hãy nhanh tay đăng ký ngay hôm nay để tham gia chương trình khuyến mãi Tết 2026 của GO-E nhé.</p>
+
+            <!-- Đường kẻ ngang -->
+            <div class="separator"></div>
+
+            <div class="text-other">
+                <div class="text-other-margin"></div>
+                Bài viết khác
+            </div>
+
+            <div class="events-other">
+                <!-- Bài thứ 2 -->
+                <div class="news-article">
+                    <div id="img2" class="article-img"></div>
+                    <div class="article-content">
+                        <h2 class="title">
+                            <a href="#">KHỞI ĐỘNG CUỘC THI “MY GO-E JOURNEY - HÀNH TRÌNH TRUYỀN CẢM HỨNG”</a>
+                        </h2>
+                        <p class="summary">Cuộc thi “MY GO-E JOURNEY - HÀNH TRÌNH TRUYỀN CẢM HỨNG,” nhằm tôn vinh những câu chuyện đặc biệt 
+                            mà các bạn đã viết nên cùng GO-E. Tham gia ngay để ring nhiều phần quà hấp dẫn !!!
+                        </p>
+                    </div>
+                </div>
+
+                <!-- Bài thứ 3 -->
+                <div class="news-article">
+                    <div id="img3" class="article-img"></div>
+                    <div class="article-content">
+                        <h2 class="title">
+                            <a href="#">BỨT PHÁ TIẾNG ANH TẠI TRẠI HÈ SUMMER CAMP 2025 CHO TRẺ</a>
+                        </h2>
+                        <p class="summary">​Trại hè tiếng Anh 2025 với chủ đề 𝙎𝙪𝙢𝙢𝙚𝙧 𝙀𝙭𝙥𝙡𝙤𝙧𝙚𝙧𝙨 - 𝙊𝙥𝙚𝙣 𝙪𝙥 𝙣𝙚𝙬 𝙝𝙤𝙧𝙞𝙯𝙤𝙣𝙨 đã chính thức 
+                            mở cửa! Tại Summer Camp năm nay, các bạn nhỏ sẽ được hoá thân thành những nhà thám hiểm nhí cùng đồng đội 
+                            của mình tham gia vào những chuyến thám hiểm đầy thử thách.
+                        </p>
+                    </div>
+                </div>
+
+                <!-- Bài thứ 4 -->
+                <div class="news-article">
+                    <div id="img4" class="article-img"></div>
+                    <div class="article-content">
+                        <h2 class="title">
+                            <a href="#">DỰ ÁN TỪ THIỆN: MẶT TRỜI CHO EM 2026</a>
+                        </h2>
+                        <p class="summary">​Chuyến xe "Mặt trời cho em” của Tiếng Anh giao tiếp GO-E cùng Quỹ từ thện "Hope for Life" đã đến với trường Tiểu học Tân Minh để trao gửi những món quà đong đầy tình yêu thương
+                        </p>
+                    </div>
+                </div> 
+
+            </div>
+
+        </div>
+
+    </div>
+    <!-- Footer -->
+    <footer>
+        <div class="footer-container">
+            <!-- column left -->
+            <div class="footer-column branding-column">
+                <h3 class="logo">GO-E</h3>
+                <p class="slogan">English for Life & Future</p>
+                <p class="description">
+                    Go-E là hệ sinh thái đào tạo tiếng Anh toàn diện với 16+ năm uy tín,
+                    bao gồm các chương trình: Tiếng Anh giao tiếp, khóa học IELTS và tiếng Anh trẻ em.
+                </p>
+                <div class="branding-column_child">
+                    <h4>VỀ GO-E</h4>
+                    <ul class="footer-links">
+                        <li><a href="#">Giới thiệu</a></li>
+                        <li><a href="#">Chính sách bảo mật</a></li>
+                        <li><a href="#">Trách nhiệm và cam kết</a></li>
+                        <li><a href="#">Thông tin thanh toán</a></li>
+                    </ul>
+                </div>
+            </div>
+
+            <div class="footer-column about-column">
+                <!-- media network -->
+                <h5>Social networking</h5>
+                <div class="social-links">
+                    <a href="#" aria-label="Facebook"><i class="fab fa-facebook-f"></i></a>
+                    <a href="#" aria-label="TikTok"><i class="fab fa-tiktok"></i></a>
+                    <a href="#" aria-label="YouTube"><i class="fab fa-youtube"></i></a>
+                    <a href="#" aria-label="Instagram"><i class="fa-brands fa-instagram"></i></a>
+                    <!-- video tiktok -->
+                    <div class="video-container" id="tiktok-player">
+                        <div class="loading">Đang tải video...</div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="footer-column contact-column">
+                <h4>HỌC TIẾNG ANH GO-E</h4>
+                <ul class="contact-info">
+                    <li>
+                        <i class="fas fa-home"></i>
+                        Cơ sở 1: Số 44, Ngõ 40, Tạ Quang Bửu, Bách Khoa, Hà Nội
+                    </li>
+                    <li>
+                        <i class="fas fa-home"></i>
+                        Cơ sở 2: Số 9C8, ngõ 261 Trần Quốc Hoàn, Cầu Giấy, Hà Nội
+                    </li>
+                    <li>
+                        <i class="fas fa-home"></i>
+                        Cơ sở 3: Số 3, ngõ 34 Nguyễn Hoàng, Mỹ Đình, Hà Nội
+                    </li>
+                    <li>
+                        <i class="fas fa-phone"></i>
+                        <a href="tel:0962154168">0962.154.168</a> - <a href="tel:0962152222">0962.152.222</a>
+                    </li>
+                    <li>
+                        <i class="fas fa-envelope"></i>
+                        <a href="mailto:info@go-e.edu.vn">info@go-e.edu.vn</a>
+                    </li>
+                </ul>
+            </div>
+        </div>
+
+        <!-- floating buttons -->
+        <div class="floating-buttons">
+            <a href="tel:0962154168" class="call-btn" aria-label="Gọi điện"><i class="fas fa-phone-alt"></i></a>
+            <a href="#" class="chat-btn" aria-label="Chat Zalo/Messenger"><i class="fas fa-comment-dots"></i></a>
+        </div>
+    </footer>
+
+    <script>
+        // Lấy các phần tử cần thiết
+        const toggleBtn = document.getElementById('btn-toggle');
+        const tocList = document.getElementById('toc-list');
+
+        // Thêm sự kiện click vào nút [Ẩn]/[Hiện]
+        toggleBtn.addEventListener('click', function() {
+            // Kiểm tra xem danh sách có đang bị ẩn hay không
+            if (tocList.classList.contains('hidden')) {
+                // Nếu đang ẩn -> Hiện ra
+                tocList.classList.remove('hidden');
+                toggleBtn.innerText = '[Ẩn]';
+            } else {
+                // Nếu đang hiện -> Ẩn đi
+                tocList.classList.add('hidden');
+                toggleBtn.innerText = '[Hiện]';
+            }
+        });
+    </script>
+
+</body>
+</html>
