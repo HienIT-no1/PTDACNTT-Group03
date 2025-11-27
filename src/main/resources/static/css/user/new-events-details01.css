@@ -140,14 +140,14 @@ p {
 }
 
 #img1-events-details01 {
-    background-image: url("../img/anh1-events.jpg");
+    background-image: url("/images/anh1-events.jpg");
     background-size: cover;
     background-repeat: no-repeat;
     background-color: #f7f7f7;
 }
 
 #img2-events-details01 {
-    background-image: url("../img/img2-events-details01.jpg");
+    background-image: url("/image/img2-events-details01.jpg");
     background-size: cover;
     background-repeat: no-repeat;
     background-color: #f7f7f7;
@@ -214,19 +214,19 @@ p {
 }
 
 #img2{
-    background-image: url("../static/img/img2-events.jpg");
+    background-image: url("/images/img2-events.jpg");
     background-size: cover;
     background-repeat: no-repeat;
 }
 
 #img3{
-    background-image: url("../img/img3-events.jpg");
+    background-image: url("/images/img3-events.jpg");
     background-size: cover;
     background-repeat: no-repeat;
 }
 
 #img4{
-    background-image: url("../img/img4-events.jpg");
+    background-image: url("/images/img4-events.jpg");
     background-size: cover;
     background-repeat: no-repeat;
 }

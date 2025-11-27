@@ -22,7 +22,7 @@ body {
     /* border: 1px solid #00c8e6; */
     border-radius: 12px;
     margin-bottom: 20px 0 30px;
-    background-image: url("../img/background-events.jpg");
+    background-image: url("/images/background-events.jpg");
     background-size: cover;
     background-repeat: no-repeat;
     background-color: #f7f7f7;
@@ -114,19 +114,19 @@ body {
 }
 
 #img1{
-    background-image: url("../static/img/event1.jpg");
+    background-image: url("/images/event1.jpg");
     background-size: cover;
     background-repeat: no-repeat;
 }
 
 #img2{
-    background-image: url("../static/img/event2.jpg");
+    background-image: url("/images/event2.jpg");
     background-size: cover;
     background-repeat: no-repeat;
 }
 
 #img3{
-    background-image: url("../img/event3.jpg");
+    background-image: url("/images/event3.jpg");
     background-size: cover;
     background-repeat: no-repeat;
 }
@@ -181,13 +181,13 @@ body {
 }
 
 #small-img1{
-    background-image: url("../img/event1.jpg");
+    background-image: url("/images/event1.jpg");
     background-size: cover;
     background-repeat: no-repeat;
 }
 
 #small-img2{
-    background-image: url("../img/small-img2.jpg");
+    background-image: url("/images/small-img2.jpg");
     background-size: cover;
     background-repeat: no-repeat;
 }
