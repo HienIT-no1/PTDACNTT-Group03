@@ -1,0 +1,374 @@
+/* Container chung */
+.container {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 0 20px;
+}
+
+/*
+--- PHẦN 1: HERO ---
+*/
+.about-hero {
+    background: #f7f9fc;
+    padding: 60px 0;
+    overflow: hidden;
+}
+
+.hero-container {
+    display: flex;
+    align-items: center;
+    gap: 40px;
+}
+
+.hero-text {
+    flex: 1;
+    max-width: 50%;
+}
+
+.hero-text .logo-text {
+    font-size: 0.9rem;
+    font-weight: bold;
+    color: var(--color-text-light);
+    display: block;
+    margin-bottom: 8px;
+}
+
+.hero-text h1 {
+    font-size: 2.8rem;
+    color: var(--color-primary);
+    margin-bottom: 20px;
+    line-height: 1.3;
+}
+
+.hero-text p {
+    font-size: 1rem;
+    color: var(--color-text-dark);
+    line-height: 1.6;
+    margin-bottom: 30px;
+}
+
+.btn.btn-primary {
+    background-color: var(--color-primary);
+    color: white;
+    padding: 12px 25px;
+    text-decoration: none;
+    border-radius: 50px;
+    font-weight: bold;
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    transition: background-color 0.3s;
+}
+
+.btn.btn-primary:hover {
+    background-color: #004aad;
+}
+
+.hero-image-wrapper {
+    flex: 1;
+    max-width: 50%;
+    position: relative;
+}
+
+.hero-image-wrapper img {
+    width: 100%;
+    max-width: 450px;
+    display: block;
+    margin-left: auto; 
+    border-radius: 12px;
+    box-shadow: 0 10px 20px rgba(0, 0, 0, 0.1);
+}
+
+.stat-box {
+    position: absolute;
+    background: var(--color-red-box);
+    color: white;
+    padding: 12px 18px;
+    border-radius: 8px;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
+}
+.stat-box strong {
+    display: block;
+    font-size: 1.2rem;
+}
+.stat-box span {
+    font-size: 0.9rem;
+}
+
+.stat-box.stat-1 {
+    top: 20%;
+    left: 0;
+}
+.stat-box.stat-2 {
+    bottom: 25%;
+    left: -40px;
+}
+.stat-box.stat-3 {
+    bottom: 10%;
+    right: 20px;
+}
+
+
+/*
+--- PHẦN 2: GIÁ TRỊ CỐT LÕI ---
+*/
+.values {
+    padding: 80px 0;
+    background: #fff;
+}
+
+.values h2 {
+    text-align: center;
+    font-size: 2.2rem;
+    color: var(--color-primary);
+    margin-bottom: 50px;
+}
+
+.values-grid {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 30px;
+}
+
+.value-card {
+    border: 1px solid #e0e0e0;
+    border-radius: 12px;
+    padding: 25px;
+    text-align: center;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.03);
+    transition: transform 0.3s, box-shadow 0.3s;
+}
+.value-card:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 8px 20px rgba(0, 0, 0, 0.08);
+}
+
+.value-icon {
+    width: 60px;
+    height: 60px;
+    border-radius: 50%;
+    background: var(--color-primary);
+    color: white;
+    font-size: 1.5rem;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin: 0 auto 20px auto;
+}
+
+.value-card h3 {
+    background: var(--color-yellow-card);
+    color: var(--color-text-dark);
+    padding: 10px;
+    border-radius: 5px;
+    font-size: 1.1rem;
+    margin-bottom: 15px;
+    display: inline-block;
+}
+
+.value-card p {
+    font-size: 0.95rem;
+    color: var(--color-text-light);
+    line-height: 1.6;
+}
+
+/*
+--- PHẦN 3: TẦM NHÌN, SỨ MỆNH ---
+*/
+.info-blocks {
+    background: #f7f9fc;
+}
+.info-block {
+    display: flex;
+    align-items: stretch; /* Làm cho 2 cột cao bằng nhau */
+    background: white;
+}
+.info-block.reverse {
+    flex-direction: row-reverse;
+}
+
+.info-image {
+    flex: 1;
+    min-width: 50%;
+}
+.info-image img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover; /* Đảm bảo ảnh lấp đầy khung */
+    display: block;
+}
+
+.info-text {
+    flex: 1;
+    padding: 60px 50px;
+    color: var(--color-text-dark);
+}
+.info-text.bg-yellow {
+    background: var(--color-light-yellow);
+}
+
+.info-text h3 {
+    font-size: 2rem;
+    color: var(--color-primary);
+    margin-bottom: 20px;
+}
+.info-text p, .info-text li {
+    font-size: 1rem;
+    line-height: 1.7;
+    margin-bottom: 15px;
+}
+.info-text ul {
+    list-style: disc;
+    padding-left: 20px;
+}
+.info-text ul li::marker {
+    color: var(--color-primary);
+}
+
+/*
+--- PHẦN 4: LÝ DO CHỌN (TABS) ---
+*/
+/*
+--- PHẦN 4: LÝ DO CHỌN (TABS) ---
+*/
+
+/* 1. SỬA .why-us (Section bọc ngoài) */
+.why-us {
+   /* Xóa nền xanh và màu chữ trắng ở đây */
+   padding: 80px 0; /* Chỉ giữ lại padding để tạo khoảng cách */
+}
+
+/* 2. SỬA .why-us h2 (Tiêu đề) */
+.why-us h2 {
+   text-align: center;
+   font-size: 2.2rem;
+   margin-bottom: 50px;
+   color: var(--color-primary); /* Tiêu đề giờ phải có màu vì nó nằm trên nền trắng */
+}
+
+/* 3. SỬA .tabs-container (Đây là cái hộp xanh bạn muốn) */
+.tabs-container {
+   max-width: 1000px; 
+   margin: 0 auto;
+    
+   /* --- DI CHUYỂN NỀN XANH VÀO ĐÂY --- */
+   background: var(--color-primary);
+   color: white;
+   padding: 50px; /* Thêm padding cho nội dung bên trong hộp xanh */
+   border-radius: 25px; /* Đây chính là bo góc bạn muốn */
+   overflow: hidden; 
+    box-shadow: 0 10px 30px rgba(0, 33, 71, 0.15); /* Thêm bóng đổ cho đẹp */
+}
+
+/* 4. GIỮ NGUYÊN CODE CÁC TAB BÊN TRONG (từ lần sửa trước) */
+.tabs-nav {
+   display: flex;
+   justify-content: center;
+   gap: 20px;
+   margin-bottom: 30px;
+}
+
+.tab-link {
+   background: #ffffff;
+   color: var(--color-primary); 
+   border: none;
+   cursor: pointer;
+   font-size: 1rem;
+   font-weight: 600;
+   transition: all 0.3s;
+   flex: 1;
+   display: flex;
+    flex-direction: column; 
+   align-items: center; 
+    justify-content: center; 
+   gap: 15px; 
+    padding: 25px 20px;
+    border-radius: 20px; 
+    min-height: 150px;
+}
+
+.tab-link i {
+    font-size: 2.5rem; 
+}
+
+.tab-link:hover {
+   background: #f0f0f0; 
+}
+
+.tab-link.active {
+   background: #3b82f6; 
+   color: white;
+    transform: translateY(-5px); 
+    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.2);
+}
+
+.tab-pane {
+   display: none;
+   animation: fadeIn 0.5s;
+   text-align: center;
+    max-width: 800px; 
+    margin: 0 auto; 
+}
+
+.tab-pane.active {
+   display: block;
+}
+
+.tab-pane h3 {
+   font-size: 1.5rem;
+   color: white; 
+   margin-bottom: 15px;
+}
+
+.tab-pane p {
+   font-size: 1rem;
+   line-height: 1.6;
+}
+
+@keyframes fadeIn {
+   from { opacity: 0; }
+   to { opacity: 1; }
+}
+/*
+--- RESPONSIVE (ĐIỀU CHỈNH CHO DI ĐỘNG) ---
+*/
+@media (max-width: 992px) {
+    .hero-container, .info-block {
+        flex-direction: column;
+    }
+    .info-block.reverse {
+        flex-direction: column-reverse;
+    }
+    .hero-text, .hero-image-wrapper {
+        max-width: 100%;
+    }
+    .hero-image-wrapper img {
+        margin: 0 auto;
+    }
+    .stat-box.stat-2 {
+        left: 0;
+    }
+    .values-grid {
+        grid-template-columns: repeat(2, 1fr);
+    }
+    .tabs-nav {
+        flex-direction: column;
+    }
+}
+
+@media (max-width: 576px) {
+    .hero-text h1 {
+        font-size: 2rem;
+    }
+    .values-grid {
+        grid-template-columns: 1fr;
+    }
+    .info-text {
+        padding: 40px 25px;
+    }
+    .stat-box {
+        padding: 8px 12px;
+        font-size: 0.9rem;
+    }
+    .stat-box strong { font-size: 1rem; }
+}
