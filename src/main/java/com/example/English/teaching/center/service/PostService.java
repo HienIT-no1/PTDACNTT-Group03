@@ -1,0 +1,16 @@
+package com.example.English.teaching.center.service;
+
+import java.util.List;
+import java.util.Optional;
+
+import com.example.English.teaching.center.model.Post;
+
+public interface PostService {
+    List<Post> getAllPosts();
+
+    void deletePostById(Long id);
+
+    void savePost(Post post);
+
+    Optional<Post> getPostById(Long id);
+}

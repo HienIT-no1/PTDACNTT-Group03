@@ -1,43 +1,52 @@
 package com.example.English.teaching.center.model;
 
 import jakarta.persistence.*;
-import lombok.Data;
-import lombok.NoArgsConstructor;
-import org.hibernate.annotations.CreationTimestamp;
-import java.sql.Timestamp;
+import lombok.*;
+import java.time.LocalDateTime;
 
+@Entity
+@Table(name = "consultations")
 @Data
 @NoArgsConstructor
-@Entity
-@Table(name = "Consultations")
+@AllArgsConstructor
+@Builder
 public class Consultation {
-
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Integer consultationId;
+    private Long id;
 
-    @Column(nullable = false, length = 100)
+    @Column(name = "full_name", nullable = false, length = 100)
     private String fullName;
 
-    @Column(nullable = false, length = 20)
+    @Column(name = "phone_number", nullable = false, length = 20)
     private String phoneNumber;
 
-    @Column(length = 255)
-    private String email;
+    @Column(length = 100)
+    private String location; // Khu vực sống
+
+    @Column(name = "learning_needs", columnDefinition = "TEXT")
+    private String learningNeeds;
+
+    // Dùng Enum để quản lý trạng thái xử lý (Chưa gọi, Đã gọi...)
+    @Enumerated(EnumType.STRING)
+    @Builder.Default
+    private ConsultationStatus status = ConsultationStatus.PENDING;
 
     @Column(columnDefinition = "TEXT")
-    private String message;
+    private String note; // Ghi chú của Admin
 
-    @Enumerated(EnumType.STRING)
-    @Column(nullable = false)
-    private ConsultationStatus status; // Mặc định là 'new'
+    @Column(name = "created_at", updatable = false)
+    private LocalDateTime createdAt;
 
-    @CreationTimestamp
-    @Column(updatable = false)
-    private Timestamp createdAt;
+    @PrePersist
+    protected void onCreate() {
+        createdAt = LocalDateTime.now();
+    }
 
-    public enum ConsultationStatus {
-        NEW,
-        CONTACTED
+    public enum ConsultationStatus{
+        PENDING,    // Chờ xử lý
+        CONTACTED,  // Đã liên hệ
+        DONE,       // Hoàn thành/Đã chốt
+        CANCELLED   // Hủy bỏ
     }
 }

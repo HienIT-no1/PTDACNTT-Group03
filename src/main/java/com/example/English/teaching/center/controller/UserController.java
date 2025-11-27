@@ -9,7 +9,6 @@ public class UserController {
         return "redirect:/user/home";
     }
 
-    // User Dashboard------------------------------------------------------------
     @GetMapping("/user/home")
     public String userHome() {
         return "user/home";

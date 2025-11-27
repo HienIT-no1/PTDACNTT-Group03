@@ -1,0 +1,135 @@
+.courses-section {
+    width: 90%;
+    max-width: 1200px;
+    margin: 40px auto; /* Căn giữa và tạo khoảng cách */
+}
+
+.section-title {
+    font-size: 2em;
+    color: #4a148c; /* Màu tím đậm cho tiêu đề */
+    margin-bottom: 30px;
+    position: relative;
+    padding-bottom: 10px;
+}
+
+/* Dấu gạch chân màu xanh dưới tiêu đề */
+.section-title::after {
+    content: '';
+    display: block;
+    width: 80px;
+    height: 4px;
+    background-color: #007bff;
+    position: absolute;
+    bottom: 0;
+    left: 0;
+}
+
+/* --- Lưới Hiển Thị Các Thẻ Khóa Học --- */
+.course-grid {
+    display: grid;
+    /* Tạo 4 cột bằng nhau. 
+        Sử dụng auto-fit để tự động xuống hàng trên màn hình nhỏ */
+    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+    gap: 25px; /* Khoảng cách giữa các thẻ */
+}
+
+/* --- Kiểu dáng cho từng Thẻ Khóa Học --- */
+.course-card {
+    background-color: #ffffff;
+    border-radius: 10px;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.08);
+    overflow: hidden; /* Để bo góc hình ảnh */
+    display: flex;
+    flex-direction: column;
+    transition: transform 0.3s, box-shadow 0.3s;
+}
+
+.course-card:hover {
+    transform: translateY(-5px); /* Hiệu ứng nhấc lên khi hover */
+    box-shadow: 0 8px 20px rgba(0, 0, 0, 0.12);
+}
+
+.course-card img {
+    width: 100%;
+    height: 150px; /* Chiều cao cố định cho ảnh */
+    object-fit: cover; /* Đảm bảo ảnh lấp đầy mà không bị méo */
+}
+
+/* NỘI DUNG BÊN TRONG THẺ */
+.card-content {
+    padding: 20px;
+    flex-grow: 1; /* Giúp phần nội dung co dãn */
+    display: flex;
+    flex-direction: column;
+}
+
+.tag {
+    font-size: 0.8em;
+    font-weight: bold;
+    padding: 4px 10px;
+    border-radius: 5px;
+    background-color: #e6f7ff; /* Nền xanh nhạt */
+    color: #007bff; /* Chữ xanh đậm */
+    align-self: flex-start; /* Chỉ chiếm độ rộng cần thiết */
+}
+
+.tag.popular {
+    background-color: #fff0f5; /* Nền hồng nhạt */
+    color: #db2777; /* Chữ hồng đậm */
+}
+
+.course-card h3 {
+    font-size: 1.25em;
+    margin: 15px 0 10px 0;
+    color: #222;
+}
+
+.author {
+    font-size: 0.9em;
+    color: #777;
+    margin-bottom: 15px;
+}
+
+.rating {
+    font-size: 0.9em;
+    color: #555;
+    margin-bottom: 15px;
+}
+
+.rating-star {
+    color: #f5a623; /* Màu vàng cam */
+}
+
+/* Phần giá tiền (đẩy xuống đáy thẻ) */
+.price-section {
+    margin-top: auto; /* Quan trọng: Đẩy phần này xuống cuối */
+    padding-top: 15px;
+    border-top: 1px solid #f0f0f0;
+    font-size: 1.1em;
+    font-weight: bold;
+}
+
+.price.free {
+    color: #28a745; /* Màu xanh lá */
+}
+
+.price .sale-price {
+    color: #d90000; /* Màu đỏ cho giá giảm */
+    margin-right: 8px;
+}
+
+.price .original-price {
+    font-size: 0.85em;
+    color: #888;
+    text-decoration: line-through;
+    margin-right: 8px;
+}
+
+.price .discount {
+    font-size: 0.8em;
+    font-weight: bold;
+    color: #d90000;
+    background-color: #ffebeb;
+    padding: 3px 6px;
+    border-radius: 4px;
+}

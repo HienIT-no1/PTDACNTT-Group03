@@ -1,0 +1,161 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <title th:text="${pageTitle}">Quản lý Tin tức</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link rel="stylesheet" href="/css/admin/dashboard.css">
+</head>
+<body>
+<div class="container-fluid">
+    <div class="row">
+        
+        <div th:replace="~{admin/fragments/sidebar :: sidebar}"></div>
+
+        <div class="col-md-10 p-4">
+            <h3 class="mb-4">Tài liệu học tập</h3>
+            
+            <div class="card shadow-sm">
+                <div class="card-header d-flex justify-content-between align-items-center">
+                    <span>Danh sách tài liệu</span>
+                    <button class="btn btn-primary btn-sm" id="btnAdd" data-bs-toggle="modal" data-bs-target="#materialsModal">
+                        <i class="fa-solid fa-plus"></i> Đăng bài mới
+                    </button>
+                </div>
+                <div class="card-body">                     
+                    <table class="table table-hover align-middle">
+                        <thead class="table-light">
+                            <tr>
+                                <th>ID</th>
+                                <th>Tên tài liệu</th>
+                                <th>Loại tài liệu</th>
+                                <th>Ngày tạo</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr th:each="material : ${listMaterials}">
+                                <td th:text="${material.id}"></td>
+                                <td th:text="${material.title}" class="fw-bold"></td>
+                                <td th:text="${material.type}"></td>
+                                <td th:text="${material.createdAt}"></td>
+                                <td>
+                                    <a href="javascript:void(0)" 
+                                       class="btn btn-warning btn-sm btn-action"
+                                       th:data-id="${material.id}"
+                                       th:data-title="${material.title}"
+                                       th:data-description="${material.description}"
+                                       th:data-type="${material.type}"
+                                       th:data-fileUrl="${material.fileUrl}" 
+                                       th:data-thumbnailUrl="${material.thumbnailUrl}"  
+                                       th:data-createdAt="${material.createdAt}" 
+                                       onclick="openEditModal(this)">
+                                       <i class="fa-solid fa-pen"></i>
+                                    </a>
+                                    
+                                    <a th:href="@{/admin/materials/delete/{id}(id=${material.id})}" 
+                                       class="btn btn-danger btn-sm" 
+                                       onclick="return confirm('Bạn có chắc chắn muốn xóa tài liệu này không?')">
+                                       <i class="fa-solid fa-trash"></i>
+                                    </a>
+                                </td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<div class="modal fade" id="materialsModal" tabindex="-1">
+    <div class="modal-dialog modal-lg">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="modalTitle">Thêm Bài Viết Mới</h5>
+                <button type="button" class="btn-close" data-bs-dismiss="modal"></button>
+            </div>
+            <div class="modal-body">
+                <form th:action="@{/admin/materials/save}" method="post" id="materialsForm">
+                    
+                    <input type="hidden" name="id" id="materialId">
+
+                    <div class="mb-3">
+                        <label class="form-label">Tiêu đề tài liệu</label>
+                        <input type="text" class="form-control" name="title" id="materialTitle" required>
+                    </div>
+                    
+                    <div class="mb-3">
+                        <label class="form-label">Mô tả tài liệu</label>
+                        <input type="text" class="form-control" name="description" id="materialDescription">
+                    </div>
+
+                    <div class="mb-3">
+                        <label class="form-label">Loại bài viết</label>
+                        <select class="form-select" name="type" id="materialType">
+                            <option value="PDF">PDF</option>
+                            <option value="YOUTUBE">Youtube</option>
+                            <option value="DOC">Doc</option>
+                            <option value="VIDEO">Video</option>
+                        </select>
+                    </div>
+
+                    <div class="mb-3">
+                        <label class="form-label">Link file</label>
+                        <input type="text" class="form-control" name="fileUrl" id="materialFileUrl">
+                    </div>
+
+                    <div class="mb-3">
+                        <label class="form-label">Link ảnh thu nhỏ (Thumbnail URL)</label>
+                        <input type="text" class="form-control" name="thumbnailUrl" id="materialThumbnailUrl">
+                    </div>
+
+                    <div class="mb-3">
+                        <label class="form-label">Ngày tạo tài liệu</label>
+                        <input class="form-control" name="createdAt" id="materialCreatedAt" disabled>
+                    </div>
+                    
+                    <div class="modal-footer p-0 pt-3">
+                        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Hủy</button>
+                        <button type="submit" class="btn btn-primary">Lưu bài viết</button>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>
+
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+
+<script>
+    function openEditModal(button) {
+        var id = button.getAttribute("data-id");
+        var title = button.getAttribute("data-title");
+        var description = button.getAttribute("data-description");
+        var type = button.getAttribute("data-type");
+        var fileUrl = button.getAttribute("data-fileUrl");
+        var thumbnailUrl = button.getAttribute("data-thumbnailUrl"); 
+        var createdAt = button.getAttribute("data-createdAt");
+
+        document.getElementById("materialId").value = id;
+        document.getElementById("materialTitle").value = title;
+        document.getElementById("materialDescription").value = description;
+        document.getElementById("materialType").value = type;
+        document.getElementById("materialFileUrl").value = fileUrl;
+        document.getElementById("materialThumbnailUrl").value = thumbnailUrl;
+        document.getElementById("materialCreatedAt").value = createdAt;
+
+        document.getElementById("modalTitle").innerText = "Cập nhật tài liệu";
+
+        var myModal = new bootstrap.Modal(document.getElementById('materialsModal'));
+        myModal.show();
+    }
+
+    // Xử lý khi bấm nút Thêm mới để reset form
+    document.getElementById("btnAdd").addEventListener("click", function() {
+        document.getElementById("materialsForm").reset();
+        document.getElementById("materialId").value = ""; 
+        document.getElementById("modalTitle").innerText = "Thêm Bài Viết Mới";
+    });
+</script>
+</body>
+</html>
