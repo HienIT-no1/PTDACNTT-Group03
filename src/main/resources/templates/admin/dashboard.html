@@ -1,0 +1,245 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <title th:text="${pageTitle}">Quản lý Khóa học</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link rel="stylesheet" th:href="@{/css/admin/dashboard.css}">
+</head>
+<body>
+<div class="container-fluid">
+    <div class="row">
+        <div th:replace="~{admin/fragments/sidebar :: sidebar}"></div>
+
+        <div class="col-md-10 p-4">
+            <h3 class="mb-4">Quản lý Khóa học</h3>
+            
+            <div class="card shadow-sm">
+                <div class="card-header d-flex justify-content-between align-items-center">
+                    <span>Danh sách tất cả khóa học</span>
+                    <button type="button" id="btnAdd" class="btn btn-primary btn-sm" data-bs-toggle="modal" data-bs-target="#addCourseModal">
+                        <i class="fa-solid fa-plus"></i> Thêm Khóa học
+                    </button>
+                </div>
+                <div class="card-body">
+                    <table class="table table-hover align-middle">
+                        <thead class="table-light">
+                            <tr>
+                                <th>ID</th>
+                                <th>Tên Khóa học</th>
+                                <th>Danh mục</th>
+                                <th>Giảng viên</th>
+                                <th>Học phí</th>
+                                <th>Hành động</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr th:each="course : ${listCourses}">
+                                <td th:text="${course.id}"></td>
+                                <td th:text="${course.title}" class="fw-bold"></td>
+                                <td th:text="${course.category != null ? course.category.name : 'N/A'}"></td>
+                                <td th:text="${course.instructor != null ? course.instructor.fullName : 'N/A'}"></td>
+                                <td th:text="${#numbers.formatDecimal(course.price, 0, 'COMMA', 0, 'POINT')} + ' ₫'"></td>
+                                <td>
+                                    <a href="javascript:void(0)" 
+                                        class="btn btn-warning btn-sm btn-action"
+                                        th:data-id="${course.id}"
+                                        th:data-title="${course.title}"
+                                        th:data-price="${course.price}"
+                                        th:data-category="${course.category != null ? course.category.id : ''}"
+                                        th:data-instructor="${course.instructor != null ? course.instructor.id : ''}"
+
+                                        th:data-target="${course.targetAudience}"
+                                        th:data-goal="${course.courseGoal}"
+                                        th:data-sessions="${course.totalSessions}"
+                                        th:data-duration="${course.sessionDuration}"
+                                        th:data-coaching="${course.coachingSessions}"
+                                        th:data-size="${course.classSize}"
+                                        
+                                        th:data-comm-vocab="${course.commitmentVocabGrammar}"
+                                        th:data-comm-listening="${course.commitmentListening}"
+                                        th:data-comm-speaking="${course.commitmentSpeaking}"
+                                        th:data-comm-reading="${course.commitmentReading}"
+                                        th:data-comm-writing="${course.commitmentWriting}"
+
+                                        onclick="openEditModal(this)">
+                                        <i class="fa-solid fa-pen"></i>
+                                    </a>
+                                    
+                                    <a th:href="@{/admin/courses/delete/{id}(id=${course.id})}" 
+                                        class="btn btn-danger btn-sm" 
+                                        onclick="return confirm('Bạn có chắc chắn muốn xóa khóa học này không?')">
+                                        <i class="fa-solid fa-trash"></i>
+                                    </a>
+                                </td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<div class="modal fade" id="addCourseModal" tabindex="-1">
+    <div class="modal-dialog modal-lg">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="modalTitle">Thêm Khóa học Mới</h5>
+                <button type="button" class="btn-close" data-bs-dismiss="modal"></button>
+            </div>
+            <div class="modal-body">
+                <form th:action="@{/admin/courses/save}" th:object="${newCourse}" method="post" id="courseForm">
+                    
+                    <input type="hidden" th:field="*{id}" id="courseId">
+
+                    <div class="mb-3">
+                        <label class="form-label">Tên khóa học</label>
+                        <input type="text" class="form-control" th:field="*{title}" id="courseTitle" required>
+                    </div>
+                    
+                    <div class="mb-3">
+                        <label class="form-label">Danh mục</label>
+                        <select class="form-select" name="categoryId" id="courseCategory">
+                            <option th:each="cat : ${listCategories}" 
+                                    th:value="${cat.id}" 
+                                    th:text="${cat.name}">
+                            </option>
+                        </select>
+                    </div>
+
+                    <div class="mb-3">
+                        <label class="form-label">Giảng viên</label>
+                        <select class="form-select" name="instructorId" id="courseInstructor">
+                            <option th:each="ins : ${listInstructors}" 
+                                    th:value="${ins.id}" 
+                                    th:text="${ins.fullName}"></option>
+                        </select>
+                    </div>
+
+                    <div class="mb-3">
+                        <label class="form-label">Học phí (VNĐ)</label>
+                        <input type="number" class="form-control" th:field="*{price}" id="coursePrice" required>
+                    </div>
+
+                    <div class="mb-3">
+                        <label class="form-label">Khóa học này dành cho ai</label>
+                        <input type="text" class="form-control" th:field="*{targetAudience}" id="courseTargetAudience" required>
+                    </div>
+
+                    <div class="mb-3">
+                        <label class="form-label">Mục tiêu của khóa học</label>
+                        <input type="text" class="form-control" th:field="*{courseGoal}" id="courseGoal" required>
+                    </div>
+
+                    <div class="mb-3">
+                        <label class="form-label">Tổng số buổi học</label>
+                        <input type="number" class="form-control" th:field="*{totalSessions}" id="totalSessions" required>
+                    </div>
+
+                    <div class="mb-3">
+                        <label class="form-label">Thời lượng buổi học</label>
+                        <input type="text" class="form-control" th:field="*{sessionDuration}" id="sessionDuration" required>
+                    </div>
+
+                    <div class="mb-3">
+                        <label class="form-label">Số buổi học 1-1 với chuyên gia</label>
+                        <input type="number" class="form-control" th:field="*{coachingSessions}" id="coachingSessions" required>
+                    </div>
+
+                    <div class="mb-3">
+                        <label class="form-label">Sĩ số</label>
+                        <input type="text" class="form-control" th:field="*{classSize}" id="classSize" required>
+                    </div>
+
+                    <div class="mb-3">
+                        <label class="form-label">Cam kết từ vựng ngữ pháp</label>
+                        <textarea class="form-control" th:field="*{commitmentVocabGrammar}" id="commitmentVocabGrammar" rows="5" required></textarea>
+                    </div>
+
+                    <div class="mb-3">
+                        <label class="form-label">Cam kết nghe</label>
+                        <textarea class="form-control" th:field="*{commitmentListening}" id="commitmentListening" required rows="5"></textarea>
+                    </div>
+
+                    <div class="mb-3">
+                        <label class="form-label">Cam kết nói</label>
+                        <textarea class="form-control" th:field="*{commitmentSpeaking}" id="commitmentSpeaking" required rows="5"></textarea>
+                    </div>
+
+                    <div class="mb-3">
+                        <label class="form-label">Cam kết đọc</label>
+                        <textarea class="form-control" th:field="*{commitmentReading}" id="commitmentReading" required rows="5"></textarea>
+                    </div>
+
+                    <div class="mb-3">
+                        <label class="form-label">Cam kết viết</label>
+                        <textarea class="form-control" th:field="*{commitmentWriting}" id="commitmentWriting" required rows="5"></textarea>
+                    </div>
+                    
+                    
+                    <div class="modal-footer p-0 pt-3">
+                        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Hủy</button>
+                        <button type="submit" class="btn btn-primary">Lưu khóa học</button>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+
+<script>
+    function openEditModal(button) {
+        var id = button.getAttribute("data-id");
+        var title = button.getAttribute("data-title");
+        var price = button.getAttribute("data-price");
+        var catId = button.getAttribute("data-category");
+        var insId = button.getAttribute("data-instructor");
+
+        var target = button.getAttribute("data-target");
+        var goal = button.getAttribute("data-goal");
+        var sessions = button.getAttribute("data-sessions");
+        var duration = button.getAttribute("data-duration");
+        var coaching = button.getAttribute("data-coaching");
+        var size = button.getAttribute("data-size");
+
+        var cVocab = button.getAttribute("data-comm-vocab");
+        var cList = button.getAttribute("data-comm-listening");
+        var cSpeak = button.getAttribute("data-comm-speaking");
+        var cRead = button.getAttribute("data-comm-reading");
+        var cWrite = button.getAttribute("data-comm-writing");
+
+        document.getElementById("courseId").value = id;
+        document.getElementById("courseTitle").value = title;
+        document.getElementById("coursePrice").value = price;
+        document.getElementById("courseCategory").value = catId;
+        document.getElementById("courseInstructor").value = insId;
+
+        document.getElementById("courseTargetAudience").value = target; 
+        document.getElementById("courseGoal").value = goal;
+        document.getElementById("totalSessions").value = sessions;
+        document.getElementById("sessionDuration").value = duration;
+        document.getElementById("coachingSessions").value = coaching;
+        document.getElementById("classSize").value = size; 
+        
+        document.getElementById("commitmentVocabGrammar").value = cVocab;
+        document.getElementById("commitmentListening").value = cList;
+        document.getElementById("commitmentSpeaking").value = cSpeak;
+        document.getElementById("commitmentReading").value = cRead;
+        document.getElementById("commitmentWriting").value = cWrite;
+
+        document.getElementById("modalTitle").innerText = "Cập nhật Khóa học";
+        
+        var myModal = new bootstrap.Modal(document.getElementById('addCourseModal'));
+        myModal.show();
+    }
+
+    document.getElementById("btnAdd").addEventListener("click", function() {
+        document.getElementById("courseForm").reset();
+        document.getElementById("courseId").value = ""; 
+        document.getElementById("modalTitle").innerText = "Thêm Khóa học Mới";
+    });
+</script>
+</body>
+</html>

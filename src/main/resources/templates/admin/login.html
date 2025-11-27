@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Đăng nhập Admin</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+    <style>
+        body { background-color: #f4f6f9; display: flex; align-items: center; justify-content: center; height: 100vh; }
+        .login-card { width: 100%; max-width: 400px; padding: 20px; border-radius: 10px; box-shadow: 0 4px 6px rgba(0,0,0,0.1); background: white; }
+        .password-wrapper { position: relative; }
+        .toggle-password { position: absolute; right: 15px; top: 6px; cursor: pointer; font-size: 18px; color: #333; user-select: none;}
+    </style>
+</head>
+<body>
+
+<div class="login-card">
+    <h3 class="text-center mb-4">Admin Login</h3>
+
+    <form th:action="@{/process-login}" method="post" th:object="${admin}">
+
+        <div th:if="${loginError}" class="alert alert-danger">
+            <span th:text="${errorMessage}">Sai tài khoản hoặc mật khẩu!</span>
+        </div>
+
+        <div th:if="${logoutMessage != null}" class="alert alert-success">
+            <span th:text="${logoutMessage}">Đã đăng xuất thành công.</span>
+        </div>
+
+        <div class="mb-3">
+            <label for="username" class="form-label" required tabindex="1">Tên đăng nhập</label>
+            <input type="text" class="form-control" id="username" name="username" placeholder="Nhập username" required tabindex="1">
+        </div>
+        <div class="mb-3">
+            <label for="password" class="form-label">Mật khẩu</label>
+            <div class="password-wrapper">
+                <input type="password" class="form-control" id="password" name="password" placeholder="Nhập password" required tabindex="2">
+                <span class="toggle-password">👁️</span>
+            </div>
+            
+        </div>
+        <button type="submit" class="btn btn-primary w-100" tabindex="3">Đăng nhập</button>
+    </form>
+    
+    <p class="text-center mt-3 text-muted"><small>E-Go Management</small></p>
+</div>
+
+</body>
+
+<script>
+const togglePassword = document.querySelector('.toggle-password');
+const passwordInput = document.querySelector('#password');
+
+togglePassword.addEventListener('click', () => {
+    const isPassword = passwordInput.type === 'password';
+    passwordInput.type = isPassword ? 'text' : 'password';
+    togglePassword.textContent = isPassword ? '🙈' : '👁️';
+});
+</script>
+</html>
