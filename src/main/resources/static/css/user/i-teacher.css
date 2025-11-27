@@ -1,0 +1,512 @@
+/* CSS CHUNG VÀ CĂN CHỈNH KÍCH THƯỚC */
+.body-teacher {
+    /* font-family: Arial, sans-serif; */
+    background: linear-gradient(#eef6fe);
+    /* display: flex; */
+    justify-content: center;
+    align-items: center;
+    min-height: 100vh;
+    margin: 0;
+    width: 100%;
+}
+
+/* CSS cho phần tử decorate */
+.decorate-container-top {
+    /* Đảm bảo container chiếm toàn bộ chiều rộng và căn giữa nội dung */
+    width: 100%;
+    /* height: 100px; */
+    text-align: center;
+    padding: 30px 0;
+    font-family: Arial, sans-serif;
+}
+
+.main-text {
+    color: #004aad;
+    font-size: 2.5vw;
+    /* Kích thước chữ linh hoạt theo viewport width */
+    font-weight: bold;
+    text-transform: uppercase;
+    /* Chữ hoa */
+    line-height: 1.2;
+    /* margin: 0; */
+    padding: 0 10px;
+}
+
+.separator-top {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 60%;
+    margin: 15px auto 0 auto;
+    gap: 15px;
+}
+
+.line-top {
+    flex-grow: 1;
+    /* Cho phép đường kẻ chiếm không gian còn lại */
+    height: 2px;
+    background-color: #5592d3;
+    max-width: 45%;
+    /* Giới hạn chiều dài của mỗi đoạn đường kẻ */
+}
+
+.dots-top {
+    /* Ba chấm tròn giữa */
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-shrink: 0;
+    /* Không cho nó co lại */
+}
+
+.dot-top {
+    /* Thiết lập từng chấm tròn */
+    width: 8px;
+    height: 8px;
+    background-color: #5592d3;
+    border-radius: 50%;
+    /* Làm cho nó thành hình tròn */
+    margin: 0 4px;
+    /* Khoảng cách giữa các chấm */
+}
+
+/* Điều chỉnh cho màn hình nhỏ hơn để chữ không quá lớn */
+@media (max-width: 768px) {
+    .main-text {
+        font-size: 6vw;
+        /* Tăng kích thước chữ cho màn hình nhỏ */
+    }
+
+    .separator-top {
+        width: 90%;
+    }
+}
+
+
+/* CONTAINER CHỨA HAI THẺ VÀ MŨI TÊN */
+.cards-display-container {
+    display: flex;
+    justify-content: center;
+    gap: 70px;
+    /*tang k/c 2 khung*/
+    align-items: stretch;
+    padding: 40px;
+    position: relative;
+    /* Giữ relative để định vị nút điều hướng */
+    /* max-width: 1200px; */
+    width: 100%;
+}
+
+/* CARD WRAPPER ĐƠN LẺ */
+.card-wrapper {
+    position: relative;
+    /* Cho phép card tự giãn theo nội dung nếu cần, nhưng .profile-card-single đã có width cố định */
+    flex-shrink: 0;
+}
+
+/* Định dạng thẻ hồ sơ chính */
+.profile-card-single {
+    /* CHIỀU RỘNG BẰNG NHAU THEO MS. TRANG */
+    width: 450px;
+    background-color: #fff;
+    border-radius: 40px;
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
+    /* border: 2px solid #00bfff; */
+    overflow: hidden;
+    padding-bottom: 10px;
+    /* SỬ DỤNG FLEX ĐỂ BẢO ĐẢM CHIỀU CAO ĐỒNG NHẤT */
+    display: flex;
+    flex-direction: column;
+}
+
+.card-top-section {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    gap: 30px;
+    padding: 18px 30px;
+    position: relative;
+    height: 120px;
+}
+
+#trang {
+    background-image: url("/PTDACNTT_group03/src/main/resources/static/img/img-teacher-01.jpg");
+    /* 2. QUAN TRỌNG: Đảm bảo ảnh che phủ hết khung. Nếu tỷ lệ ảnh khác khung, ảnh sẽ bị cắt bớt */
+    background-size: cover;
+    background-repeat: no-repeat;
+    /* ĐẶT MÀU NỀN DỰ PHÒNG */
+    background-color: #f7f7f7;
+}
+
+#lam {
+    background-image: url("/img/img-teacher-02.jpg");
+    background-size: cover;
+    background-repeat: no-repeat;
+    background-color: #f7f7f7;
+}
+
+/* Khu vực chứa tên và badge (phần lớn bên phải) */
+.info-area {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    flex: 1 1 auto;
+    /* chiếm phần còn lại */
+    position: relative;
+    z-index: 2;
+    /* text-align: left; */
+}
+
+/* Tên */
+.name {
+    font-size: 1.2em;
+    color: #333;
+    font-weight: bold;
+    margin-bottom: 5px;
+    margin-top: 0;
+    text-align: right;
+    white-space: nowrap;
+    text-align: left;
+}
+
+/* Badge (IELTS/TOEIC) */
+.badge {
+    background-color: #e6f7ff;
+    color: #007bff;
+    padding: 10px 12px;
+    border-radius: 20px;
+    font-weight: bold;
+    font-size: 1em;
+    border: 1px solid #cceeff;
+    position: static;
+    transform: none;
+    margin-left: 0;
+    margin-top: 6px;
+    /* margin-right: 0; */
+    width: 120px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+
+/* Badge TOEIC */
+.toeic-badge {
+    background-color: #fff8e1;
+    color: #ffb300;
+    border: 1px solid #ffecb3;
+    /* margin-left: 50px; */
+}
+
+
+/* Chỗ để ảnh đại diện - hình vuông đơn giản bên trái */
+.photo-placeholder {
+    /* width: 120px;
+     height: 120px; */
+    flex: 0 0 120px;
+    /* background-color: #e8e8e8; */
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    /* color: #999; */
+    font-size: 0.75em;
+    position: static;
+    transform: none;
+    z-index: 2;
+    /* border: 2px solid #ccc; */
+    box-shadow: none;
+    /* border-radius: 50%;  */
+    /* padding: 0;
+     margin: 0; */
+}
+
+/* Đường kẻ ngang ngăn cách */
+.card-wrapper .separator {
+    border: none;
+    border-top: 2px solid #808080;
+    margin: 0;
+    padding: 0;
+    width: 100%;
+}
+
+/* Phần Dưới: Chia 2 cột (Quan trọng cho chiều cao) */
+.card-bottom-section {
+    display: flex;
+    height: 220px;
+    flex-grow: 1;
+}
+
+/* Cột Trái: Điểm nổi bật */
+.highlight-section {
+    flex: 2;
+    padding: 15px 15px 15px 30px;
+    border-right: 2px solid #808080;
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-start;
+    /* Giữ nội dung sát trên cùng */
+}
+
+.section-title {
+    font-size: 0.9em;
+    color: #555;
+    margin-bottom: 15px;
+    margin-top: 3px;
+    font-weight: bold;
+    text-transform: uppercase;
+    text-align: center;
+}
+
+.highlight-list {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+}
+
+.highlight-list i {
+    color: #5592d3;
+    font-size: 17px;
+    margin-right: 8px;
+    vertical-align: middle;
+}
+
+.highlight-list li {
+    font-size: 0.85em;
+    color: #333;
+    margin-bottom: 6px;
+    line-height: 1.3;
+}
+
+/* Cột Phải: QR Code */
+.qr-code-section {
+    flex: 1;
+    padding: 15px;
+    text-align: center;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+
+.qr-photo-placeholder {
+    width: 80px;
+    height: 80px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    color: #fff;
+    font-size: 0.7em;
+    margin-bottom: 5px;
+    background-image: url("/img/qr-code-teacher.jpg");
+    background-size: cover;
+    background-repeat: no-repeat;
+    /* background-position: center;  */
+}
+
+.qr-description {
+    font-size: 0.7em;
+    color: #777;
+    line-height: 1.2;
+}
+
+/* NÚT ĐIỀU HƯỚNG (ĐÃ DỊCH CHUYỂN VÀO TRONG CONTAINER) */
+.nav-arrow {
+    position: absolute;
+    top: 50%;
+    transform: translateY(-50%);
+    background-color: #fff;
+    border: none;
+    width: 35px;
+    height: 35px;
+    border-radius: 50%;
+    cursor: pointer;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2);
+    color: #9370db;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    opacity: 0.9;
+    z-index: 10;
+}
+
+/* Đặt nút nằm trong padding của cards-display-container */
+.left-arrow {
+    left: 0;
+}
+
+.right-arrow {
+    right: 0;
+}
+
+
+/* CSS chung cho phần tử decorate-under */
+.decorate-container-under {
+    width: 100%;
+    text-align: center;
+    padding: 20px 0;
+    font-family: Arial, sans-serif;
+    background-color: #f7f9fc;
+}
+
+.top-line {
+    color: #004aad;
+    font-size: 2.5vw;
+    font-weight: bold;
+    margin-bottom: 5px;
+    padding: 0 10px;
+    text-transform: uppercase;
+}
+
+.bottom-line {
+    color: #004aad;
+    font-size: 2.5vw;
+    font-weight: bold;
+    margin-top: 5px;
+    margin-bottom: 15px;
+    padding: 0 10px;
+    text-transform: uppercase;
+}
+
+.separator-under {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 30%;
+    max-width: 400px;
+    margin: 10px auto 0 auto;
+}
+
+.line-under {
+    /* Đường kẻ */
+    flex-grow: 1;
+    /* Cho phép đường kẻ chiếm không gian còn lại */
+    height: 2px;
+    background-color: #5592d3;
+    max-width: 45%;
+}
+
+.dots-under {
+    /* Ba chấm tròn giữa */
+    display: flex;
+    align-items: center;
+    margin: 0 5px;
+    /* Khoảng cách giữa đường kẻ và chấm */
+}
+
+.dot-under {
+    /* Thiết lập từng chấm tròn */
+    width: 7px;
+    height: 7px;
+    background-color: #004aad;
+    border-radius: 50%;
+    margin: 0 3px;
+}
+
+/* Điều chỉnh cho màn hình nhỏ hơn */
+@media (max-width: 768px) {
+    .top-line {
+        font-size: 5vw;
+    }
+
+    .bottom-line {
+        font-size: 7vw;
+    }
+
+    .separator-under {
+        width: 50%;
+    }
+}
+
+
+/* css cho introduce about teacher by text */
+/* Container lớn  */
+.main-container {
+    display: flex;
+    flex-direction: row;
+    /* Sắp xếp các mục theo hàng ngang (mặc định) */
+    max-width: 1200px;
+    margin: 30px auto;
+    /* Căn giữa container */
+    background-color: white;
+    padding: 40px;
+    border-radius: 10px;
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
+}
+
+/* Thẻ div bên trái (Phần ảnh) */
+.left-section {
+    flex: 0 0 40%;
+    position: relative;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    border: 1px solid #333;
+    background-image: url("/PTDACNTT_group03/src/main/resources/static/img/img-left-teacher.jpg");
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
+}
+
+/* Thẻ div bên phải (Phần nội dung) */
+.right-section {
+    flex: 1;
+    padding-left: 50px;
+}
+
+/* --- STYLES CHO PHẦN NỘI DUNG (RIGHT) --- */
+.content-item {
+    margin-bottom: 30px;
+}
+
+.content-item h3 {
+    color: #5592d3;
+    font-size: 22px;
+    font-weight: bold;
+    margin-bottom: 5px;
+    display: flex;
+    align-items: center;
+}
+/* 
+.content-item h3::before {
+    content: '•'; 
+    color: #5592d3;
+    font-size: 30px;
+    line-height: 0;
+    margin-right: 10px;
+} */
+
+.content-item i {
+    color: #5592d3;
+    font-size: 17px;
+    margin-right: 8px;
+    vertical-align: middle;
+    border-radius: 50%;
+}
+
+.content-item p {
+    font-size: 15px;
+    color: #555;
+    line-height: 1.6;
+    margin-left: 20px;
+}
+
+/* Responsive điều chỉnh */
+@media (max-width: 992px) {
+    .main-container {
+        flex-direction: column;
+        padding: 20px;
+    }
+
+    .left-section {
+        flex: none;
+        width: 100%;
+        min-height: 350px;
+        margin-bottom: 40px;
+    }
+
+    .right-section {
+        padding-left: 0;
+    }
+
+}

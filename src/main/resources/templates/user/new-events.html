@@ -1,11 +1,272 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
+    <title>Tin tức & Sự kiện</title>
+    <link rel="stylesheet" href="/css/common.css">
+    <link rel="stylesheet" href="/css/user/new-events.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.6.0/css/all.min.css">
 </head>
 <body>
-    
+
+    <!-- header -->
+    <header class="navbar">
+        <a th:href="@{/user/home}" class="logo">GO-E</a>
+        <nav class="nav-links">
+            <ul>
+                <li class="dropdown">
+                    <a href="#">Giới thiệu</a>
+                    <ul class="dropdown-menu">
+                        <li><a th:href="@{/user/about}">Về trung tâm</a></li>
+                        <li><a th:href="@{/user/i-teacher}">Đội ngũ giảng viên</a></li>
+                    </ul>
+                </li> 
+                <li class="dropdown">
+                    <a href="#">Khóa học</a>
+                    <ul class="dropdown-menu">
+                        <li><a href="#">IELTS</a></li>
+                        <li><a href="#">Khóa tiếng Anh giao tiếp online</a></li>
+                        <li><a href="#">Khóa tiếng Anh trẻ em</a></li>
+                    </ul>
+                </li>
+                <li><a href="#">Cảm nhận học viên</a></li>
+                <li class="dropdown">
+                    <a href="#">Thư viện</a>
+                    <ul class="dropdown-menu">
+                        <li><a href="#">Tài liệu</a></li>
+                        <li><a href="#">Blog</a></li>
+                    </ul>
+                </li>
+                <li><a th:href="@{/user/new-events}">Tin tức & Sự kiện</a></li>
+            </ul>
+        </nav>
+        <div class="search-container">
+            <div class="search-icon">🔍</div>
+            <input type="text" placeholder="search" id="searchInput">
+            <button class="clear-btn" onclick="clearSearch()">✖</button>
+        </div>
+    </header>
+
+    <!-- body -->
+    <div class="container">
+
+        <!-- Banner lớn -->
+        <div class="banner"></div>
+
+        <!-- Đường kẻ ngang -->
+        <div class="separator"></div>
+
+        <!-- 2 tab -->
+        <div class="tabs">
+            <div class="tab tab-news">Tin tức & Sự kiện</div>
+            <div class="tab tab-hot">
+                <div class="tab-hot-margin"></div>
+                Tin hot 🔥
+            </div>
+        </div>
+
+        <!-- Nội dung chính + Tin hot bên phải -->
+        <div class="main-wrapper">
+
+            <!-- Cột trái: Tin tức chính -->
+            <div class="news-section">
+
+                <!-- Bài thứ nhất  -->
+                <div class="news-article">
+                    <div id="img1" class="article-img"></div>
+
+                    <div class="article-content">
+                        <h2 class="title">
+                            <a th:href="@{/user/new-events-details01}">TÙNG BỪNG KHUYẾN MÃI - GO-E ĐÓN NĂM MỚI VỚI ƯU ĐÃI KHỦNG CHƯA TỪNG CÓ!</a>
+                        </h2>
+                        <p class="summary">Nhân dịp Tết 2026, GO-E dành tặng bạn siêu ưu đãi chưa từng có để khởi động năm mới đầy hứng khởi</p>
+                    </div>
+
+                </div>
+
+                <!-- Bài thứ 2 -->
+                <div class="news-article">
+                    <div id="img2" class="article-img"></div>
+                    <div class="article-content">
+                        <h2 class="title">
+                            <a href="#">KHỞI ĐỘNG CUỘC THI “MY GO-E JOURNEY - HÀNH TRÌNH TRUYỀN CẢM HỨNG”</a>
+                        </h2>
+                        <p class="summary">Cuộc thi “MY GO-E JOURNEY - HÀNH TRÌNH TRUYỀN CẢM HỨNG,” nhằm tôn vinh những câu chuyện đặc biệt 
+                            mà các bạn đã viết nên cùng GO-E. Tham gia ngay để ring nhiều phần quà hấp dẫn !!!
+                        </p>
+                    </div>
+                </div>
+
+                <!-- Bài thứ 3 -->
+                <div class="news-article">
+                    <div id="img3" class="article-img"></div>
+                    <div class="article-content">
+                        <h2 class="title">
+                            <a href="#">BỨT PHÁ TIẾNG ANH TẠI TRẠI HÈ SUMMER CAMP 2025 CHO TRẺ</a>
+                        </h2>
+                        <p class="summary">​Trại hè tiếng Anh 2025 với chủ đề 𝙎𝙪𝙢𝙢𝙚𝙧 𝙀𝙭𝙥𝙡𝙤𝙧𝙚𝙧𝙨 - 𝙊𝙥𝙚𝙣 𝙪𝙥 𝙣𝙚𝙬 𝙝𝙤𝙧𝙞𝙯𝙤𝙣𝙨 đã chính thức 
+                            mở cửa! Tại Summer Camp năm nay, các bạn nhỏ sẽ được hoá thân thành những nhà thám hiểm nhí cùng đồng đội 
+                            của mình tham gia vào những chuyến thám hiểm đầy thử thách.
+                        </p>
+                    </div>
+                </div>
+
+            </div>
+
+            <!-- Cột phải: Tin hot (sidebar) -->
+            <div class="hot-sidebar">
+                <div class="hot-item">
+                    <div id="small-img1" class="hot-small-img"></div>
+                    <a class="hot-small-text" th:href="@{/user/new-events-details01}">
+                    Tưng Bừng Khuyến Mãi, GO-E <br> Đón Năm Mới Với Ưu Đãi Khủng <br> Chưa Từng Có!!!</a>
+                </div>
+
+                <div class="hot-item">
+                    <div id="small-img2" class="hot-small-img"></div>
+                    <a class="hot-small-text" href="#">Chào Mừng Ngày Nhà Giáo Việt <br> Nam - 20/11/2025 tại GO-E!</a>
+                </div>
+            </div>
+
+        </div>
+
+    </div>
+
+    <!-- số trang -->
+    <div class="pagination" id="pagination-container"></div>
+
+    <!-- Footer -->
+    <footer>
+        <div class="footer-container">
+            <!-- column left -->
+            <div class="footer-column branding-column">
+                <h3 class="logo">GO-E</h3>
+                <p class="slogan">English for Life & Future</p>
+                <p class="description">
+                    Go-E là hệ sinh thái đào tạo tiếng Anh toàn diện với 16+ năm uy tín,
+                    bao gồm các chương trình: Tiếng Anh giao tiếp, khóa học IELTS và tiếng Anh trẻ em.
+                </p>
+                <div class="branding-column_child">
+                    <h4>VỀ GO-E</h4>
+                    <ul class="footer-links">
+                        <li><a href="#">Giới thiệu</a></li>
+                        <li><a href="#">Chính sách bảo mật</a></li>
+                        <li><a href="#">Trách nhiệm và cam kết</a></li>
+                        <li><a href="#">Thông tin thanh toán</a></li>
+                    </ul>
+                </div>
+            </div>
+
+            <div class="footer-column about-column">
+                <!-- media network -->
+                <h5>Social networking</h5>
+                <div class="social-links">
+                    <a href="#" aria-label="Facebook"><i class="fab fa-facebook-f"></i></a>
+                    <a href="#" aria-label="TikTok"><i class="fab fa-tiktok"></i></a>
+                    <a href="#" aria-label="YouTube"><i class="fab fa-youtube"></i></a>
+                    <a href="#" aria-label="Instagram"><i class="fa-brands fa-instagram"></i></a>
+                    <!-- video tiktok -->
+                    <div class="video-container" id="tiktok-player">
+                        <div class="loading">Đang tải video...</div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="footer-column contact-column">
+                <h4>HỌC TIẾNG ANH GO-E</h4>
+                <ul class="contact-info">
+                    <li>
+                        <i class="fas fa-home"></i>
+                        Cơ sở 1: Số 44, Ngõ 40, Tạ Quang Bửu, Bách Khoa, Hà Nội
+                    </li>
+                    <li>
+                        <i class="fas fa-home"></i>
+                        Cơ sở 2: Số 9C8, ngõ 261 Trần Quốc Hoàn, Cầu Giấy, Hà Nội
+                    </li>
+                    <li>
+                        <i class="fas fa-home"></i>
+                        Cơ sở 3: Số 3, ngõ 34 Nguyễn Hoàng, Mỹ Đình, Hà Nội
+                    </li>
+                    <li>
+                        <i class="fas fa-phone"></i>
+                        <a href="tel:0962154168">0962.154.168</a> - <a href="tel:0962152222">0962.152.222</a>
+                    </li>
+                    <li>
+                        <i class="fas fa-envelope"></i>
+                        <a href="mailto:info@go-e.edu.vn">info@go-e.edu.vn</a>
+                    </li>
+                </ul>
+            </div>
+        </div>
+
+        <!-- floating buttons -->
+        <div class="floating-buttons">
+            <a href="tel:0962154168" class="call-btn" aria-label="Gọi điện"><i class="fas fa-phone-alt"></i></a>
+            <a href="#" class="chat-btn" aria-label="Chat Zalo/Messenger"><i class="fas fa-comment-dots"></i></a>
+        </div>
+    </footer>
+
+
+    <!-- script -->
+    <script>
+        /* --- JavaScript: Phần xử lý logic --- */
+        
+        // Cấu hình
+        const totalPages = 3; // Tổng số trang 
+        let currentPage = 1;   // Trang hiện tại
+
+        const container = document.getElementById('pagination-container');
+
+        // Hàm vẽ lại giao diện phân trang
+        function renderPagination() {
+            container.innerHTML = ''; // Xóa nội dung cũ
+
+            // 1. Tạo nút Prev (<)
+            const prevBtn = document.createElement('button');
+            prevBtn.className = 'page-btn arrow';
+            prevBtn.innerHTML = '&lsaquo;'; // Ký tự mũi tên trái
+            prevBtn.disabled = currentPage === 1;
+            prevBtn.onclick = () => changePage(currentPage - 1);
+            container.appendChild(prevBtn);
+
+            // 2. Tạo các nút số (1 -> 10)
+            for (let i = 1; i <= totalPages; i++) {
+                const btn = document.createElement('button');
+                btn.className = 'page-btn';
+                btn.innerText = i;
+                
+                // Nếu là trang hiện tại thì thêm class 'active'
+                if (i === currentPage) {
+                    btn.classList.add('active');
+                }
+
+                // Sự kiện click vào số
+                btn.onclick = () => changePage(i);
+                container.appendChild(btn);
+            }
+
+            // 3. Tạo nút Next (>)
+            const nextBtn = document.createElement('button');
+            nextBtn.className = 'page-btn arrow';
+            nextBtn.innerHTML = '&rsaquo;'; // Ký tự mũi tên phải
+            nextBtn.disabled = currentPage === totalPages;
+            nextBtn.onclick = () => changePage(currentPage + 1);
+            container.appendChild(nextBtn);
+        }
+
+        // Hàm xử lý khi chuyển trang
+        function changePage(page) {
+            if (page < 1 || page > totalPages) return;
+            currentPage = page;
+            renderPagination(); // Vẽ lại giao diện với trang mới
+            console.log("Đang ở trang:", currentPage); // Log để kiểm tra
+        }
+
+        // Khởi chạy lần đầu
+        renderPagination();
+    </script>
+
+
 </body>
 </html>
