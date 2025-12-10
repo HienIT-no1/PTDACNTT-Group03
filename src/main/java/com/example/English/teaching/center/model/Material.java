@@ -15,13 +15,22 @@ public class Material {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
+    @ManyToOne
+    @JoinColumn(name = "material_category_id")
+    private MaterialCategory materialCategory;
+
     @Column(nullable = false)
     private String title;
+
+    @Column(name = "badge_text", length = 100)
+    private String badgeText;
+
+    @Column(name = "topic_group", length = 100)
+    private String topicGroup;
 
     @Column(columnDefinition = "TEXT")
     private String description;
 
-    // Bạn có thể dùng String hoặc tạo Enum riêng
     @Column(nullable = false, length = 20)
     private String type; 
 

@@ -1,0 +1,183 @@
+.test-header {
+    background: #fff;
+    padding: 15px 0;
+    padding-left: 5%; 
+    padding-right: 5%;
+    box-shadow: 0 2px 10px rgba(0,0,0,0.05);
+    position: sticky;
+    top: 0;
+    z-index: 1000;
+}
+
+.header-flex {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.timer-box {
+    font-size: 20px;
+    font-weight: bold;
+    color: #d9534f; 
+    background: #fff5f5;
+    padding: 8px 15px;
+    border-radius: 5px;
+    border: 1px solid #d9534f;
+}
+
+/* -------------------------- LAYOUT CHÍNH --------------------------- */
+.test-body {
+    padding-top: 30px;
+    padding-bottom: 50px;
+    padding-left: 5%; 
+    padding-right: 5%;
+}
+
+.layout-grid {
+    display: grid;
+    grid-template-columns: 3fr 1fr;
+    gap: 30px;
+}
+
+/* ------------------------- CÂU HỎI ------------------------------ */
+.question-item {
+    background: #fff;
+    border-radius: 8px;
+    padding: 25px;
+    margin-bottom: 20px;
+    box-shadow: 0 1px 3px rgba(0,0,0,0.05);
+}
+
+.q-title {
+    font-size: 18px;
+    font-weight: 600;
+    margin-bottom: 15px;
+    color: #333;
+}
+
+.q-number {
+    color: #007bff;
+    margin-right: 5px;
+}
+
+.q-media {
+    margin: 15px 0;
+    text-align: center;
+    background: #f9f9f9;
+    padding: 10px;
+    border-radius: 5px;
+}
+
+.media-img {
+    max-width: 100%;
+    max-height: 400px;
+    border-radius: 5px;
+}
+
+.media-audio {
+    width: 100%;
+    max-width: 500px;
+}
+
+.media-video {
+    width: 100%;
+    max-width: 600px;
+    border-radius: 5px;
+}
+
+.q-options {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+}
+
+.option-label {
+    display: flex;
+    align-items: center;
+    padding: 12px;
+    border: 1px solid #e0e0e0;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: background 0.2s;
+}
+
+.option-label:hover {
+    background-color: #f0f8ff;
+    border-color: #007bff;
+}
+
+.option-label input {
+    margin-right: 15px;
+    transform: scale(1.2);
+}
+
+/* ---------------------------- SIDEBAR ĐIỀU HƯỚNG ------------------- */
+.nav-sticky {
+    position: sticky;
+    top: 90px; 
+    background: #fff;
+    padding: 20px;
+    border-radius: 8px;
+    box-shadow: 0 1px 3px rgba(0,0,0,0.05);
+}
+
+.nav-grid {
+    display: grid;
+    grid-template-columns: repeat(5, 1fr); 
+    gap: 10px;
+    margin-top: 15px;
+    margin-bottom: 25px;
+}
+
+.nav-item {
+    display: block;
+    text-align: center;
+    padding: 8px 0;
+    border: 1px solid #ddd;
+    border-radius: 4px;
+    color: #333;
+    text-decoration: none;
+    font-weight: 600;
+    font-size: 14px;
+}
+
+.nav-item:hover {
+    background: #eee;
+}
+
+.nav-item.answered {
+    background-color: #007bff;
+    color: white;
+    border-color: #007bff;
+}
+
+.btn-submit-test {
+    width: 100%;
+    padding: 15px; 
+    background-color: #dc3545; 
+    color: white;
+    border: none;
+    border-radius: 5px;
+    font-size: 18px; 
+    font-weight: bold;
+    cursor: pointer;
+    text-transform: uppercase;
+    transition: background-color 0.3s ease;
+}
+
+.btn-submit-test:hover {
+    background-color: #c82333; 
+}
+
+@media (max-width: 768px) {
+    .layout-grid {
+        grid-template-columns: 1fr; 
+    }
+    .nav-sticky {
+        position: static; 
+    }
+    .question-nav {
+        order: -1; 
+        margin-bottom: 20px;
+    }
+}

@@ -1,11 +1,11 @@
 <!DOCTYPE html>
-<html lang="vi">
+<html lang="vi" xmlns:th="http://www.thymeleaf.org">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Home</title>
+    <title th:text="${post.title}">Chi tiết bài viết</title>
     <link rel="stylesheet" href="/css/common.css">
-    <link rel="stylesheet" href="/css/user/home.css">
+    <link rel="stylesheet" href="/css/user/new-events-details.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.6.0/css/all.min.css">
 </head>
 <body>
@@ -14,7 +14,7 @@
         <nav class="nav-links">
             <ul>
                 <li class="dropdown">
-                    <a>Giới thiệu</a>
+                    <a href="#">Giới thiệu</a>
                     <ul class="dropdown-menu">
                         <li><a th:href="@{/user/about}">Về trung tâm</a></li>
                         <li><a th:href="@{/user/i-teacher}">Đội ngũ giảng viên</a></li>
@@ -28,13 +28,12 @@
                         <li><a th:href="@{/user/course(category='CHILDREN')}">Khóa tiếng Anh trẻ em</a></li>
                     </ul>
                 </li>
-                <li><a th:href="@{/user/student-feelings}">Cảm nhận học viên</a></li>
+                <li><a href="#">Cảm nhận học viên</a></li>
                 <li class="dropdown">
-                    <a>Thư viện</a>
+                    <a href="#">Thư viện</a>
                     <ul class="dropdown-menu">
-                        <li><a th:href="@{/user/document}">Tài liệu</a></li>
-                        <li><a th:href="@{/user/test}">Bài kiểm tra</a></li>
-                        <li><a th:href="@{/user/blog}">Blog</a></li>
+                        <li><a href="#">Tài liệu</a></li>
+                        <li><a href="#">Blog</a></li>
                     </ul>
                 </li>
                 <li><a th:href="@{/user/new-events}">Tin tức & Sự kiện</a></li>
@@ -47,46 +46,60 @@
         </div>
     </header>
 
-    <section class="hero">
-        <div class="form-box">
-            <h3>Đăng ký nhận tư vấn</h3>
-            <form id="registerForm">
-                <input type="text" placeholder="Họ và tên" required>
-                <input type="tel" placeholder="Số điện thoại" required>
-                <input type="email" placeholder="Email" required>
-                <select id="location" class="form-box_selection">
-                    <option value="" disabled selected>-- Chọn cơ sở học --</option>
-                    <option value="hanoi">Số 44, Ngõ 40, Tạ Quang Bửu, Bách Khoa, Hà Nội</option>
-                    <option value="hcm">Số 9C8, ngõ 261 Trần Quốc Hoàn, Cầu Giấy, Hà Nội</option>
-                    <option value="danang">Số 3, ngõ 34 Nguyễn Hoàng, Mỹ Đình, Hà Nội</option>
-                </select>
-                <input type="text" placeholder="Mong muốn học tập">
-                <button type="submit">Đăng ký ngay</button>
-            </form>
+    <div class="container">
+        <div class="breadcrumb">
+            <a th:href="@{/user/home}">Trang chủ</a> / 
+            <a th:href="@{/user/new-events}">Tin tức & Sự kiện</a> / 
+            <span th:text="${post.title}">Tiêu đề bài viết</span>
         </div>
 
-        <div class="hero-content">
-            <div class="hero-text"><h1>UNLOCK ENGLISH,</div>
-            <div class="hero-text"><h1>UNLEASH POTENTIAL</div>
-            <div class="hero-line"></div> <br>
-            <p><i class="fa-solid fa-square-check"></i>Hơn 16 năm kinh nghiệm, đào tạo thành công 80,000+ học viên.</p>
-            <p><i class="fa-solid fa-square-check"></i>Lộ trình học chuẩn Quốc tế, phù hợp với nhu cầu thực tiễn</p>
-            <p><i class="fa-solid fa-square-check"></i>Giáo viên đạt chuẩn Quốc tế với chất lượng top đầu thị trường, giàu kinh nghiệm.</p>
-            <p><i class="fa-solid fa-square-check"></i>Phương pháp học hiện đại và linh hoạt, cam kết đầu ra bằng văn bản.</p>
-            <p><i class="fa-solid fa-square-check"></i>Chi phí tương đối - chất lượng tuyệt đối, học thử miễn phí trước khi quyết định</p>
-        </div>
+        <div class="main-wrapper">
+            
+            <div class="post-detail-section">
+                <h1 class="post-title" th:text="${post.title}">Tên bài viết</h1>
+                
+                <div class="post-meta">
+                    <i class="fa-regular fa-clock"></i>
+                    <span th:text="${#temporals.format(post.publishedAt, 'dd/MM/yyyy')}">01/01/2025</span>
+                    &nbsp;|&nbsp;
+                    <span th:text="${post.type}">NEWS</span>
+                </div>
 
-        <div class="hero-img">
-            <img src="/images/img-body-trangchu.jpg" alt="Cahaya Dewi">
-        </div>
-    </section>
 
-    <section class="stats">
-        <div><h2>16+</h2><p>NĂM KINH NGHIỆM</p></div>
-        <div><h2>80,000+</h2><p>HỌC VIÊN ƯU TÚ</p></div>
-        <div><h2>23+</h2><p>CHƯƠNG TRÌNH THIẾT KẾ RIÊNG</p></div>
-        <div><h2>70+</h2><p>GIẢNG VIÊN LOẠI XUẤT SẮC</p></div>
-    </section>
+                <div id="toc-container" class="toc-container" style="display: none;">
+                    <div class="toc-header">
+                        <span class="toc-title">Mục lục</span>
+                        <span class="toc-toggle">[<a href="javascript:void(0)" onclick="toggleToc()">Ẩn</a>]</span>
+                    </div>
+                    <ul id="toc-list"></ul>
+                </div>
+
+                <div class="post-content" id="post-content" th:utext="${post.content}">
+                    </div>
+                
+                <div class="back-btn-container">
+                    <a th:href="@{/user/new-events}" class="btn-back">
+                        <i class="fa-solid fa-arrow-left"></i> Quay lại danh sách
+                    </a>
+                </div>
+            </div>
+
+            <div class="hot-sidebar">
+                <div class="sidebar-title">TIN NỔI BẬT</div>
+                <div class="hot-item" th:each="hotPost, iterStat : ${hotPosts}" th:if="${iterStat.index < 5}">
+                    <div class="hot-small-img" 
+                         th:style="'background-image: url(' + ${hotPost.thumbnailUrl} + ');'">
+                    </div>
+                    <a class="hot-small-text" 
+                       th:href="@{/user/new-events/{slug}(slug=${hotPost.slug})}"
+                       th:text="${hotPost.title}">
+                       Title
+                    </a>
+                </div>
+            </div>
+
+        </div>
+    </div>
 
     <footer>
         <div class="footer-container">
@@ -151,32 +164,64 @@
             </div>
         </div>
 
+        <!-- floating buttons -->
         <div class="floating-buttons">
             <a href="tel:0962154168" class="call-btn" aria-label="Gọi điện"><i class="fas fa-phone-alt"></i></a>
             <a href="#" class="chat-btn" aria-label="Chat Zalo/Messenger"><i class="fas fa-comment-dots"></i></a>
         </div>
     </footer>
 
-<!-- Modal for signup form (appears after 5 seconds) -->
-    <div id="modal-overlay" class="modal-overlay">
-        <div class="modal-content">
-            <button class="modal-close" id="modal-close-btn">&times;</button>
-            <h3>Đăng ký nhận tư vấn</h3>
-            <form id="modalRegisterForm">
-                <input type="text" placeholder="Họ và tên" required>
-                <input type="tel" placeholder="Số điện thoại" required>
-                <input type="email" placeholder="Email" required>
-                <select class="form-box_selection">
-                    <option value="" disabled selected>-- Chọn cơ sở học --</option>
-                    <option value="hanoi">Số 44, Ngõ 40, Tạ Quang Bửu, Bách Khoa, Hà Nội</option>
-                    <option value="hcm">Số 9C8, ngõ 261 Trần Quốc Hoàn, Cầu Giấy, Hà Nội</option>
-                    <option value="danang">Số 3, ngõ 34 Nguyễn Hoàng, Mỹ Đình, Hà Nội</option>
-                </select>
-                <input type="text" placeholder="Mong muốn học tập">
-                <button type="submit">Đăng ký ngay</button>
-            </form>
-        </div>
-    </div>
+    <script>
+        document.addEventListener("DOMContentLoaded", function() {
+            const contentDiv = document.getElementById('post-content');
+            const tocList = document.getElementById('toc-list');
+            const tocContainer = document.getElementById('toc-container');
+            
+            // Tìm tất cả thẻ H1, H2, H3 trong nội dung bài viết
+            const headers = contentDiv.querySelectorAll('h1, h2, h3');
+
+            if (headers.length > 0) {
+                tocContainer.style.display = 'block'; // Hiện khung mục lục nếu có thẻ H
+                
+                headers.forEach((header, index) => {
+                    // 1. Tạo ID cho thẻ Heading để link nhảy tới được
+                    const id = 'section-' + index;
+                    header.id = id;
+
+                    // 2. Tạo item trong mục lục
+                    const li = document.createElement('li');
+                    li.className = 'toc-item-' + header.tagName.toLowerCase(); // vd: toc-item-h2
+                    
+                    const a = document.createElement('a');
+                    a.href = '#' + id;
+                    a.textContent = header.textContent;
+                    
+                    // Thêm sự kiện cuộn mượt
+                    a.onclick = function(e) {
+                        e.preventDefault();
+                        document.getElementById(id).scrollIntoView({ behavior: 'smooth' });
+                    };
+
+                    li.appendChild(a);
+                    tocList.appendChild(li);
+                });
+            }
+        });
+
+        // Hàm Ẩn/Hiện mục lục
+        function toggleToc() {
+            const list = document.getElementById('toc-list');
+            const toggleBtn = document.querySelector('.toc-toggle a');
+            
+            if (list.style.display === 'none') {
+                list.style.display = 'block';
+                toggleBtn.innerText = 'Ẩn';
+            } else {
+                list.style.display = 'none';
+                toggleBtn.innerText = 'Hiện';
+            }
+        }
+    </script>
 
 </body>
 </html>

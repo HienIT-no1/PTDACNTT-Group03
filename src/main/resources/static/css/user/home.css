@@ -1,119 +1,221 @@
-/* Hero Section-body*/
+/* --- 1. BIẾN MÀU & CẤU HÌNH CHUNG (Đồng bộ với Course Detail) --- */
+:root {
+    --primary-red: #D32F2F;
+    --primary-yellow: #FFC107;
+    --bg-light-pink: #FFF5F5;
+    --text-dark: #333;
+    --text-gray: #666;
+    --border-color: #eee;
+    --radius: 12px;
+    --container-width: 1140px;
+}
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: 'Montserrat', sans-serif;
+    color: var(--text-dark);
+    line-height: 1.6;
+}
+
+/* --- 2. HERO SECTION --- */
 .hero {
-  background: linear-gradient(#eef6fe);
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-  padding: 40px;
-  flex-wrap: wrap;
-  /* border: 1px solid #333; */
-  position: relative;
-  min-height: 500px;
-  gap: 30px;
-  overflow: hidden;
+    /* Đổi nền xanh cũ thành nền hồng nhạt chuẩn */
+    background-color: var(--bg-light-pink);
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 60px 40px; /* Tăng padding chút cho thoáng */
+    flex-wrap: wrap;
+    position: relative;
+    min-height: 500px;
+    gap: 30px;
+    overflow: hidden;
 }
-/* Chỉnh form đk */
+
+/* --- 3. FORM ĐĂNG KÝ (FORM BOX) --- */
 .form-box {
-  background: white;
-  padding: 20px;
-  border-radius: 10px;
-  box-shadow: 0 3px 10px rgba(0,0,0,0.1);
-  width: 350px;
-  position: absolute;
+    background: white;
+    padding: 25px;
+    border-radius: var(--radius);
+    /* Shadow mềm mại hơn */
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+    width: 350px;
+    position: absolute;
+    z-index: 10; /* Đảm bảo form nổi lên trên */
+    border-top: 5px solid var(--primary-red); /* Thêm điểm nhấn đỏ trên đầu form */
 }
+
 .form-box h3 {
-  text-align: center;
-  margin-bottom: 15px;
+    text-align: center;
+    margin-bottom: 20px;
+    color: var(--primary-red); /* Tiêu đề form màu đỏ */
+    font-size: 20px;
+    font-weight: 700;
 }
+
 .form-box input,
 .form-box_selection {
-  display: block;
-  width: 100%;
-  margin-bottom: 10px;
-  padding: 8px;
-  border: 1px solid #ccc;
-  border-radius: 5px;
+    display: block;
+    width: 100%;
+    margin-bottom: 15px;
+    padding: 12px;
+    border: 1px solid #ddd;
+    border-radius: 6px;
+    outline: none;
+    transition: border-color 0.3s;
 }
+
+.form-box input:focus,
+.form-box_selection:focus {
+    border-color: var(--primary-red); /* Focus viền đỏ */
+}
+
 .form-box button {
-  width: 100%;
-  padding: 10px;
-  background: #007bff;
-  border: none;
-  border-radius: 5px;
-  color: white;
-  font-size: 15px;
-  font-weight: 600;
-  cursor: pointer;
+    width: 100%;
+    padding: 12px;
+    background: var(--primary-red);
+    border: none;
+    border-radius: 6px;
+    color: white;
+    font-size: 16px;
+    font-weight: 700;
+    cursor: pointer;
+    transition: transform 0.2s, box-shadow 0.2s;
+    box-shadow: 0 4px 10px rgba(211, 47, 47, 0.3);
 }
+
 .form-box button:hover {
-  background: #0056c1;
+    transform: translateY(-2px);
+    background: #b71c1c; 
 }
-/* Chỉnh hero-mid */
+
+/* --- 4. NỘI DUNG GIỮA (HERO CONTENT) --- */
 .hero-content {
-  height: 400px;
-  max-width: 400px;
-  /* border: 1px solid #333; */
-  margin: 0px 377px;
-  z-index: 1;
+    margin: 0 0 0 100px ; 
+    padding-left: 380px;
+    padding-right: 20px;
+    max-width: 900px;
+    z-index: 2;
+    position: relative;
 }
-.hero-text {
-  display: block;
-  justify-content: center;
-  text-align: center;
-  height: 33px;
-  /* border: 1px solid #333; */
-  color: #004aad;
-  font-size: 13px;
+
+.hero-text h1 {
+    color: var(--primary-red);
+    font-size: 48px; 
+    font-weight: 800;
+    line-height: 1.2;
+    text-transform: uppercase;
+    text-align: left; 
 }
+
 .hero-line {
-  width: 100px;
-  height: 4px;
-  background-color: #5592d3;
-  margin: 12px auto;
-  border-radius: 2px;
-  margin-top: 5px;
+    width: 80px;
+    height: 5px;
+    background-color: var(--primary-yellow); 
+    margin: 15px 0 25px 0;
+    border-radius: 2px;
 }
-.hero-content i {
-  color: #5592d3;      /* màu xanh dương */
-  font-size: 20px;     /* kích thước icon */
-  margin-right: 8px;   /* khoảng cách với chữ */
-  vertical-align: middle; /* canh giữa với dòng chữ */
-}
+
 .hero-content p {
-  color: #333;
-  margin-bottom: 8px;
-  line-height: 1.4;
+    color: var(--text-dark);
+    margin-bottom: 12px;
+    line-height: 1.5;
+    font-size: 15px;
+    display: flex;
+    align-items: center;
 }
-/* Chỉnh hero-img_left */
+
+.hero-content i {
+    color: var(--primary-red);
+    font-size: 18px;
+    margin-right: 10px;
+    min-width: 20px; 
+}
+
+/* --- 5. ẢNH BÊN PHẢI (HERO IMG) --- */
 .hero-img img {
-  display: block;
-  position: absolute;
-  height: 100%;
-  width: auto;
-  right: 0;
-  top: 0;
-  bottom: 0;
+    display: block;
+    position: absolute;
+    height: 100%; 
+    width: auto;
+    right: -50px; 
+    top: 0;
+    bottom: 0;
+    z-index: 1;
+    opacity: 0.9;
+    -webkit-mask-image: linear-gradient(to right, transparent, black 20%);
+    mask-image: linear-gradient(to right, transparent, black 20%);
 }
 
-
-
-/* Stats Section-under_body */
+/* --- 6. STATS SECTION (SỐ LIỆU) --- */
 .stats {
-  display: flex;
-  justify-content: space-around;
-  background: rgba(173, 242, 247, 0.5);
-  height: 120px;
-  padding: 25px 0;
-  flex-wrap: wrap;
-  text-align: center;
-  align-items: center;
+    display: flex;
+    justify-content: space-around;
+    /* Đổi nền xanh cũ sang trắng hoặc màu nhấn nhẹ */
+    background: #fff;
+    border-bottom: 1px solid var(--border-color);
+    padding: 40px 0;
+    flex-wrap: wrap;
+    text-align: center;
+    align-items: center;
 }
+
 .stats div h2 {
-  color: #004aad;
-  font-size: 26px;
+    color: var(--primary-red); /* Số màu đỏ */
+    font-size: 36px;
+    font-weight: 800;
+    margin-bottom: 5px;
 }
+
 .stats div p {
-  color: #333;
-  font-weight: 700;
-  font-size: 17px;
+    color: var(--text-gray);
+    font-weight: 700;
+    font-size: 14px;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+}
+
+/* Responsive cơ bản để không bị vỡ giao diện trên màn nhỏ */
+@media (max-width: 1024px) {
+    .hero {
+        flex-direction: column;
+        align-items: center;
+        text-align: center;
+        padding-bottom: 0;
+    }
+
+    .form-box {
+        position: relative; /* Không để absolute trên mobile */
+        width: 100%;
+        max-width: 400px;
+        order: 2; /* Đẩy form xuống dưới text */
+        margin-top: 30px;
+        margin-bottom: -50px; /* Để đè lên phần dưới 1 chút */
+    }
+
+    .hero-content {
+        padding: 0;
+        margin: 0;
+        text-align: center;
+        order: 1;
+    }
+    
+    .hero-text h1 { text-align: center; font-size: 32px; }
+    .hero-line { margin: 15px auto; }
+    .hero-content p { justify-content: center; text-align: left; }
+    
+    .hero-img img {
+        position: relative;
+        width: 100%;
+        height: auto;
+        right: 0;
+        order: 3;
+        margin-top: 60px;
+        -webkit-mask-image: none; /* Bỏ mask trên mobile */
+    }
 }

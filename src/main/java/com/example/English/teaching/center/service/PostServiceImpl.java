@@ -1,5 +1,6 @@
 package com.example.English.teaching.center.service;
 
+import java.util.Arrays;
 import java.util.List;
 import java.util.Optional;
 
@@ -36,5 +37,24 @@ public class PostServiceImpl implements PostService{
     public Optional<Post> getPostById(Long id) {
         return postRepository.findById(id);
     }
-    
+
+    @Override
+    public List<Post> getNewPosts() {
+        List<Post.PostType> types = Arrays.asList(Post.PostType.NEWS, Post.PostType.EVENT);
+
+        return postRepository.findByTypeInOrderByPublishedAtDesc(types);
+    }
+
+    @Override
+    public List<Post> getNewPostBlogs() {
+        List<Post.PostType> type = Arrays.asList(Post.PostType.BLOG);
+
+        return postRepository.findByTypeInOrderByPublishedAtDesc(type);
+    }
+
+    @Override
+    public Post getPostBySlug(String slug) {
+        return postRepository.findBySlug(slug)
+                .orElseThrow(() -> new RuntimeException("Không tìm thấy bài viết với slug: " + slug));
+    }
 }

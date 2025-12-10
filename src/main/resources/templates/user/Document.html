@@ -1,42 +1,43 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="vi">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
-
-    <link rel="stylesheet" href="/css/user/common.css">
+    <title>EGo - Kho tài liệu tiếng Anh miễn phí</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link rel="stylesheet" href="/css/common.css">
     <link rel="stylesheet" href="/css/user/document.css">
 </head>
 <body>
-<header class="navbar">
+
+    <header class="navbar">
         <a th:href="@{/user/home}" class="logo">GO-E</a>
         <nav class="nav-links">
             <ul>
                 <li class="dropdown">
-                    <a href="#">Giới thiệu</a>
+                    <a>Giới thiệu</a>
                     <ul class="dropdown-menu">
                         <li><a th:href="@{/user/about}">Về trung tâm</a></li>
-                        <li><a href="@{/user/i-teacher}">Đội ngũ giảng viên</a></li>
+                        <li><a th:href="@{/user/i-teacher}">Đội ngũ giảng viên</a></li>
                     </ul>
                 </li> 
                 <li class="dropdown">
-                    <a href="#">Khóa học</a>
+                    <a>Khóa học</a>
                     <ul class="dropdown-menu">
-                        <li><a href="#">IELTS</a></li>
-                        <li><a href="#">Khóa tiếng Anh giao tiếp online</a></li>
-                        <li><a href="#">Khóa tiếng Anh trẻ em</a></li>
+                        <li><a th:href="@{/user/course(category='IELTS')}">IELTS</a></li>
+                        <li><a th:href="@{/user/course(category='COMMUNICATE')}">Khóa tiếng Anh giao tiếp online</a></li>
+                        <li><a th:href="@{/user/course(category='CHILDREN')}">Khóa tiếng Anh trẻ em</a></li>
                     </ul>
                 </li>
-                <li><a href="#">Cảm nhận học viên</a></li>
+                <li><a th:href="@{/user/student-feelings}">Cảm nhận học viên</a></li>
                 <li class="dropdown">
                     <a>Thư viện</a>
                     <ul class="dropdown-menu">
-                        <li><a href="@{/user/document}">Tài liệu</a></li>
-                        <li><a href="@{/user/blog}">Blog</a></li>
+                        <li><a th:href="@{/user/document}">Tài liệu</a></li>
+                        <li><a th:href="@{/user/blog}">Blog</a></li>
                     </ul>
                 </li>
-                <li><a href="#">Tin tức & Sự kiện</a></li>
+                <li><a th:href="@{/user/new-events}">Tin tức & Sự kiện</a></li>
             </ul>
         </nav>
         <div class="search-container">
@@ -46,87 +47,116 @@
         </div>
     </header>
 
-    <main>
-        <section class="courses-section">
-            <h2 class="section-title">Khóa học gợi ý</h2>
+    <section class="hero text-center">
+        <div class="container">
+            <h1>Kho tài liệu học tiếng Anh miễn phí</h1>
+            <p class="hero-desc">
+                EGo cung cấp kho tài liệu học tiếng Anh hoàn toàn miễn phí, cập nhật thường xuyên từ cơ bản đến nâng cao. 
+                Đăng ký ngay để bắt đầu hành trình chinh phục tiếng Anh giao tiếp!
+            </p>
 
-            <div class="course-grid">
+            <div class="filters">
+                <a th:href="@{/user/document(topic=${currentTopic})}" 
+                class="filter-pill"
+                th:classappend="${currentCategory == null} ? 'active'">Tất cả</a>
 
-                <div class="course-card">
-                    <img src="https://via.placeholder.com/300x150/003366/FFFFFF?text=Algorithms" alt="Algorithms Basic">
-                    
-                    <div class="card-content">
-                        <span class="tag">Khóa học</span>
-                        <h3>Thuật toán căn bản</h3>
-                        <p class="author">vietcv</p>
-                        <div class="rating">
-                            <span class="rating-star">⭐</span> 4.4
-                        </div>
-                        <div class="price-section">
-                            <span class="price free">Miễn phí</span>
-                        </div>
-                    </div>
-                </div>
-
-                <div class="course-card">
-                    <img src="https://via.placeholder.com/300x150/90c94f/FFFFFF?text=Godot" alt="Game 2D Godot">
-                    
-                    <div class="card-content">
-                        <span class="tag">Khóa học</span>
-                        <h3>Làm Game 2D Với Godot</h3>
-                        <p class="author">codelearn</p>
-                        <div class="rating">
-                            <span class="rating-star">⭐</span> 0.0
-                        </div>
-                        <div class="price-section">
-                            <div class="price">
-                                <span class="sale-price">499.000 ₫</span>
-                                <span class="original-price">720.000 ₫</span>
-                                <span class="discount">-31%</span>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-
-                <div class="course-card">
-                    <img src="https://via.placeholder.com/300x150/007acc/FFFFFF?text=C+Beginners" alt="C for beginners">
-                    
-                    <div class="card-content">
-                        <span class="tag popular">Phổ biến</span>
-                        <h3>C cho người mới bắt đầu</h3>
-                        <p class="author">tuancn</p>
-                        <div class="rating">
-                            <span class="rating-star">⭐</span> 4.7
-                        </div>
-                        <div class="price-section">
-                            <span class="price free">Miễn phí</span>
-                        </div>
-                    </div>
-                </div>
-
-                <div class="course-card">
-                    <img src="https://via.placeholder.com/300x150/3a006b/FFFFFF?text=SQL" alt="SQL Introduction">
-                    
-                    <div class="card-content">
-                        <span class="tag">Khóa học</span>
-                        <h3>Làm quen với SQL</h3>
-                        <p class="author">duyanhtn</p>
-                        <div class="rating">
-                            <span class="rating-star">⭐</span> 4.3
-                        </div>
-                        <div class="price-section">
-                            <span class="price free">Miễn phí</span>
-                        </div>
-                    </div>
-                </div>
-
+                <a th:each="cat : ${listMaterialCategories}" 
+                th:href="@{/user/document(category=${cat.slug}, topic=${currentTopic})}"
+                class="filter-pill" 
+                th:classappend="${currentCategory == cat.slug} ? 'active'"
+                th:text="${cat.name}">
+                Từ vựng
+                </a>
             </div>
-        </section>
-    </main>
+            
+            <div class="dropdown-filters">
+                <select class="custom-select" onchange="if (this.value) window.location.href=this.value">
+                    <option value="">-- Chọn chương trình học --</option>
+                    
+                    <option th:each="topic : ${listTopicCategories}"
+                            th:value="@{/user/document(topic=${topic.name}, category=${currentCategory})}"
+                            th:text="${topic.name}"
+                            th:selected="${topic.name == currentTopic}">
+                        Tiếng Anh giao tiếp chung
+                    </option>
+                </select>
+                
+                <a th:href="@{/user/document}" class="btn" style="background: #eee; text-decoration: none; padding: 10px;">Làm mới</a>
+            </div>
+        </div>
+    </section>
+
+    <div class="container main-content">
+        <div class="content-area">
+            <div class="cards-grid">
+                <div class="card" th:each="material : ${listMaterials}">
+                    
+                    <div class="card-img-placeholder">
+                        <div class="card-img-inner">
+                            <h4 th:text="${material.badgeText}" style="white-space: pre-line;">
+                                PHƯƠNG PHÁP<br>HỌC TỪ VỰNG
+                            </h4>
+                        </div>
+                    </div>
+                    
+                    <div class="card-body">
+                        <h3 class="card-title" th:text="${material.title}">
+                            Tiêu đề bài viết...
+                        </h3>
+                        
+                        <a th:href="${material.fileUrl}" class="btn-download" target="_blank">
+                            <i class="fas fa-download"></i> DOWNLOAD
+                        </a>
+                    </div>
+                </div>
+                <div th:if="${listMaterials.empty}" style="grid-column: 1/-1; text-align: center;">
+                    <p>Chưa có tài liệu nào trong mục này.</p>
+                </div>
+            </div>
+
+            <div class="pagination" th:if="${totalPages > 1}">
+                <a th:if="${currentPage > 1}"
+                    th:href="@{/user/docment(page=${currentPage - 1}, category=${currentCategory}, topic=${currentTopic})}"
+                    class="page-link">
+                    <i class="fas fa-chevron-left"></i>
+                </a>
+
+                <a th:each="i : ${#numbers.sequence(1, totalPages)}"
+                    th:href="@{/user/document(page=${i}, category=${currentCategory}, topic=${currentTopic})}"
+                    class="page-link"
+                    th:classappend="${currentPage == i ? 'active' : ''}"
+                    th:text="${i}">
+                </a>
+
+                <a th:if="${currentPage < totalPage}"
+                    th:href="@{user/docment(page=${currentPage + 1}, category=${currentCategory}, topic=${currentTopic})}"
+                    class="page-link">
+                    <i class="fas fa-chevron-right"></i>
+                </a>
+            </div>
+        </div>
+
+        <aside class="sidebar">
+            <div class="text-right">
+                <h3>HỌC THỬ MIỄN PHÍ</h3>
+                
+                <div class="sidebar-box">
+                    <div class="sidebar-icon"><i class="fas fa-laptop-code"></i></div>
+                    <div class="sidebar-text">Học thử miễn phí - Trải nghiệm lớp học thật, quy mô dưới 10 học viên</div>
+                </div>
+                <a th:href="@{/user/home}" class="btn btn-register">ĐĂNG KÝ NGAY</a>
+            </div>
+        </aside>
+    </div>
+
+    <div class="floating-btns">
+        <a href="#" class="float-btn bg-phone"><i class="fas fa-phone-alt"></i></a>
+        <a href="#" class="float-btn bg-zalo"><i class="fab fa-facebook-messenger"></i></a>
+    </div>
 
     <footer>
         <div class="footer-container">
-            <!-- column left -->
+
             <div class="footer-column branding-column">
                 <h3 class="logo">GO-E</h3>
                 <p class="slogan">English for Life & Future</p>
@@ -152,7 +182,7 @@
                     <a href="#" aria-label="Facebook"><i class="fab fa-facebook-f"></i></a>
                     <a href="#" aria-label="TikTok"><i class="fab fa-tiktok"></i></a>
                     <a href="#" aria-label="YouTube"><i class="fab fa-youtube"></i></a>
-                    <a href="#" aria-label="Instagram"><i class="fa-brands fa-square-instagram"></i></a>
+                    <a href="#" aria-label="Instagram"><i class="fa-brands fa-instagram"></i></a>
                     <!-- video tiktok -->
                     <div class="video-container" id="tiktok-player">
                         <div class="loading">Đang tải video...</div>
@@ -187,11 +217,11 @@
             </div>
         </div>
 
-        <!-- floating buttons -->
         <div class="floating-buttons">
             <a href="tel:0962154168" class="call-btn" aria-label="Gọi điện"><i class="fas fa-phone-alt"></i></a>
             <a href="#" class="chat-btn" aria-label="Chat Zalo/Messenger"><i class="fas fa-comment-dots"></i></a>
         </div>
     </footer>
+
 </body>
 </html>

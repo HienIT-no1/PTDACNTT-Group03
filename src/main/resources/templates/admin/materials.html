@@ -44,6 +44,9 @@
                                        class="btn btn-warning btn-sm btn-action"
                                        th:data-id="${material.id}"
                                        th:data-title="${material.title}"
+                                       th:data-badgeText="${material.badgeText}"
+                                       th:data-topicGroup="${material.topicGroup}"
+                                       th:data-categoryId="${material.materialCategory != null ? material.materialCategory.id : ''}"
                                        th:data-description="${material.description}"
                                        th:data-type="${material.type}"
                                        th:data-fileUrl="${material.fileUrl}" 
@@ -85,12 +88,40 @@
                         <input type="text" class="form-control" name="title" id="materialTitle" required>
                     </div>
                     
+                    <div class="col-md-6 mb-3">
+                        <label class="form-label fw-bold">Chữ nổi bật trên ảnh (Badge Text)</label>
+                        <input type="text" class="form-control" name="badgeText" id="materialBadgeText" placeholder="VD: PHƯƠNG PHÁP HỌC TỪ VỰNG">
+                        <small class="text-muted">Chữ in hoa hiện trên thumbnail màu đỏ.</small>
+                    </div>
+
+                    <div class="col-md-6 mb-3">
+                        <label class="form-label fw-bold">Nhóm chủ đề</label>
+                        <select type="text" class="form-control" name="topicGroup" id="materialTopicGroup" required>
+                            <option value="">-- Chọn chương trình --</option>
+                            <option th:each="prog : ${listTopicCategories}"
+                                    th:value="${prog.name}"
+                                    th:text="${prog.name}">
+                            </option>
+                        </select>
+                    </div>
+
+                    <div class="col-md-6 mb-3">
+                        <label class="form-label fw-bold">Danh mục</label>
+                        <select class="form-select" name="materialCategory.id" id="materialCategoryId">
+                            <option value="">-- Chọn danh mục --</option>
+                            <option th:each="cat : ${listCategories}" 
+                                    th:value="${cat.id}" 
+                                    th:text="${cat.name}">
+                            </option>
+                        </select>
+                    </div>
+
                     <div class="mb-3">
                         <label class="form-label">Mô tả tài liệu</label>
                         <input type="text" class="form-control" name="description" id="materialDescription">
                     </div>
 
-                    <div class="mb-3">
+                    <div class="col-md-6 mb-3">
                         <label class="form-label">Loại bài viết</label>
                         <select class="form-select" name="type" id="materialType">
                             <option value="PDF">PDF</option>
@@ -131,6 +162,9 @@
     function openEditModal(button) {
         var id = button.getAttribute("data-id");
         var title = button.getAttribute("data-title");
+        var badgeText = button.getAttribute("data-badgeText");
+        var topicGroup = button.getAttribute("data-topicGroup"); 
+        var categoryId = button.getAttribute("data-categoryId");
         var description = button.getAttribute("data-description");
         var type = button.getAttribute("data-type");
         var fileUrl = button.getAttribute("data-fileUrl");
@@ -139,6 +173,9 @@
 
         document.getElementById("materialId").value = id;
         document.getElementById("materialTitle").value = title;
+        document.getElementById("materialBadgeText").value = badgeText;
+        document.getElementById("materialTopicGroup").value = topicGroup;
+        document.getElementById("materialCategoryId").value = categoryId;
         document.getElementById("materialDescription").value = description;
         document.getElementById("materialType").value = type;
         document.getElementById("materialFileUrl").value = fileUrl;

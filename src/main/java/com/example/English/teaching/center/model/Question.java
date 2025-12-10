@@ -14,13 +14,18 @@ public class Question {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
-    // Relationship: Many Questions belong to One Test
     @ManyToOne
     @JoinColumn(name = "test_id", nullable = false)
     private Test test;
 
     @Column(nullable = false, columnDefinition = "TEXT")
     private String content;
+
+    @Column(name = "media_url")
+    private String mediaUrl; 
+
+    @Column(name = "media_type")
+    private String mediaType;
 
     @Column(name = "option_a")
     private String optionA;
@@ -35,7 +40,7 @@ public class Question {
     private String optionD;
 
     @Column(name = "correct_option", length = 1)
-    private String correctOption; // 'A', 'B', 'C', 'D'
+    private String correctOption; 
 
     @Builder.Default
     private Integer score = 1;

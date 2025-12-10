@@ -1,7 +1,5 @@
 package com.example.English.teaching.center.controller;
 
-import java.util.Optional;
-
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -19,10 +17,9 @@ import com.example.English.teaching.center.model.Post;
 import com.example.English.teaching.center.service.CategoryService;
 import com.example.English.teaching.center.service.CourseService;
 import com.example.English.teaching.center.service.InstructorService;
+import com.example.English.teaching.center.service.MaterialCategoryService;
 import com.example.English.teaching.center.service.MaterialService;
 import com.example.English.teaching.center.service.PostService;
-
-import jakarta.persistence.Column;
 
 @Controller
 @RequestMapping("/admin")
@@ -32,17 +29,20 @@ public class AdminController {
     private final InstructorService instructorService;
     private final PostService postService;
     private final MaterialService materialService;
+    private final MaterialCategoryService materialCategoryService;
 
     public AdminController(CourseService courseService,
             CategoryService categoryService,
             InstructorService instructorService,
             PostService postService,
-            MaterialService materialService){
+            MaterialService materialService,
+            MaterialCategoryService materialCategoryService){
         this.courseService = courseService;
         this.categoryService = categoryService;
         this.instructorService = instructorService;
         this.postService = postService;
         this.materialService = materialService;
+        this.materialCategoryService = materialCategoryService;
     }
 
     @GetMapping("/login")
@@ -112,7 +112,6 @@ public class AdminController {
         if (post.getId() != null) {
             Post existingPost = postService.getPostById(post.getId()).orElse(null);
             if (existingPost != null) {
-                // Cập nhật các thông tin mới
                 existingPost.setTitle(post.getTitle());
                 existingPost.setSlug(post.getSlug());
                 existingPost.setContent(post.getContent());
@@ -137,8 +136,12 @@ public class AdminController {
     @GetMapping("/materials")
     public String dashboardMaterials(Model model) {
         model.addAttribute("listMaterials", materialService.getAllMaterials());
+        model.addAttribute("listCategories", materialCategoryService.getAllCategories());
+        model.addAttribute("listTopicCategories", categoryService.getAllCategories());
         model.addAttribute("pageTitle", "Kho Tài liệu");
         model.addAttribute("activeTab", "materials");
+
+        model.addAttribute("material", new Material());
         return "admin/materials";
     }
 
@@ -148,6 +151,9 @@ public class AdminController {
             Material existingMaterial = materialService.getMaterialById(material.getId()).orElse(null);
             if (existingMaterial != null) {
                 existingMaterial.setTitle(material.getTitle());
+                existingMaterial.setBadgeText(material.getBadgeText());
+                existingMaterial.setTopicGroup((material.getTopicGroup()));
+                existingMaterial.setMaterialCategory(material.getMaterialCategory());
                 existingMaterial.setDescription(material.getDescription());
                 existingMaterial.setType(material.getType());
                 existingMaterial.setFileUrl(material.getFileUrl());

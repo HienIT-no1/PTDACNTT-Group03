@@ -28,8 +28,6 @@ public class Test {
     @Column(name = "created_at", updatable = false)
     private LocalDateTime createdAt;
 
-    // Relationship: One Test has Many Questions
-    // mappedBy trỏ tới tên biến "test" trong class Question
     @OneToMany(mappedBy = "test", cascade = CascadeType.ALL, fetch = FetchType.LAZY)
     private List<Question> questions;
 

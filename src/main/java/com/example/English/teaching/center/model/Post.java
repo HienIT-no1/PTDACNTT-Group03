@@ -21,14 +21,13 @@ public class Post {
     @Column(unique = true)
     private String slug;
 
-    @Lob // Báo cho JPA biết đây là dữ liệu lớn (Long Text)
+    @Lob 
     @Column(columnDefinition = "LONGTEXT")
     private String content;
 
-    @Column(name = "thumbnail_url")
+    @Column(name = "thumbnail_url", columnDefinition = "TEXT")
     private String thumbnailUrl;
 
-    // Bạn có thể dùng Enum PostType ở dưới
     @Enumerated(EnumType.STRING)
     @Column(nullable = false, length = 20)
     private PostType type; 
@@ -36,7 +35,6 @@ public class Post {
     @Column(name = "published_at")
     private LocalDateTime publishedAt;
 
-    // Relationship: Admin đăng bài
     @ManyToOne
     @JoinColumn(name = "created_by")
     private Admin createdBy;
@@ -52,5 +50,11 @@ public class Post {
         BLOG,
         NEWS, 
         EVENT
+    }
+
+    public String getSummary() {
+        if (this.content == null) return "";
+        String cleanText = this.content.replaceAll("\\<.*?\\>", ""); 
+        return cleanText.length() > 150 ? cleanText.substring(0, 150) + "..." : cleanText;
     }
 }

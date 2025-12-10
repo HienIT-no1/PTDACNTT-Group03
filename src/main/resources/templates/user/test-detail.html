@@ -1,0 +1,149 @@
+<!DOCTYPE html>
+<html lang="vi" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title th:text="${test.title} + ' - Làm bài'">Làm bài thi</title>
+    <link rel="stylesheet" href="/css/common.css">
+    <link rel="stylesheet" href="/css/user/test-detail.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+</head>
+<body>
+
+    <div class="test-header">
+        <div class="container header-flex">
+            <h2 th:text="${test.title}">Tên bài kiểm tra</h2>
+            <div class="timer-box">
+                <i class="far fa-clock"></i>
+                <span id="countdown" th:data-minutes="${test.durationMinutes}">00:00:00</span>
+            </div>
+        </div>
+    </div>
+
+    <div class="container test-body">
+        <form id="quizForm" th:action="@{/user/test-detail/submit}" method="post">
+            <input type="hidden" name="testId" th:value="${test.id}">
+            
+            <div class="layout-grid">
+                
+                <div class="question-list">
+                    
+                    <div th:each="q, iterStat : ${questions}" class="question-item" th:id="'q-' + ${iterStat.index + 1}">
+                        
+                        <div class="q-title">
+                            <span class="q-number">Câu <span th:text="${iterStat.index + 1}">1</span>:</span>
+                            <span th:text="${q.content}">Nội dung câu hỏi ở đây?</span>
+                        </div>
+
+                        <div class="q-media" th:if="${q.mediaType != 'NONE' && q.mediaUrl != null}">
+                            
+                            <img th:if="${q.mediaType == 'IMAGE'}" 
+                                 th:src="${q.mediaUrl}" 
+                                 class="media-img" alt="Question Image">
+
+                            <audio th:if="${q.mediaType == 'AUDIO'}" controls class="media-audio">
+                                <source th:src="${q.mediaUrl}" type="audio/mpeg">
+                                Trình duyệt của bạn không hỗ trợ thẻ audio.
+                            </audio>
+
+                            <video th:if="${q.mediaType == 'VIDEO'}" controls class="media-video">
+                                <source th:src="${q.mediaUrl}" type="video/mp4">
+                                Trình duyệt của bạn không hỗ trợ thẻ video.
+                            </video>
+                        </div>
+
+                        <div class="q-options">
+                            <label class="option-label">
+                                <input type="radio" th:name="'answer_' + ${q.id}" value="A" onclick="markAnswered(this)">
+                                <span class="opt-text">A. <span th:text="${q.optionA}"></span></span>
+                            </label>
+                            <label class="option-label">
+                                <input type="radio" th:name="'answer_' + ${q.id}" value="B" onclick="markAnswered(this)">
+                                <span class="opt-text">B. <span th:text="${q.optionB}"></span></span>
+                            </label>
+                            <label class="option-label">
+                                <input type="radio" th:name="'answer_' + ${q.id}" value="C" onclick="markAnswered(this)">
+                                <span class="opt-text">C. <span th:text="${q.optionC}"></span></span>
+                            </label>
+                            <label class="option-label">
+                                <input type="radio" th:name="'answer_' + ${q.id}" value="D" onclick="markAnswered(this)">
+                                <span class="opt-text">D. <span th:text="${q.optionD}"></span></span>
+                            </label>
+                        </div>
+                    </div>
+
+                </div>
+
+                <div class="question-nav">
+                    <div class="nav-sticky">
+                        <h3>Danh sách câu hỏi</h3>
+                        <div class="nav-grid">
+                            <a th:each="q, iterStat : ${questions}" 
+                               th:href="'#q-' + ${iterStat.index + 1}" 
+                               th:id="'nav-' + ${q.id}"
+                               class="nav-item"
+                               th:text="${iterStat.index + 1}">
+                               1
+                            </a>
+                        </div>
+                        <button type="submit" class="btn-submit-test">NỘP BÀI</button>
+                    </div>
+                </div>
+
+            </div>
+        </form>
+    </div>
+
+<script>
+document.addEventListener('DOMContentLoaded', function() {
+    const timerElement = document.getElementById('countdown');
+    let durationMinutes = parseInt(timerElement.getAttribute('data-minutes'));
+    let time = durationMinutes * 60; 
+
+    const interval = setInterval(() => {
+        const hours = Math.floor(time / 3600);
+        const minutes = Math.floor((time % 3600) / 60);
+        const seconds = time % 60;
+
+        timerElement.innerText = 
+            `${hours.toString().padStart(2, '0')}:${minutes.toString().padStart(2, '0')}:${seconds.toString().padStart(2, '0')}`;
+
+        if (time <= 0) {
+            clearInterval(interval);
+            alert("Hết giờ làm bài!");
+            document.getElementById('quizForm').submit(); 
+        }
+        time--;
+    }, 1000);
+});
+
+function markAnswered(radio) {
+    let questionId = radio.name.split('_')[1];
+    let navItem = document.getElementById('nav-' + questionId);
+    if (navItem) {
+        navItem.classList.add('answered');
+    }
+}
+
+document.getElementById('quizForm').addEventListener('submit', function(event) {
+    event.preventDefault();
+
+    let totalQuestions = document.querySelectorAll('.question-item').length;
+    
+    let answeredQuestions = document.querySelectorAll('.nav-item.answered').length;
+
+    let unanswered = totalQuestions - answeredQuestions;
+
+    if (unanswered > 0) {
+        let confirmSubmit = confirm(`Bạn còn ${unanswered} câu chưa trả lời. Bạn có chắc chắn muốn nộp bài không?`);
+        
+        if (confirmSubmit) {
+            this.submit(); 
+        }
+    } else {
+        this.submit();
+    }
+});
+</script>
+
+</body>
+</html>

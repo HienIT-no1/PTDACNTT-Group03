@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="vi" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>EGo - Danh sách bài kiểm tra</title>
+    <link rel="stylesheet" href="/css/common.css">
+    <link rel="stylesheet" href="/css/user/test.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+</head>
+<body>
+
+    <div class="container test-selection-wrapper">
+        
+        <div class="test-grid">
+            
+            <div class="test-card" 
+                 th:each="test, iterStat : ${listTests}"
+                 th:classappend="${iterStat.index % 4 < 2} ? 'card-yellow' : 'card-blue'">
+                
+                <div class="card-content">
+                    <h2 th:text="${test.title}">Tên bài thi</h2>
+                    
+                    <p th:text="${test.description}">Mô tả bài thi...</p>
+                    
+                    <p style="font-size: 13px; color: #666; margin-top: 5px;">
+                        <i class="far fa-clock"></i> <span th:text="${test.durationMinutes} + ' phút'"></span>
+                    </p>
+                </div>
+
+                <a th:href="@{/user/test/start/{id}(id=${test.id})}" class="btn-start">
+                    <span>Bắt đầu<br>làm bài</span>
+                </a>
+            </div>
+            
+            <div th:if="${listTests.empty}" style="grid-column: 1/-1; text-align: center;">
+                <p>Hiện chưa có bài kiểm tra nào.</p>
+            </div>
+
+        </div>
+
+        <div class="instruction-box">
+            <h4 class="text-red">*Cách xác định bài kiểm tra phù hợp với bạn:</h4>
+            <p class="question-text">
+                Tự trả lời câu hỏi: Nếu bạn có dịp đi du lịch nước ngoài, bạn <strong>có thể</strong> sử dụng 
+                vốn tiếng Anh hiện tại để tự mua vé tàu xe, hỏi đường, tự thuê phòng nghỉ 
+                hoặc tự đặt mua một tour du lịch không?
+            </p>
+            <ul class="instruction-list">
+                <li>Nếu bạn <strong>CHƯA</strong> thể làm được, hãy chọn bài <strong>LPT Cơ bản</strong></li>
+                <li>Nếu bạn <strong>CÓ</strong> thể làm được, hãy chọn bài <strong>LPT Nâng cao</strong></li>
+            </ul>
+        </div>
+
+    </div>
+
+</body>
+</html>

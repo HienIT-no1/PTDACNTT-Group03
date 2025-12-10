@@ -1,0 +1,370 @@
+:root {
+    --primary-red: #D32F2F;
+    --primary-yellow: #FFC107;
+    --bg-light-pink: #FFF5F5;
+    --text-dark: #333;
+    --text-gray: #666;
+    --border-color: #eee;
+    --radius: 12px;
+    --container-width: 1140px;
+}
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: 'Montserrat', sans-serif;
+    color: var(--text-dark);
+    line-height: 1.6;
+}
+
+a { text-decoration: none; color: inherit; }
+ul { list-style: none; }
+
+.container {
+    max-width: var(--container-width);
+    margin: 0 auto;
+    padding: 0 15px;
+}
+
+
+/* --- 3. HERO SECTION --- */
+.hero {
+    background-color: var(--bg-light-pink);
+    padding: 0;
+    position: relative;
+    overflow: hidden;
+}
+
+.hero-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 50px;
+    align-items: center;
+}
+
+.hero-title {
+    font-size: 42px;
+    color: var(--primary-red);
+    margin-bottom: 20px;
+    line-height: 1.2;
+}
+
+.hero-desc {
+    color: var(--text-gray);
+    font-size: 16px;
+    margin-bottom: 30px;
+}
+
+.tags {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 10px;
+    margin-bottom: 40px;
+}
+
+.tag {
+    padding: 8px 20px;
+    border-radius: 50px;
+    font-size: 14px;
+    font-weight: 700;
+}
+
+.tag.filled {
+    background-color: var(--primary-red);
+    color: #fff;
+}
+
+.tag.outline {
+    border: 1px solid var(--primary-red);
+    color: var(--primary-red);
+}
+
+.btn-cta {
+    background-color: var(--primary-red);
+    color: #fff;
+    padding: 15px 35px;
+    border: none;
+    border-radius: 8px;
+    font-weight: 700;
+    font-size: 16px;
+    cursor: pointer;
+    box-shadow: 0 5px 15px rgba(211, 47, 47, 0.3);
+    transition: transform 0.2s;
+}
+
+.btn-cta:hover { transform: translateY(-3px); }
+
+.hero-image-wrapper {
+    position: relative;
+    display: flex;
+    justify-content: center;
+}
+
+/* Placeholder cho ảnh */
+.hero-img {
+    width: 100%; /* Sửa lại 100% cho đẹp, 110% dễ bị tràn lề */
+    max-width: 700px;
+    height: 400px;
+    
+    /* Cập nhật phần này */
+    background: url('/images/banner_new.png') no-repeat;
+    background-size: contain; /* Co giãn ảnh để vừa khít khung mà không bị cắt */
+    background-position: bottom center; /* Căn ảnh nằm ở giữa và sát đáy */
+    
+    border-radius: 20px;
+    
+    /* Nếu muốn căn giữa khung chứa ảnh */
+    margin: 0 auto; 
+}
+
+
+/* --- BỔ SUNG: MỤC TIÊU KHÓA HỌC --- */
+.objectives-section {
+    padding: 40px 0 0 0;
+    background: #fff;
+}
+
+.obj-group {
+    margin-bottom: 30px;
+}
+
+/* Thiết kế tiêu đề dạng viên thuốc (Pill shape) màu hồng nhạt */
+.obj-header {
+    display: inline-flex; 
+    align-items: center;
+    background-color: #FFF0F0; /* Màu nền hồng nhạt */
+    padding: 5px 25px 5px 5px; /* Padding bên phải rộng hơn để chữ thoáng */
+    border-radius: 50px;
+    margin-bottom: 15px;
+}
+
+.obj-icon {
+    width: 40px;
+    height: 40px;
+    background-color: var(--primary-red);
+    color: #fff;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 18px;
+    margin-right: 15px;
+    box-shadow: 0 3px 6px rgba(211, 47, 47, 0.2);
+}
+
+.obj-title {
+    font-size: 18px;
+    font-weight: 700; /* Chữ đậm */
+    color: #333;
+}
+
+.obj-content {
+    font-size: 15px;
+    color: var(--text-dark); /* Màu chữ đậm hơn chút cho dễ đọc */
+    line-height: 1.6;
+    margin-left: 10px;
+    max-width: 900px; /* Giới hạn chiều rộng cho dễ đọc trên màn hình to */
+}
+
+/* --- 4. COURSE INFO (ICONS) --- */
+.course-info {
+    padding: 10px 0 60px 0;
+}
+
+
+.section-icon {
+    background: var(--primary-red);
+    color: white;
+    width: 40px;
+    height: 40px;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.section-title { font-size: 24px; font-weight: 700; }
+
+.info-grid {
+    display: grid;
+    grid-template-columns: repeat(5, 1fr);
+    gap: 25px; 
+}
+
+.info-card {
+    background: #fff;
+    border: none; 
+    border-radius: 20px; 
+    padding: 30px 20px;
+    text-align: center;
+    position: relative;
+    transition: all 0.3s ease;
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.16); 
+}
+
+.info-card:hover {
+    transform: translateY(-10px); 
+    box-shadow: 0 20px 40px rgba(0, 0, 0, 0.428); 
+}
+
+.info-icon { 
+    font-size: 38px; 
+    margin-bottom: 20px;
+    height: 70px;
+    width: 70px;
+    line-height: 70px;
+    margin: 0 auto 20px auto;
+    background: #FAFAFA; 
+    border-radius: 50%; 
+    transition: transform 0.3s;
+}
+
+.info-card:hover .info-icon {
+    transform: scale(1.1) rotate(5deg); 
+    background: #f5fcff; 
+}
+
+.info-label { 
+    font-weight: 700; 
+    margin-bottom: 8px; 
+    font-size: 16px; 
+    color: #333;
+    text-transform: uppercase; 
+    letter-spacing: 0.5px;
+}
+
+.info-value { 
+    font-size: 18px; 
+    font-weight: 800; 
+    color: var(--text-dark); 
+}
+
+.info-sub { 
+    font-size: 13px; 
+    color: #888; 
+    margin-top: 5px;
+}
+
+.txt-red { color: var(--primary-red); }
+
+/* --- 5. COMMITMENT SECTION (RED) --- */
+.commitment-section {
+    padding-bottom: 80px;
+}
+
+.consult-btn-wrapper {
+    text-align: center;
+    margin-bottom: 40px;
+}
+
+.btn-consult {
+    background: var(--primary-yellow);
+    color: #b71c1c;
+    font-weight: 800;
+    padding: 15px 40px;
+    border-radius: 50px;
+    border: none;
+    border-bottom: 4px solid #cc9a06;
+    cursor: pointer;
+    text-transform: uppercase;
+}
+
+.red-box {
+    background: var(--primary-red);
+    border-radius: 30px;
+    padding: 60px 50px;
+    position: relative;
+    color: #fff;
+}
+
+.badge-commitment {
+    position: absolute;
+    top: -25px;
+    left: 50px;
+    background: #fff;
+    color: var(--primary-red);
+    padding: 10px 25px;
+    border-radius: 10px;
+    font-weight: 800;
+    font-size: 18px;
+    box-shadow: 0 5px 10px rgba(0,0,0,0.1);
+    border-left: 5px solid var(--primary-yellow);
+}
+
+.commit-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 40px;
+}
+
+.commit-col {
+    display: flex;
+    flex-direction: column;
+    gap: 30px;
+}
+
+.commit-item {
+    display: flex;
+    align-items: flex-start; /* Canh lề trên */
+    gap: 0; 
+}
+
+/* Nhãn màu vàng bên trái (Từ vựng, Nghe...) */
+.commit-label {
+    background: var(--primary-yellow);
+    color: #b71c1c;
+    font-weight: 700;
+    padding: 15px 10px;
+    border-radius: 10px 0 0 10px;
+    width: 110px;
+    text-align: center;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 14px;
+    height: 100%; /* Sẽ cần fix height hoặc để tự động */
+    align-self: stretch; /* Kéo dãn bằng chiều cao content */
+}
+
+/* Nội dung trắng bên phải */
+.commit-content {
+    background: #fff;
+    color: #333;
+    padding: 20px;
+    border-radius: 0 10px 10px 10px; /* Góc bo lệch để đẹp */
+    flex: 1;
+    font-size: 14px;
+}
+
+.commit-content li {
+    margin-bottom: 8px;
+    display: flex;
+    align-items: flex-start;
+}
+
+.commit-content i {
+    color: var(--primary-red);
+    margin-right: 10px;
+    margin-top: 3px;
+}
+
+/* Responsive Mobile */
+@media (max-width: 768px) {
+    .hero-grid, .info-grid, .commit-grid {
+        grid-template-columns: 1fr;
+    }
+    .info-grid { grid-template-columns: 1fr 1fr; }
+    .nav-links { display: none; } /* Ẩn menu trên mobile cho gọn */
+    .hero-title { font-size: 30px; }
+    .commit-item { flex-direction: column; }
+    .commit-label { 
+        width: 100%; 
+        border-radius: 10px 10px 0 0; 
+        padding: 10px;
+    }
+    .commit-content { border-radius: 0 0 10px 10px; }
+}
