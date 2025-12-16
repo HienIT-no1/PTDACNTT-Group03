@@ -29,6 +29,8 @@ public class Test {
     private LocalDateTime createdAt;
 
     @OneToMany(mappedBy = "test", cascade = CascadeType.ALL, fetch = FetchType.LAZY)
+    @ToString.Exclude
+    @EqualsAndHashCode.Exclude
     private List<Question> questions;
 
     @PrePersist

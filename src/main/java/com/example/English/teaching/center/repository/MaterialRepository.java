@@ -20,4 +20,7 @@ public interface MaterialRepository extends JpaRepository<Material, Long>{
     Page<Material> findByMaterialCategory_SlugAndTopicGroup(String slug, String topicGroup, Pageable pageable);
 
     Page<Material> findByTopicGroup(String topicGroup, Pageable pageable);
+
+    // Tìm tài liệu theo tiêu đề hoặc nhóm chủ đề (Topic Group)
+    List<Material> findByTitleContainingOrTopicGroupContaining(String title, String topic);
 }

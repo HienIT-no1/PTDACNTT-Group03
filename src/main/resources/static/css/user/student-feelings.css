@@ -3,13 +3,14 @@ body {
     justify-content: center;
     padding: 20px;
     background-color: #f9f9f9;
+    flex-direction: column;
 }
 
 .main-container {
-    max-width: 1200px;
+    max-width: 1500px;
     width: 100%;
     background-color: #fff;
-    padding: 20px;
+    padding: 40px;
 }
 
 .header {
@@ -22,7 +23,7 @@ body {
     font-weight: 700;
     text-transform: uppercase;
     margin-bottom: 15px;
-    color: #004aad;
+    color: #c20000;
 }
 
 .separator-top {
@@ -134,19 +135,19 @@ body {
 }
 
 #img-vid-felling-01 {
-    background-image: url("");
+    background-image: url("/images/sf1.png");
 }
 
 #img-vid-felling-02 {
-    background-image: url("./img/binh-gold.jpg");
+    background-image: url("/images/sf2.png");
 }
 
 #img-vid-felling-03 {
-    background-image: url("");
+    background-image: url("/images/sf3.png");
 }
 
 #img-vid-felling-04 {
-    background-image: url("");
+    background-image: url("/images/sf4.png");
 }
 
 .item-text {

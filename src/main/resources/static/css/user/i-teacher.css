@@ -1,467 +1,482 @@
-/* --- 1. BIẾN MÀU & CẤU HÌNH CHUNG (ĐỒNG BỘ VỚI CÁC TRANG KHÁC) --- */
+/* --- 1. BIẾN MÀU & CẤU HÌNH CHUNG --- */
 :root {
-    --primary-red: #D32F2F;       /* Đỏ đậm: Tiêu đề, icon, nút */
-    --primary-yellow: #FFC107;    /* Vàng: Đường kẻ, điểm nhấn */
-    --bg-light-pink: #FFF5F5;     /* Hồng nhạt: Nền trang */
+    --primary-red: #D32F2F;      /* Đỏ đậm */
+    --primary-yellow: #FFC107;   /* Vàng */
+    --bg-light-pink: #FFF5F5;    /* Hồng nhạt */
     --text-dark: #333;
-    --text-gray: #666;
     --white: #ffffff;
-    --radius: 12px;
 }
 
-/* CSS CHUNG VÀ CĂN CHỈNH KÍCH THƯỚC */
 .body-teacher {
-    background-color: var(--bg-light-pink); /* Nền hồng nhạt */
-    /* background: linear-gradient(#eef6fe); <-- Bỏ nền xanh cũ */
-    justify-content: center;
-    align-items: center;
+    background-color: var(--bg-light-pink);
     min-height: 100vh;
-    margin: 0;
     width: 100%;
-    font-family: 'Montserrat', sans-serif; /* Đồng bộ font */
+    font-family: 'Montserrat', sans-serif;
 }
 
-/* CSS cho phần tử decorate */
+/* --- DECORATE TOP (GIỮ NGUYÊN) --- */
 .decorate-container-top {
     width: 100%;
     text-align: center;
     padding: 30px 0;
 }
-
 .main-text {
-    color: var(--primary-red); /* Đổi sang Đỏ */
+    color: var(--primary-red);
     font-size: 2.5vw;
     font-weight: bold;
     text-transform: uppercase;
-    line-height: 1.2;
-    padding: 0 10px;
 }
-
 .separator-top {
     display: flex;
     align-items: center;
     justify-content: center;
     width: 60%;
-    margin: 15px auto 0 auto;
+    margin: 15px auto;
     gap: 15px;
 }
+.line-top { flex-grow: 1; height: 3px; background-color: var(--primary-yellow); max-width: 45%; }
+.dot-top { width: 8px; height: 8px; background-color: var(--primary-red); border-radius: 50%; margin: 0 4px; }
 
-.line-top {
-    flex-grow: 1;
-    height: 3px; /* Tăng độ dày xíu cho rõ */
-    background-color: var(--primary-yellow); /* Đường kẻ màu Vàng */
-    max-width: 45%;
-}
-
-.dots-top {
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    flex-shrink: 0;
-}
-
-.dot-top {
-    width: 8px;
-    height: 8px;
-    background-color: var(--primary-red); /* Chấm tròn màu Đỏ */
-    border-radius: 50%;
-    margin: 0 4px;
-}
-
-/* Điều chỉnh cho màn hình nhỏ hơn */
-@media (max-width: 768px) {
-    .main-text {
-        font-size: 6vw;
-    }
-    .separator-top {
-        width: 90%;
-    }
-}
-
-
-/* CONTAINER CHỨA HAI THẺ VÀ MŨI TÊN */
+/* --- SLIDER CONTAINER --- */
 .cards-display-container {
+    position: relative;
+    max-width: 1200px;
+    margin: 40px auto;
+    padding: 0 50px; 
     display: flex;
+    align-items: center;
     justify-content: center;
-    gap: 70px;
-    align-items: stretch;
-    padding: 40px;
-    position: relative;
-    width: 100%;
 }
 
-/* CARD WRAPPER ĐƠN LẺ */
-.card-wrapper {
-    position: relative;
-    flex-shrink: 0;
-}
-
-/* Định dạng thẻ hồ sơ chính */
-.profile-card-single {
-    width: 450px;
-    background-color: #fff;
-    border-radius: 40px;
-    /* Đổi bóng đổ sang tông đỏ nhẹ */
-    box-shadow: 0 10px 25px rgba(211, 47, 47, 0.1);
+.slider-viewport {
     overflow: hidden;
-    padding-bottom: 10px;
+    width: 100%;
+    padding-top: 140px; 
+    padding-bottom: 20px;
+}
+
+.slider-track {
     display: flex;
-    flex-direction: column;
-    transition: transform 0.3s ease;
-}
-
-.profile-card-single:hover {
-    transform: translateY(-5px); /* Hiệu ứng bay lên khi hover */
-}
-
-.card-top-section {
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    gap: 30px;
-    padding: 18px 30px;
-    position: relative;
-    height: 120px;
-}
-
-#trang {
-    background-image: url("/images/img-teacher-01.jpg");
-    background-size: cover;
-    background-repeat: no-repeat;
-    background-color: #f7f7f7;
-}
-
-#lam {
-    background-image: url("/images/img-teacher-02.jpg");
-    background-size: cover;
-    background-repeat: no-repeat;
-    background-color: #f7f7f7;
-}
-
-/* Khu vực chứa tên và badge */
-.info-area {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    justify-content: center;
-    flex: 1 1 auto;
-    position: relative;
-    z-index: 2;
-}
-
-/* Tên */
-.name {
-    font-size: 1.2em;
-    color: var(--text-dark);
-    font-weight: bold;
-    margin-bottom: 5px;
-    margin-top: 0;
-    white-space: nowrap;
-    text-align: left;
-}
-
-/* Badge (IELTS - Mặc định chuyển sang đỏ hồng) */
-.badge {
-    background-color: #FFEBEE; /* Nền đỏ rất nhạt */
-    color: var(--primary-red); /* Chữ Đỏ */
-    padding: 10px 12px;
-    border-radius: 20px;
-    font-weight: bold;
-    font-size: 1em;
-    border: 1px solid #ffcdd2; /* Viền đỏ nhạt */
-    margin-top: 6px;
-    width: 120px;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-}
-
-/* Badge TOEIC (Giữ màu vàng đặc trưng hoặc chỉnh theo theme) */
-.toeic-badge {
-    background-color: #fff8e1;
-    color: #ffb300;
-    border: 1px solid #ffecb3;
-}
-
-/* Chỗ để ảnh đại diện */
-.photo-placeholder {
-    flex: 0 0 120px;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    font-size: 0.75em;
-    position: static;
-    z-index: 2;
-}
-
-/* Đường kẻ ngang ngăn cách */
-.card-wrapper .separator {
-    border: none;
-    border-top: 2px solid #ddd; /* Làm nhạt bớt màu xám cho tinh tế */
-    margin: 0;
-    padding: 0;
     width: 100%;
 }
 
-/* Phần Dưới */
-.card-bottom-section {
+.card-wrapper {
+    min-width: calc(100% / 3); 
+    padding: 0 15px;
+    box-sizing: border-box;
+}
+
+/* --- STYLE THẺ LANGMASTER (MỚI) --- */
+.langmaster-card {
+    background: #fff;
+    border-radius: 20px;
+    box-shadow: 0 10px 25px rgba(211, 47, 47, 0.1);
+    position: relative;
+    padding-top: 70px; 
+    padding-bottom: 30px;
+    padding-left: 20px;
+    padding-right: 20px;
+    text-align: center;
+    transition: transform 0.3s;
+    height: 100%;
     display: flex;
-    height: 220px;
+    flex-direction: column;
+    margin-bottom: 10px;
+}
+
+.langmaster-card:hover {
+    transform: translateY(-10px);
+}
+
+/* 1. Avatar Nổi */
+.card-avatar-section {
+    position: absolute;
+    top: -120px; 
+    left: 50%;
+    transform: translateX(-50%);
+    z-index: 2;
+}
+
+.avatar-circle {
+    width: 170px;
+    height: 170px;
+    border-radius: 50%;
+    background: #fff;
+    padding: 4px;
+    box-shadow: 0 0 0 4px var(--primary-red); 
+    position: relative;
+}
+
+.avatar-circle img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    border-radius: 50%;
+}
+
+.yellow-dot {
+    position: absolute;
+    width: 15px;
+    height: 15px;
+    background: var(--primary-yellow);
+    border-radius: 50%;
+    top: 5px;
+    right: 5px;
+    border: 3px solid #fff;
+}
+
+.card-body {
     flex-grow: 1;
 }
 
-/* Cột Trái: Điểm nổi bật */
-.highlight-section {
-    flex: 2;
-    padding: 15px 15px 15px 30px;
-    border-right: 2px solid #ddd;
-    display: flex;
-    flex-direction: column;
-    justify-content: flex-start;
-}
-
-.section-title {
-    font-size: 0.9em;
-    color: var(--text-gray);
-    margin-bottom: 15px;
-    margin-top: 3px;
-    font-weight: bold;
+.teacher-name {
+    color: var(--primary-red);
+    font-size: 18px;
+    font-weight: 800;
     text-transform: uppercase;
-    text-align: center;
+    margin-bottom: 15px;
+    margin-top: 10px;
 }
 
-.highlight-list {
+
+.score-badge {
+    background-color: #ffebee;
+    color: var(--primary-red);
+    display: inline-block;
+    padding: 8px 30px;
+    border-radius: 8px;
+    font-weight: 700;
+    font-size: 15px;
+    margin-bottom: 20px;
+}
+
+.achievement-list {
     list-style: none;
     padding: 0;
-    margin: 0;
+    text-align: left;
+    font-size: 14px;
+    color: #444;
+    line-height: 1.6;
 }
 
-.highlight-list i {
-    color: var(--primary-red); /* Icon chuyển sang màu Đỏ */
-    font-size: 17px;
-    margin-right: 8px;
-    vertical-align: middle;
-}
-
-.highlight-list li {
-    font-size: 0.85em;
-    color: var(--text-dark);
-    margin-bottom: 6px;
-    line-height: 1.3;
-}
-
-/* Cột Phải: QR Code */
-.qr-code-section {
-    flex: 1;
-    padding: 15px;
-    text-align: center;
+.achievement-list li {
+    margin-bottom: 10px;
     display: flex;
-    flex-direction: column;
-    justify-content: center;
-    align-items: center;
+    align-items: flex-start;
 }
 
-.qr-photo-placeholder {
+.achievement-list li i {
+    color: var(--primary-red);
+    margin-right: 10px;
+    margin-top: 4px;
+    flex-shrink: 0;
+}
+
+.card-footer-deco {
     width: 80px;
-    height: 80px;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    color: #fff;
-    font-size: 0.7em;
-    margin-bottom: 5px;
-    background-image: url("/images/qr-code-teacher.jpg");
-    background-size: cover;
-    background-repeat: no-repeat;
-}
-
-.qr-description {
-    font-size: 0.7em;
-    color: #777;
-    line-height: 1.2;
-}
-
-/* NÚT ĐIỀU HƯỚNG */
-.nav-arrow {
+    height: 8px;
+    background: var(--primary-red);
+    margin: 0 auto;
+    border-bottom-left-radius: 10px;
+    border-bottom-right-radius: 10px;
     position: absolute;
-    top: 50%;
-    transform: translateY(-50%);
-    background-color: #fff;
-    border: 1px solid var(--primary-red); /* Thêm viền đỏ */
-    width: 40px; /* Tăng kích thước chút */
-    height: 40px;
+    bottom: -4px;
+    left: 50%;
+    transform: translateX(-50%);
+}
+
+.nav-arrow {
+    background: #fff;
+    color: var(--primary-red);
+    border: 2px solid var(--primary-red);
+    width: 45px;
+    height: 45px;
     border-radius: 50%;
     cursor: pointer;
-    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
-    color: var(--primary-red); /* Mũi tên màu đỏ */
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    opacity: 0.9;
+    font-size: 18px;
+    transition: 0.3s;
+    position: absolute;
     z-index: 10;
-    transition: all 0.3s;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    box-shadow: 0 4px 10px rgba(0,0,0,0.1);
 }
 
 .nav-arrow:hover {
-    background-color: var(--primary-red);
-    color: white; /* Hover thì nền đỏ chữ trắng */
+    background: var(--primary-red);
+    color: #fff;
+    transform: scale(1.1);
 }
 
-.left-arrow {
-    left: 0;
-}
-
-.right-arrow {
-    right: 0;
-}
-
-
-/* CSS chung cho phần tử decorate-under */
-.decorate-container-under {
-    width: 100%;
-    text-align: center;
-    padding: 20px 0;
-    background-color: transparent; /* Bỏ nền xám, để trong suốt ăn theo body */
-}
-
-.top-line {
-    color: var(--primary-red); /* Chữ Đỏ */
-    font-size: 2.5vw;
-    font-weight: bold;
-    margin-bottom: 5px;
-    padding: 0 10px;
-    text-transform: uppercase;
-}
-
-.bottom-line {
-    color: var(--primary-red); /* Chữ Đỏ */
-    font-size: 2.5vw;
-    font-weight: bold;
-    margin-top: 5px;
-    margin-bottom: 15px;
-    padding: 0 10px;
-    text-transform: uppercase;
-}
-
-.separator-under {
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    width: 30%;
-    max-width: 400px;
-    margin: 10px auto 0 auto;
-}
-
-.line-under {
-    flex-grow: 1;
-    height: 3px;
-    background-color: var(--primary-yellow); /* Đường kẻ Vàng */
-    max-width: 45%;
-}
-
-.dots-under {
-    display: flex;
-    align-items: center;
-    margin: 0 5px;
-}
-
-.dot-under {
-    width: 7px;
-    height: 7px;
-    background-color: var(--primary-red); /* Chấm Đỏ */
-    border-radius: 50%;
-    margin: 0 3px;
-}
+.left-arrow { left: 0; }
+.right-arrow { right: 0; }
 
 @media (max-width: 768px) {
-    .top-line { font-size: 5vw; }
-    .bottom-line { font-size: 7vw; }
-    .separator-under { width: 50%; }
+    .card-wrapper {
+        min-width: 100%; 
+    }
+    .cards-display-container {
+        padding: 0 20px;
+    }
+    .main-text { font-size: 6vw; }
+    .nav-arrow { width: 35px; height: 35px; font-size: 14px; }
 }
 
-
-/* CSS cho introduce about teacher by text */
-/* Container lớn  */
 .main-container {
     display: flex;
-    flex-direction: row;
     max-width: 1200px;
     margin: 30px auto;
     background-color: white;
     padding: 40px;
     border-radius: 20px;
-    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.05); /* Bóng mờ nhẹ */
-    border: 1px solid #eee;
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.05);
 }
-
-/* Thẻ div bên trái (Phần ảnh) */
 .left-section {
     flex: 0 0 40%;
-    position: relative;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    /* border: 1px solid #333; <-- Bỏ viền đen xấu */
-    background-image: url("/images/img-left-teacher.jpg"); /* Sửa lại path ảnh cho gọn */
+    background-image: url("/images/img-left-teacher.jpg");
     background-size: cover;
     background-position: center;
-    background-repeat: no-repeat;
-    border-radius: 15px; /* Bo góc ảnh */
+    border-radius: 15px;
     min-height: 400px;
 }
+.right-section { flex: 1; padding-left: 50px; }
+.content-item h3 { color: var(--primary-red); font-size: 20px; font-weight: bold; display: flex; align-items: center; }
+.content-item i { color: var(--primary-yellow); margin-right: 10px; }
 
-/* Thẻ div bên phải (Phần nội dung) */
-.right-section {
-    flex: 1;
-    padding-left: 50px;
+.decorate-container-under { padding: 20px 0; text-align: center; }
+.top-line, .bottom-line { color: var(--primary-red); font-weight: bold; text-transform: uppercase; font-size: 24px; }
+.separator-under { display: flex; justify-content: center; align-items: center; margin-top: 10px; }
+.line-under { width: 100px; height: 3px; background: var(--primary-yellow); }
+.dot-under { width: 7px; height: 7px; background: var(--primary-red); border-radius: 50%; margin: 0 3px; }
+
+.teacher-feature-section {
+    padding: 50px 20px;
+    background-color: #fff;
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    max-width: 1200px;
+    margin: 0 auto;
 }
 
-/* --- STYLES CHO PHẦN NỘI DUNG (RIGHT) --- */
-.content-item {
-    margin-bottom: 30px;
+.feature-header {
+    text-align: center;
+    margin-bottom: 50px;
 }
 
-.content-item h3 {
-    color: var(--primary-red); /* Tiêu đề mục con màu Đỏ */
-    font-size: 22px;
-    font-weight: bold;
+.feature-header .main-title {
+    color: #cc2027; 
+    font-size: 28px;
+    font-weight: 700;
     margin-bottom: 10px;
-    display: flex;
-    align-items: center;
     text-transform: uppercase;
 }
 
-.content-item i {
-    color: var(--primary-yellow); /* Icon đầu dòng màu Vàng */
+.feature-header .sub-title {
+    color: #cc2027;
+    font-size: 20px;
+    font-weight: 600;
+    margin-bottom: 15px;
+}
+
+.deco-dots span {
+    display: inline-block;
+    width: 8px;
+    height: 8px;
+    background-color: #cc2027;
+    border-radius: 50%;
+    margin: 0 3px;
+}
+
+.feature-body {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    justify-content: space-between;
+}
+
+.feature-visuals {
+    flex: 1 1 45%;
+    min-width: 350px;
+    position: relative;
+    height: 500px; 
+}
+
+.feature-content {
+    flex: 1 1 50%;
+    min-width: 350px;
+}
+
+.visual-container {
+    position: relative;
+    width: 100%;
+    height: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.orbit-ring {
+    position: absolute;
+    border: 2px dashed #ffcccc; 
+    border-radius: 50%;
+    top: 50%;
+    left: 55%; 
+    transform: translate(-50%, -50%);
+    z-index: 0;
+}
+
+.ring-1 { width: 300px; height: 300px; }
+.ring-2 { width: 450px; height: 450px; }
+
+.main-teacher-img {
+    position: absolute;
+    width: 200px;
+    height: 200px;
+    border-radius: 50%;
+    overflow: hidden;
+    border: 5px solid #fff;
+    box-shadow: 0 0 15px rgba(0,0,0,0.1);
+    top: 50%;
+    left: 55%;
+    transform: translate(-50%, -50%);
+    z-index: 2;
+}
+
+.sub-teacher-img {
+    position: absolute;
+    width: 100px;
+    height: 100px;
+    border-radius: 50%;
+    overflow: hidden;
+    border: 3px solid #fff;
+    box-shadow: 0 0 10px rgba(0,0,0,0.1);
+    z-index: 2;
+}
+
+.sub-top {
+    top: 15%;
+    left: 15%;
+}
+
+.sub-bottom {
+    bottom: 15%;
+    left: 15%;
+}
+
+.main-teacher-img img, .sub-teacher-img img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+}
+
+.badge {
+    position: absolute;
+    background: #ffa8a8;
+    padding: 5px 10px;
+    border-radius: 10px;
+    box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+    z-index: 3;
+    font-size: 14px;
+    text-align: center;
+}
+
+.badge-star {
+    top: 20%;
+    right: 15%;
+    color: #ffc107;
+}
+
+.badge-like {
+    top: 45%;
+    left: 5%;
+    background: #ffc107;
+    color: #bf202f;
+    border-radius: 5px;
+    padding: 5px 8px;
+}
+
+.badge-celta {
+    bottom: 10%;
+    right: 25%;
+    background: #bf202f;
+    color: #fff;
+    border-radius: 50%;
+    width: 70px;
+    height: 70px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    font-size: 10px;
+    border: 2px dashed #ffc107;
+}
+
+/* --- PHẦN CONTENT LIST --- */
+.timeline-list {
+    list-style: none;
+    padding: 0;
+    position: relative;
+    padding-left: 20px;
+}
+
+.timeline-list::before {
+    content: '';
+    position: absolute;
+    top: 10px;
+    bottom: 10px;
+    left: 28px; 
+    width: 2px;
+    background-image: linear-gradient(#ccc 33%, rgba(255,255,255,0) 0%);
+    background-position: right;
+    background-size: 2px 10px; 
+    background-repeat: repeat-y;
+    z-index: 0;
+}
+
+.timeline-item {
+    display: flex;
+    margin-bottom: 30px;
+    position: relative;
+    z-index: 1;
+}
+
+.icon-check {
+    margin-right: 15px;
     font-size: 18px;
-    margin-right: 10px;
-    vertical-align: middle;
-    /* border-radius: 50%; */
+    color: #cc2027; /* Màu đỏ của icon */
+    background: #fff;
+    padding: 5px 0; /* Để che đường kẻ dọc phía sau */
 }
 
-.content-item p {
+.text-content h3 {
+    margin: 0 0 5px 0;
+    color: #cc2027;
+    font-size: 18px;
+    font-weight: 700;
+}
+
+.text-content p {
+    margin: 0;
+    color: #333;
+    line-height: 1.5;
     font-size: 15px;
-    color: #555;
-    line-height: 1.8;
-    margin-left: 0; /* Canh lề lại cho đẹp */
-    text-align: justify;
 }
 
-/* Responsive điều chỉnh */
-@media (max-width: 992px) {
-    .main-container {
+/* Responsive cho màn hình nhỏ */
+@media (max-width: 768px) {
+    .feature-body {
         flex-direction: column;
-        padding: 20px;
     }
-
-    .left-section {
-        flex: none;
-        width: 100%;
-        min-height: 350px;
-        margin-bottom: 40px;
+    .feature-visuals {
+        height: 400px;
+        margin-bottom: 30px;
     }
-
-    .right-section {
-        padding-left: 0;
+    .orbit-ring {
+        left: 50%;
     }
+    .main-teacher-img {
+        left: 50%;
+    }
+    .sub-top { top: 10%; left: 5%; }
+    .sub-bottom { bottom: 10%; left: 5%; }
 }

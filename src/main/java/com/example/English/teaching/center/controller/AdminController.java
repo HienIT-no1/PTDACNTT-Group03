@@ -1,5 +1,7 @@
 package com.example.English.teaching.center.controller;
 
+import java.time.LocalDateTime;
+
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -14,6 +16,7 @@ import com.example.English.teaching.center.model.Course;
 import com.example.English.teaching.center.model.Instructor;
 import com.example.English.teaching.center.model.Material;
 import com.example.English.teaching.center.model.Post;
+import com.example.English.teaching.center.model.PostSection;
 import com.example.English.teaching.center.service.CategoryService;
 import com.example.English.teaching.center.service.CourseService;
 import com.example.English.teaching.center.service.InstructorService;
@@ -109,21 +112,43 @@ public class AdminController {
 
     @PostMapping("/news/save")
     public String savePost(@ModelAttribute("post") Post post) {
+        if (post.getSections() != null) {
+            for (int i = 0; i < post.getSections().size(); i++) {
+                PostSection section = post.getSections().get(i);
+                section.setPost(post); 
+                section.setDisplayOrder(i); 
+            }
+        }
+
         if (post.getId() != null) {
             Post existingPost = postService.getPostById(post.getId()).orElse(null);
             if (existingPost != null) {
                 existingPost.setTitle(post.getTitle());
                 existingPost.setSlug(post.getSlug());
-                existingPost.setContent(post.getContent());
+                existingPost.setShortDescription(post.getShortDescription());
                 existingPost.setThumbnailUrl(post.getThumbnailUrl());
                 existingPost.setType(post.getType());
+
+                if (existingPost.getPublishedAt() == null && post.getStatus() == Post.PostStatus.PUBLISHED) {
+                    existingPost.setPublishedAt(LocalDateTime.now());
+                }
+
+                existingPost.setStatus(post.getStatus());
+                existingPost.setMetaTitle(post.getMetaTitle());
+                existingPost.setMetaKeyword(post.getMetaKeyword());
+                existingPost.setMetaDescription(post.getMetaDescription());
+
+                // Xử lý danh sách Section (Hibernate tự động xóa cái cũ không có trong list mới nhờ orphanRemoval=true)
+                existingPost.getSections().clear();
+                existingPost.getSections().addAll(post.getSections());
                 
                 postService.savePost(existingPost);
             }
         } else {
+            if(post.getStatus() == null) post.setStatus(Post.PostStatus.PUBLISHED);
+            post.setPublishedAt(LocalDateTime.now());
             postService.savePost(post);
         }
-
         return "redirect:/admin/news";
     }
 

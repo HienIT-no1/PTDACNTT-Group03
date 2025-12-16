@@ -11,46 +11,55 @@
 </head>
 
 <body>
-    <!-- heder -->
     <header class="navbar">
         <a th:href="@{/user/home}" class="logo">GO-E</a>
         <nav class="nav-links">
             <ul>
                 <li class="dropdown">
-                    <a href="#">Giới thiệu</a>
+                    <a>Giới thiệu</a>
                     <ul class="dropdown-menu">
                         <li><a th:href="@{/user/about}">Về trung tâm</a></li>
                         <li><a th:href="@{/user/i-teacher}">Đội ngũ giảng viên</a></li>
                     </ul>
-                </li>
+                </li> 
                 <li class="dropdown">
-                    <a href="#">Khóa học</a>
+                    <a>Khóa học</a>
                     <ul class="dropdown-menu">
-                        <li><a href="#">IELTS</a></li>
-                        <li><a href="#">Khóa tiếng Anh giao tiếp online</a></li>
-                        <li><a href="#">Khóa tiếng Anh trẻ em</a></li>
+                        <li><a th:href="@{/user/course(category='IELTS')}">IELTS</a></li>
+                        <li><a th:href="@{/user/course(category='COMMUNICATE')}">Khóa tiếng Anh giao tiếp online</a></li>
+                        <li><a th:href="@{/user/course(category='CHILDREN')}">Khóa tiếng Anh trẻ em</a></li>
                     </ul>
                 </li>
-                <li><a href="#">Cảm nhận học viên</a></li>
+                <li><a th:href="@{/user/student-feelings}">Cảm nhận học viên</a></li>
                 <li class="dropdown">
-                    <a href="#">Thư viện</a>
+                    <a>Thư viện</a>
                     <ul class="dropdown-menu">
-                        <li><a href="#">Tài liệu</a></li>
-                        <li><a href="#">Blog</a></li>
+                        <li><a th:href="@{/user/document}">Tài liệu</a></li>
+                        <li><a th:href="@{/user/test}">Bài kiểm tra</a></li>
+                        <li><a th:href="@{/user/blog}">Blog</a></li>
                     </ul>
                 </li>
-                <li><a href="#">Tin tức & Sự kiện</a></li>
+                <li><a th:href="@{/user/new-events}">Tin tức & Sự kiện</a></li>
             </ul>
         </nav>
         <div class="search-container">
-            <div class="search-icon">🔍</div>
-            <input type="text" placeholder="search" id="searchInput">
-            <button class="clear-btn" onclick="clearSearch()">✖</button>
+            <form action="/user/search" method="get" style="display: flex; align-items: center; width: 100%;">
+                
+                <button type="submit" class="search-icon" style="background: none; border: none; cursor: pointer; color: inherit;">
+                    🔍
+                </button>
+                
+                <input type="text" name="keyword" placeholder="Tìm kiếm..." id="searchInput" 
+                    style="border: none; outline: none; padding: 5px; flex: 1;">
+                
+                <button type="button" class="clear-btn" onclick="clearSearch()" style="background: none; border: none; cursor: pointer;">
+                    ✖
+                </button>
+            </form>
         </div>
     </header>
 
     <div class="body-teacher">
-        <!-- Decorate-top  -->
         <div class="decorate-container-top">
             <p class="main-text">
                 100+ GIÁO VIÊN CHUẨN QUỐC TẾ - TRAO TRI THỨC, CHẠM ƯỚC MƠ
@@ -67,103 +76,58 @@
             </div>
         </div>
 
-        <!-- main content of teacher's introduce have boxes -->
         <div class="cards-display-container">
 
-            <!-- nút chuyển hướng (trái) -->
-            <button class="nav-arrow left-arrow">
-                <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none"
-                    stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-                    <path d="M15 18l-6-6 6-6" />
-                </svg>
-            </button>
+            <div class="cards-display-container">
 
-            <!-- khung 1 -->
-            <div class="card-wrapper">
-                <div class="profile-card-single">
+                <button class="nav-arrow left-arrow" id="prevBtn">
+                    <i class="fa-solid fa-chevron-left"></i>
+                </button>
 
-                    <!-- top -->
-                    <div id="trang" class="card-top-section">
-                        <div class="photo-placeholder">
-                            <img src="" alt="">
-                        </div>
-                        <div class="info-area">
-                            <h2 class="name">MS. VŨ THỊ HUYỀN TRANG</h2>
-                            <div class="badge ielts-badge">IELTS 8.0</div>
-                        </div>
-                    </div>
+                <div class="slider-viewport">
+                    <div class="slider-track" id="track">
 
-                    <div>
-                        <hr class="separator">
-                    </div>
+                        <div class="card-wrapper" th:each="teacher : ${teachers}">
+                            <div class="langmaster-card">
+                                
+                                <div class="card-avatar-section">
+                                    <div class="avatar-circle">
+                                        <img th:if="${teacher.avatarUrl != null}" 
+                                            th:src="@{${teacher.avatarUrl}}" 
+                                            alt="Avatar">
+                                        <span class="yellow-dot"></span>
+                                    </div>
+                                </div>
 
-                    <!-- bottom -->
-                    <div class="card-bottom-section">
-                        <!-- bottom-right -->
-                        <div class="highlight-section">
-                            <h3 class="section-title">Điểm nổi bật</h3>
-                            <ul class="highlight-list">
-                                <li><i class="fa-solid fa-square-check"></i>Cử nhân Xuất sắc Ngôn ngữ Anh - Đại học
-                                    Ngoại Thương</li>
-                                <li><i class="fa-solid fa-square-check"></i>5+ năm giảng dạy và đào tạo Tiếng Anh</li>
-                                <li><i class="fa-solid fa-square-check"></i>Chứng chỉ IELTS 8.0 và TOEIC 900</li>
-                            </ul>
+                                <div class="card-body">
+                                    <h3 class="teacher-name" th:text="${teacher.fullName}">MR. VÕ NAM</h3>
+                                    
+                                    <div class="score-badge">
+                                        <span th:text="${teacher.expertise}">IELTS 8.0</span>
+                                    </div>
+
+                                    <ul class="achievement-list">
+                                        <li th:each="line : ${#strings.arraySplit(teacher.bio, ',')}">
+                                            <i class="fa-solid fa-circle-check"></i>
+                                            <span th:text="${#strings.trim(line)}">Đại học Bách Khoa...</span>
+                                        </li>
+                                    </ul>
+                                </div>
+
+                                <div class="card-footer-deco"></div>
+                            </div>
                         </div>
-                        <!-- bottom-left -->
-                        <div class="qr-code-section">
-                            <div class="qr-photo-placeholder"></div>
-                            <p class="qr-description">Quét mã để liên hệ tới Facebook, Zalo và Instagram</p>
                         </div>
-                    </div>
                 </div>
+
+                <button class="nav-arrow right-arrow" id="nextBtn">
+                    <i class="fa-solid fa-chevron-right"></i>
+                </button>
+
             </div>
-
-            <!-- Khung 2 -->
-            <div class="card-wrapper">
-                <div class="profile-card-single profile-card-lam">
-
-                    <div id="lam" class="card-top-section">
-                        <div class="photo-placeholder"></div>
-                        <div class="info-area">
-                            <h2 class="name">MR. HOÀNG PHÚC LÂM</h2>
-                            <div class="badge toeic-badge">TOEIC 945</div>
-                        </div>
-                    </div>
-
-                    <div><hr class="separator"></div>
-
-                    <div class="card-bottom-section">
-                        <div class="highlight-section">
-                            <h3 class="section-title">Điểm nổi bật</h3>
-                            <ul class="highlight-list">
-                                <li><i class="fa-solid fa-square-check"></i>Cử nhân Xuất sắc Ngôn ngữ Anh - Trường Đại
-                                    học Hà Nội</li>
-                                <li><i class="fa-solid fa-square-check"></i>7+ năm giảng dạy và đào tạo Tiếng Anh</li>
-                                <li><i class="fa-solid fa-square-check"></i>Chứng chỉ IELTS 7.0 và TOEIC 945</li>
-                                <li><i class="fa-solid fa-square-check"></i>Học bổng 13,000$ Đại học Macquarie - Úc dành
-                                    cho chương trình Master of Applied Linguistics and Tesol</li>
-                            </ul>
-                        </div>
-
-                        <div class="qr-code-section">
-                            <div class="qr-photo-placeholder"></div>
-                            <p class="qr-description">Quét mã để liên hệ tới Facebook, Zalo và Instagram</p>
-                        </div>
-                    </div>
-                </div>
-            </div>
-
-            <button class="nav-arrow right-arrow">
-                <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none"
-                    stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-                    <path d="M9 18l6-6-6-6" />
-                </svg>
-            </button>
         </div>
 
-        <!-- introduce about teacher -->
-        <div style="background: #f7f9fc; height: 830px;"> <!-- chống cháy  -->
-            <!-- Decorate under  -->
+        <div style="background: #f7f9fc; height: 830px;"> 
             <div class="decorate-container-under">
                 <p class="top-line">GIẢNG VIÊN GO-E</p>
 
@@ -183,13 +147,9 @@
 
             </div>
 
-            <!-- introduce about teacher by text :) -->
             <div class="main-container">
-
                 <div class="left-section"></div>
-
                 <div class="right-section">
-
                     <div class="content-item">
                         <h3><i class="fa-solid fa-square-check"></i>Chuyên môn giỏi, Chuẩn Quốc tế</h3>
                         <p>100% giáo viên tại GO-E đạt trình độ <b>7.0+ IELTS/ 850+ TOEIC</b> (hoặc các bằng cấp tương đương), được 
@@ -213,15 +173,93 @@
                         <p>Với nhiều năm kinh nghiệm, đội ngũ GO-E đã <b>đào tạo thành công hơn 800.000 học viên trên toàn cầu</b>, 
                             đồng thời liên tục nghiên cứu và phát triển tài liệu học tiếng Anh chất lượng cao và phù hợp với yêu cầu thực tế.</p>
                     </div>
-
                 </div>
             </div>
         </div>
-
     </div>
 
+    <section class="teacher-feature-section">
+        <div class="feature-header">
+            <h2 class="main-title">GIÁO VIÊN GOE</h2>
+            <p class="sub-title">CHUYÊN MÔN GIỎI, TẬN TÂM ĐỒNG HÀNH</p>
+            <div class="deco-dots">
+                <span></span><span></span><span></span>
+            </div>
+        </div>
 
-    <!-- Footer -->
+        <div class="feature-body">
+            <div class="feature-visuals">
+                <div class="visual-container">
+                    <div class="orbit-ring ring-1"></div>
+                    <div class="orbit-ring ring-2"></div>
+
+                    <div class="main-teacher-img">
+                        <img src="https://i.pravatar.cc/300?img=5" alt="Main Teacher"> </div>
+
+                    <div class="sub-teacher-img sub-top">
+                        <img src="https://i.pravatar.cc/150?img=9" alt="Sub Teacher"> </div>
+
+                    <div class="sub-teacher-img sub-bottom">
+                        <img src="https://i.pravatar.cc/150?img=1" alt="Sub Teacher"> </div>
+
+                    <div class="badge badge-star">
+                        ⭐⭐⭐⭐⭐
+                    </div>
+                    <div class="badge badge-like">
+                        <i class="fa-solid fa-thumbs-up"></i>
+                    </div>
+                    <div class="badge badge-celta">
+                        <span>CHUẨN</span><br><b>CELTA</b><br>⭐⭐⭐
+                    </div>
+                </div>
+            </div>
+
+            <div class="feature-content">
+                <ul class="timeline-list">
+                    <li class="timeline-item">
+                        <div class="icon-check">
+                            <i class="fa-solid fa-circle-check"></i>
+                        </div>
+                        <div class="text-content">
+                            <h3>Chuyên môn giỏi, chuẩn Quốc tế</h3>
+                            <p>100% giáo viên tại Go-E đạt trình độ <b>7.0+ IELTS/900+ TOEIC</b> (hoặc các bằng cấp tương đương), được đào tạo chuẩn CELTA trước khi đứng lớp và liên tục cập nhật các phương pháp giảng dạy tiên tiến.</p>
+                        </div>
+                    </li>
+
+                    <li class="timeline-item">
+                        <div class="icon-check">
+                            <i class="fa-solid fa-circle-check"></i>
+                        </div>
+                        <div class="text-content">
+                            <h3>Tuyển chọn và đào tạo khắt khe</h3>
+                            <p>Mỗi giáo viên đều phải vượt qua <b>5 vòng tuyển chọn và đào tạo khắt khe</b>, học chuyên ngành Sư phạm hoặc ngôn ngữ Anh với nghiệp vụ giảng dạy tốt.</p>
+                        </div>
+                    </li>
+
+                    <li class="timeline-item">
+                        <div class="icon-check">
+                            <i class="fa-solid fa-circle-check"></i>
+                        </div>
+                        <div class="text-content">
+                            <h3>Trách nhiệm và tận tâm</h3>
+                            <p>Đội ngũ giáo viên tận tâm, theo sát học viên trong suốt quá trình học, chấm chữa bài trong vòng 24h (khóa IELTS). Không chỉ giảng dạy kiến thức mà còn đồng hành, chia sẻ và <b>thúc đẩy động lực học tập</b>.</p>
+                        </div>
+                    </li>
+
+                    <li class="timeline-item">
+                        <div class="icon-check">
+                            <i class="fa-solid fa-circle-check"></i>
+                        </div>
+                        <div class="text-content">
+                            <h3>Dày dặn kinh nghiệm</h3>
+                            <p>Với nhiều năm kinh nghiệm, đội ngũ Langmaster đã <b>đào tạo thành công hơn 800.000 học viên trên toàn cầu</b>, đồng thời liên tục nghiên cứu và phát triển tài liệu học tiếng Anh chất lượng cao.</p>
+                        </div>
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </section>
+
     <footer>
         <div class="footer-container">
             <!-- column left -->
@@ -292,5 +330,119 @@
         </div>
     </footer>
 </body>
+<script>
+document.addEventListener("DOMContentLoaded", function () {
+    const track = document.getElementById('track');
+    const nextBtn = document.getElementById('nextBtn');
+    const prevBtn = document.getElementById('prevBtn');
+    const container = document.querySelector('.cards-display-container');
 
+    let originalItems = document.querySelectorAll('.card-wrapper');
+    const totalOriginal = originalItems.length;
+
+    let itemsPerScreen = 3;
+    const autoPlayTime = 4000;
+    let autoPlayInterval;
+    let isTransitioning = false; 
+
+    if (window.innerWidth < 768) {
+        itemsPerScreen = 1;
+    }
+
+    const firstClones = [];
+    for (let i = 0; i < itemsPerScreen; i++) {
+        firstClones.push(originalItems[i % totalOriginal].cloneNode(true));
+    }
+
+    const lastClones = [];
+    for (let i = 0; i < itemsPerScreen; i++) {
+        let index = totalOriginal - 1 - i;
+        if (index < 0) index = 0;
+        lastClones.unshift(originalItems[index].cloneNode(true)); 
+    }
+
+    firstClones.forEach(clone => track.appendChild(clone)); 
+    lastClones.forEach(clone => track.prepend(clone));      
+
+    const allItems = document.querySelectorAll('.card-wrapper');
+    
+    let currentIndex = itemsPerScreen; 
+    
+    function updateCarousel(transition = true) {
+        const widthPerItem = 100 / itemsPerScreen;
+        
+        if (transition) {
+            track.style.transition = 'transform 0.5s ease-in-out';
+        } else {
+            track.style.transition = 'none'; 
+        }
+
+        const translateX = -(currentIndex * widthPerItem);
+        track.style.transform = `translateX(${translateX}%)`;
+    }
+
+    updateCarousel(false);
+
+    track.addEventListener('transitionend', () => {
+        isTransitioning = false;
+
+        if (currentIndex >= totalOriginal + itemsPerScreen) {
+            currentIndex = itemsPerScreen;
+            updateCarousel(false); 
+        }
+        
+        if (currentIndex < itemsPerScreen) {
+            currentIndex = totalOriginal + itemsPerScreen - 1; 
+            currentIndex = totalOriginal + itemsPerScreen - 1 - (itemsPerScreen - 1); 
+            currentIndex = totalOriginal;
+            updateCarousel(false);
+        }
+    });
+
+    function nextSlide() {
+        if (isTransitioning) return;
+        isTransitioning = true;
+        currentIndex++;
+        updateCarousel(true);
+    }
+
+    function prevSlide() {
+        if (isTransitioning) return;
+        isTransitioning = true;
+        currentIndex--;
+        updateCarousel(true);
+    }
+
+    nextBtn.addEventListener('click', () => {
+        stopAutoPlay();
+        nextSlide();
+        startAutoPlay();
+    });
+
+    prevBtn.addEventListener('click', () => {
+        stopAutoPlay();
+        prevSlide();
+        startAutoPlay();
+    });
+
+    function startAutoPlay() {
+        clearInterval(autoPlayInterval);
+        autoPlayInterval = setInterval(() => {
+            nextSlide();
+        }, autoPlayTime);
+    }
+
+    function stopAutoPlay() {
+        clearInterval(autoPlayInterval);
+    }
+
+    container.addEventListener('mouseenter', stopAutoPlay);
+    container.addEventListener('mouseleave', startAutoPlay);
+
+    window.addEventListener('resize', () => {
+    });
+
+    startAutoPlay();
+});
+</script>
 </html>

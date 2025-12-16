@@ -1,24 +1,19 @@
-/* --- 1. BIẾN MÀU & CẤU HÌNH CHUNG (RED THEME) --- */
+
 :root {
-    /* MÀU CHỦ ĐẠO */
-    --primary-red: #D32F2F;      /* Đỏ đậm: Dùng cho Nút, Hộp, Tiêu đề, Icon */
-    --primary-red-hover: #b71c1c; /* Đỏ tối: Dùng khi hover chuột */
+    --primary-red: #D32F2F;      
+    --primary-red-hover: #b71c1c; 
     
-    /* MÀU NHẤN */
-    --primary-yellow: #FFC107;   /* Vàng: Dùng cho số liệu, icon nổi bật */
+    --primary-yellow: #FFC107;   
     
-    /* MÀU NỀN */
-    --bg-light-pink: #FFF5F5;    /* Hồng nhạt: Dùng làm nền Hero, nền khối info */
+    --bg-light-pink: #FFF5F5;  
     --white: #ffffff;
     
-    /* MÀU CHỮ */
     --text-dark: #333;
     --text-gray: #666;
     
     --radius: 12px;
 }
 
-/* Container chung */
 .container {
     max-width: 1200px;
     margin: 0 auto;
@@ -27,7 +22,7 @@
 
 /* --- PHẦN 1: HERO SECTION --- */
 .about-hero {
-    background-color: var(--bg-light-pink); /* NỀN: Hồng nhạt */
+    background-color: var(--bg-light-pink); 
     padding: 60px 0;
     overflow: hidden;
 }
@@ -101,49 +96,88 @@
     box-shadow: 0 20px 40px rgba(0, 0, 0, 0.1);
 }
 
-/* Các hộp thống kê bay bay */
 .stat-box {
     position: absolute;
-    background: var(--primary-red); /* HỘP STAT: Đỏ */
+    background: rgba(211, 47, 47, 0.85); 
+    backdrop-filter: blur(10px); 
+    -webkit-backdrop-filter: blur(10px);
+    
     color: white;
     padding: 15px 20px;
-    border-radius: 12px;
-    box-shadow: 0 10px 20px rgba(211, 47, 47, 0.25);
-    border: 1px solid rgba(255,255,255,0.2);
-    min-width: 120px;
-    text-align: center;
+    border-radius: 16px;
+    
+    border: 1px solid rgba(255, 255, 255, 0.3);
+    border-top: 1px solid rgba(255, 255, 255, 0.6); 
+    
+    box-shadow: 0 15px 35px rgba(211, 47, 47, 0.4);
+    
+    min-width: 160px;
+    display: flex;
+    align-items: center;
+    gap: 15px; 
+    transition: transform 0.3s ease;
+    z-index: 10;
 }
+
+.stat-box i {
+    font-size: 2rem;
+    color: rgba(255, 255, 255, 0.9);
+    background: rgba(255, 255, 255, 0.2);
+    padding: 10px;
+    border-radius: 12px;
+}
+
+.stat-box div {
+    display: flex;
+    flex-direction: column;
+    text-align: left;
+}
+
 .stat-box strong {
     display: block;
     font-size: 1.4rem;
     font-weight: 800;
-    color: var(--primary-yellow); /* SỐ LIỆU: Vàng rực rỡ */
+    color: #fff; 
+    text-shadow: 0 2px 4px rgba(0,0,0,0.1);
+    line-height: 1;
+    margin-bottom: 4px;
 }
+
 .stat-box span {
-    font-size: 0.9rem;
-    opacity: 0.95;
+    font-size: 0.85rem;
+    font-weight: 500;
+    opacity: 0.9;
+    letter-spacing: 0.5px;
+    text-transform: uppercase;
 }
 
 .stat-box.stat-1 {
-    top: 20%;
-    left: 0;
-    animation: float 3s ease-in-out infinite;
+    top: 15%;
+    left: -20px;
+    animation: float 4s ease-in-out infinite;
 }
 .stat-box.stat-2 {
-    bottom: 25%;
-    left: -40px;
-    animation: float 3.5s ease-in-out infinite 0.5s;
+    bottom: 20%;
+    left: -50px;
+    animation: float 5s ease-in-out infinite 0.5s;
 }
 .stat-box.stat-3 {
     bottom: 10%;
-    right: 20px;
-    animation: float 4s ease-in-out infinite 1s;
+    right: -10px;
+    animation: float 4.5s ease-in-out infinite 1s;
 }
 
 @keyframes float {
     0% { transform: translateY(0px); }
-    50% { transform: translateY(-10px); }
+    50% { transform: translateY(-12px); }
     100% { transform: translateY(0px); }
+}
+
+.stat-box:hover {
+    background: rgba(211, 47, 47, 1);
+    transform: scale(1.05);
+    cursor: default;
+    box-shadow: 0 20px 40px rgba(211, 47, 47, 0.5);
 }
 
 /* --- PHẦN 2: TẠI SAO CHỌN ECE (TABS) --- */

@@ -7,9 +7,57 @@
     <title>Cảm nhận học viên GO-E</title>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.6.0/css/all.min.css">
     <link rel="stylesheet" href="/css/user/student-feelings.css">
+    <link rel="stylesheet" href="/css/common.css">
 </head>
 
 <body>
+    <header class="navbar">
+        <a th:href="@{/user/home}" class="logo">GO-E</a>
+        <nav class="nav-links">
+            <ul>
+                <li class="dropdown">
+                    <a>Giới thiệu</a>
+                    <ul class="dropdown-menu">
+                        <li><a th:href="@{/user/about}">Về trung tâm</a></li>
+                        <li><a th:href="@{/user/i-teacher}">Đội ngũ giảng viên</a></li>
+                    </ul>
+                </li> 
+                <li class="dropdown">
+                    <a>Khóa học</a>
+                    <ul class="dropdown-menu">
+                        <li><a th:href="@{/user/course(category='IELTS')}">IELTS</a></li>
+                        <li><a th:href="@{/user/course(category='COMMUNICATE')}">Khóa tiếng Anh giao tiếp online</a></li>
+                        <li><a th:href="@{/user/course(category='CHILDREN')}">Khóa tiếng Anh trẻ em</a></li>
+                    </ul>
+                </li>
+                <li><a th:href="@{/user/student-feelings}">Cảm nhận học viên</a></li>
+                <li class="dropdown">
+                    <a>Thư viện</a>
+                    <ul class="dropdown-menu">
+                        <li><a th:href="@{/user/document}">Tài liệu</a></li>
+                        <li><a th:href="@{/user/test}">Bài kiểm tra</a></li>
+                        <li><a th:href="@{/user/blog}">Blog</a></li>
+                    </ul>
+                </li>
+                <li><a th:href="@{/user/new-events}">Tin tức & Sự kiện</a></li>
+            </ul>
+        </nav>
+        <div class="search-container">
+            <form action="/user/search" method="get" style="display: flex; align-items: center; width: 100%;">
+                
+                <button type="submit" class="search-icon" style="background: none; border: none; cursor: pointer; color: inherit;">
+                    🔍
+                </button>
+                
+                <input type="text" name="keyword" placeholder="Tìm kiếm..." id="searchInput" 
+                    style="border: none; outline: none; padding: 5px; flex: 1;">
+                
+                <button type="button" class="clear-btn" onclick="clearSearch()" style="background: none; border: none; cursor: pointer;">
+                    ✖
+                </button>
+            </form>
+        </div>
+    </header>
     <div class="main-container">
 
         <div class="header">
@@ -93,11 +141,11 @@
 
                 <div class="review-card">
                     <div class="top-image-placeholder">
-                        <img src="" style="width:100%; height:100%; object-fit:cover; border-radius:10px;" alt="anh1">
+                        <img src="/images/student-f1.jpg" style="width:100%; height:100%; object-fit:cover; border-radius:10px;" alt="anh1">
                     </div>
                     <div class="user-info">
                         <div class="avatar-circle">
-                            <img src="" style="width:100%; height:100%; object-fit:cover;" alt="anh1">
+                            <img src="/images/student-f1.jpg" style="width:100%; height:100%; object-fit:cover;" alt="anh1">
                         </div>
                         <div class="user-name">Chị Hương Quỳnh</div>
                     </div>
@@ -114,11 +162,11 @@
 
                 <div class="review-card">
                     <div class="top-image-placeholder">
-                        <img src="" style="width:100%; height:100%; object-fit:cover; border-radius:10px;" alt="anh2">
+                        <img src="/images/student-f5.webp" style="width:100%; height:100%; object-fit:cover; border-radius:10px;" alt="anh2">
                     </div>
                     <div class="user-info">
                         <div class="avatar-circle">
-                            <img src="" style="width:100%; height:100%; object-fit:cover;" alt="anh2">
+                            <img src="/images/student-f5.webp" style="width:100%; height:100%; object-fit:cover;" alt="anh2">
                         </div>
                         <div class="user-name">Ăn cùng Bà Tuyết</div>
                     </div>
@@ -135,11 +183,11 @@
 
                 <div class="review-card">
                     <div class="top-image-placeholder">
-                        <img src="" style="width:100%; height:100%; object-fit:cover; border-radius:10px;" alt="anh3">
+                        <img src="/images/student-f3.jpg" style="width:100%; height:100%; object-fit:cover; border-radius:10px;" alt="anh3">
                     </div>
                     <div class="user-info">
                         <div class="avatar-circle">
-                            <img src="" style="width:100%; height:100%; object-fit:cover;" alt="anh3">
+                            <img src="/images/student-f3.jpg" style="width:100%; height:100%; object-fit:cover;" alt="anh3">
                         </div>
                         <div class="user-name">Bạn Nguyễn Thúy </div>
                     </div>
@@ -157,11 +205,11 @@
 
                 <div class="review-card">
                     <div class="top-image-placeholder">
-                        <img src="./img/Kha-banh.jpg" style="width:100%; height:100%; object-fit:cover; border-radius:10px;" alt="anh4">
+                        <img src="/images/student-f4.webp" style="width:100%; height:100%; object-fit:cover; border-radius:10px;" alt="anh4">
                     </div>
                     <div class="user-info">
-                        <div class="avatar-circle">
-                            <img src="./img/Kha-banh.jpg" style="width:100%; height:100%; object-fit:cover;" alt="anh4">
+                        <div class="avatar-circle"> 
+                            <img src="/images/student-f4.webp" style="width:100%; height:100%; object-fit:cover;" alt="anh4">
                         </div>
                         <div class="user-name">Anh Khá Bảnh</div>
                     </div>
@@ -177,12 +225,12 @@
                 </div>
 
                 <div class="review-card">
-                    <div class="top-image-placeholder">
-                        <img src="" style="width:100%; height:100%; object-fit:cover; border-radius:10px;" alt="anh5">
+                    <div class="top-image-placeholder"> 
+                        <img src="/images/student-f6.jpg" style="width:100%; height:100%; object-fit:cover; border-radius:10px;" alt="anh5">
                     </div>
                     <div class="user-info">
                         <div class="avatar-circle">
-                            <img src="" style="width:100%; height:100%; object-fit:cover;" alt="anh5">
+                            <img src="/images/student-f6.jpg" style="width:100%; height:100%; object-fit:cover;" alt="anh5">
                         </div>
                         <div class="user-name">Anh Thái Hoàng</div>
                     </div>
@@ -199,11 +247,11 @@
 
                 <div class="review-card">
                     <div class="top-image-placeholder">
-                        <img src="" style="width:100%; height:100%; object-fit:cover; border-radius:10px;" alt="anh6">
+                        <img src="/images/student-f2.jpg" style="width:100%; height:100%; object-fit:cover; border-radius:10px;" alt="anh6">
                     </div>
                     <div class="user-info">
                         <div class="avatar-circle">
-                            <img src="" style="width:100%; height:100%; object-fit:cover;" alt="anh6">
+                            <img src="/images/student-f2.jpg" style="width:100%; height:100%; object-fit:cover;" alt="anh6">
                         </div>
                         <div class="user-name">Bà Tân Vlog</div>
                     </div>
@@ -219,25 +267,78 @@
                 </div>
 
             </div>
-
-            <div class="button-wrapper">
-                <a href="#" class="btn-see-more" onclick="thongBao()">Xem thêm đánh giá</a>
-            </div>
-
         </div>
-
     </div>
 
-    <script>
-        function playVideo(videoId) {
-            var iframe = document.getElementById('mainIframe');
-            iframe.src = 'https://www.youtube.com/embed/' + videoId + '?autoplay=1';
-        }
+    <footer>
+        <div class="footer-container">
+            <!-- column left -->
+            <div class="footer-column branding-column">
+                <h3 class="logo">GO-E</h3>
+                <p class="slogan">English for Life & Future</p>
+                <p class="description">
+                    Go-E là hệ sinh thái đào tạo tiếng Anh toàn diện với 16+ năm uy tín,
+                    bao gồm các chương trình: Tiếng Anh giao tiếp, khóa học IELTS và tiếng Anh trẻ em.
+                </p>
+                <div class="branding-column_child">
+                    <h4>VỀ GO-E</h4>
+                    <ul class="footer-links">
+                        <li><a href="#">Giới thiệu</a></li>
+                        <li><a href="#">Chính sách bảo mật</a></li>
+                        <li><a href="#">Trách nhiệm và cam kết</a></li>
+                        <li><a href="#">Thông tin thanh toán</a></li>
+                    </ul>
+                </div>
+            </div>
 
-        function thongBao() {
-            console.log("Người dùng đã click nút Xem thêm");
-        }
-    </script>
+            <div class="footer-column about-column">
+                <!-- media network -->
+                <h5>Social networking</h5>
+                <div class="social-links">
+                    <a href="#" aria-label="Facebook"><i class="fab fa-facebook-f"></i></a>
+                    <a href="#" aria-label="TikTok"><i class="fab fa-tiktok"></i></a>
+                    <a href="#" aria-label="YouTube"><i class="fab fa-youtube"></i></a>
+                    <a href="#" aria-label="Instagram"><i class="fa-brands fa-instagram"></i></a>
+                    <!-- video tiktok -->
+                    <div class="video-container" id="tiktok-player">
+                        <div class="loading">Đang tải video...</div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="footer-column contact-column">
+                <h4>HỌC TIẾNG ANH GO-E</h4>
+                <ul class="contact-info">
+                    <li>
+                        <i class="fas fa-home"></i>
+                        Cơ sở 1: Số 44, Ngõ 40, Tạ Quang Bửu, Bách Khoa, Hà Nội
+                    </li>
+                    <li>
+                        <i class="fas fa-home"></i>
+                        Cơ sở 2: Số 9C8, ngõ 261 Trần Quốc Hoàn, Cầu Giấy, Hà Nội
+                    </li>
+                    <li>
+                        <i class="fas fa-home"></i>
+                        Cơ sở 3: Số 3, ngõ 34 Nguyễn Hoàng, Mỹ Đình, Hà Nội
+                    </li>
+                    <li>
+                        <i class="fas fa-phone"></i>
+                        <a href="tel:0962154168">0962.154.168</a> - <a href="tel:0962152222">0962.152.222</a>
+                    </li>
+                    <li>
+                        <i class="fas fa-envelope"></i>
+                        <a href="mailto:info@go-e.edu.vn">info@go-e.edu.vn</a>
+                    </li>
+                </ul>
+            </div>
+        </div>
+
+        <!-- floating buttons -->
+        <div class="floating-buttons">
+            <a href="tel:0962154168" class="call-btn" aria-label="Gọi điện"><i class="fas fa-phone-alt"></i></a>
+            <a href="#" class="chat-btn" aria-label="Chat Zalo/Messenger"><i class="fas fa-comment-dots"></i></a>
+        </div>
+    </footer>
 
 </body>
 

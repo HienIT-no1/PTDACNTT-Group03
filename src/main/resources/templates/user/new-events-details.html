@@ -14,7 +14,7 @@
         <nav class="nav-links">
             <ul>
                 <li class="dropdown">
-                    <a href="#">Giới thiệu</a>
+                    <a>Giới thiệu</a>
                     <ul class="dropdown-menu">
                         <li><a th:href="@{/user/about}">Về trung tâm</a></li>
                         <li><a th:href="@{/user/i-teacher}">Đội ngũ giảng viên</a></li>
@@ -28,21 +28,32 @@
                         <li><a th:href="@{/user/course(category='CHILDREN')}">Khóa tiếng Anh trẻ em</a></li>
                     </ul>
                 </li>
-                <li><a href="#">Cảm nhận học viên</a></li>
+                <li><a th:href="@{/user/student-feelings}">Cảm nhận học viên</a></li>
                 <li class="dropdown">
-                    <a href="#">Thư viện</a>
+                    <a>Thư viện</a>
                     <ul class="dropdown-menu">
-                        <li><a href="#">Tài liệu</a></li>
-                        <li><a href="#">Blog</a></li>
+                        <li><a th:href="@{/user/document}">Tài liệu</a></li>
+                        <li><a th:href="@{/user/test}">Bài kiểm tra</a></li>
+                        <li><a th:href="@{/user/blog}">Blog</a></li>
                     </ul>
                 </li>
                 <li><a th:href="@{/user/new-events}">Tin tức & Sự kiện</a></li>
             </ul>
         </nav>
         <div class="search-container">
-            <div class="search-icon">🔍</div>
-            <input type="text" placeholder="search" id="searchInput">
-            <button class="clear-btn" onclick="clearSearch()">✖</button>
+            <form action="/user/search" method="get" style="display: flex; align-items: center; width: 100%;">
+                
+                <button type="submit" class="search-icon" style="background: none; border: none; cursor: pointer; color: inherit;">
+                    🔍
+                </button>
+                
+                <input type="text" name="keyword" placeholder="Tìm kiếm..." id="searchInput" 
+                    style="border: none; outline: none; padding: 5px; flex: 1;">
+                
+                <button type="button" class="clear-btn" onclick="clearSearch()" style="background: none; border: none; cursor: pointer;">
+                    ✖
+                </button>
+            </form>
         </div>
     </header>
 
@@ -74,8 +85,43 @@
                     <ul id="toc-list"></ul>
                 </div>
 
-                <div class="post-content" id="post-content" th:utext="${post.content}">
-                    </div>
+                <div class="post-content" id="post-content">
+                    <th:block th:each="section : ${post.sections}">
+                        
+                        <div th:if="${section.mediaType.name() == 'NONE'}">
+                            <h2 th:if="${section.sectionTitle != null and section.sectionTitle != ''}" 
+                                th:text="${section.sectionTitle}"></h2>
+                            <div th:if="${section.sectionContent != null}" 
+                                th:utext="${section.sectionContent}"></div>
+                        </div>
+
+                        <figure th:if="${section.mediaType.name() == 'IMAGE'}" class="post-figure">
+                            <h2 th:if="${section.sectionTitle != null and section.sectionTitle != ''}" 
+                                th:text="${section.sectionTitle}"></h2>
+                            
+                            <img th:src="${section.mediaUrl}" alt="Hình minh họa" loading="lazy">
+                            
+                            <figcaption th:if="${section.mediaCaption != null}" th:text="${section.mediaCaption}"></figcaption>
+                            
+                            <div th:if="${section.sectionContent != null}" 
+                                th:utext="${section.sectionContent}" class="mt-3"></div>
+                        </figure>
+
+                        <div th:if="${section.mediaType.name() == 'YOUTUBE'}" class="post-video">
+                            <h2 th:if="${section.sectionTitle != null and section.sectionTitle != ''}" 
+                                th:text="${section.sectionTitle}"></h2>
+                            
+                            <div class="video-container">
+                                <iframe th:src="${#strings.replace(section.mediaUrl, 'watch?v=', 'embed/')}" 
+                                        frameborder="0" allowfullscreen></iframe>
+                            </div>
+                            
+                            <p th:if="${section.mediaCaption != null}" class="video-caption" th:text="${section.mediaCaption}"></p>
+                            <div th:if="${section.sectionContent != null}" th:utext="${section.sectionContent}" class="mt-3"></div>
+                        </div>
+
+                    </th:block>
+                </div>
                 
                 <div class="back-btn-container">
                     <a th:href="@{/user/new-events}" class="btn-back">
@@ -87,14 +133,16 @@
             <div class="hot-sidebar">
                 <div class="sidebar-title">TIN NỔI BẬT</div>
                 <div class="hot-item" th:each="hotPost, iterStat : ${hotPosts}" th:if="${iterStat.index < 5}">
-                    <div class="hot-small-img" 
-                         th:style="'background-image: url(' + ${hotPost.thumbnailUrl} + ');'">
-                    </div>
-                    <a class="hot-small-text" 
-                       th:href="@{/user/new-events/{slug}(slug=${hotPost.slug})}"
-                       th:text="${hotPost.title}">
-                       Title
-                    </a>
+                    <a th:href="@{/user/new-events/{slug}(slug=${hotPost.slug})}" class="hot-small-img" 
+                        th:style="'background-image: url(' + ${hotPost.thumbnailUrl} + ');'">
+                        </a>
+                    
+                    <div style="flex: 1;"> <a class="hot-small-text" 
+                        th:href="@{/user/new-events/{slug}(slug=${hotPost.slug})}"
+                        th:text="${hotPost.title}">
+                        Title
+                        </a>
+                        </div>
                 </div>
             </div>
 
@@ -171,57 +219,56 @@
         </div>
     </footer>
 
-    <script>
-        document.addEventListener("DOMContentLoaded", function() {
-            const contentDiv = document.getElementById('post-content');
-            const tocList = document.getElementById('toc-list');
-            const tocContainer = document.getElementById('toc-container');
-            
-            // Tìm tất cả thẻ H1, H2, H3 trong nội dung bài viết
-            const headers = contentDiv.querySelectorAll('h1, h2, h3');
+<script>
+    document.addEventListener("DOMContentLoaded", function() {
+        const contentDiv = document.getElementById('post-content');
+        const tocList = document.getElementById('toc-list');
+        const tocContainer = document.getElementById('toc-container');
+        
+        const headers = contentDiv.querySelectorAll('h2, h3');
 
-            if (headers.length > 0) {
-                tocContainer.style.display = 'block'; // Hiện khung mục lục nếu có thẻ H
+        if (headers.length > 0) {
+            tocContainer.style.display = 'block'; 
+            
+            headers.forEach((header, index) => {
+                const id = header.id || 'section-' + index;
+                header.id = id;
+
+                const li = document.createElement('li');
                 
-                headers.forEach((header, index) => {
-                    // 1. Tạo ID cho thẻ Heading để link nhảy tới được
-                    const id = 'section-' + index;
-                    header.id = id;
+                li.className = 'toc-item-' + header.tagName.toLowerCase(); 
+                
+                const a = document.createElement('a');
+                a.href = '#' + id;
+                
+                a.textContent = header.textContent;
+                
+                a.onclick = function(e) {
+                    e.preventDefault();
+                    document.getElementById(id).scrollIntoView({ behavior: 'smooth', block: 'start' });
+                };
 
-                    // 2. Tạo item trong mục lục
-                    const li = document.createElement('li');
-                    li.className = 'toc-item-' + header.tagName.toLowerCase(); // vd: toc-item-h2
-                    
-                    const a = document.createElement('a');
-                    a.href = '#' + id;
-                    a.textContent = header.textContent;
-                    
-                    // Thêm sự kiện cuộn mượt
-                    a.onclick = function(e) {
-                        e.preventDefault();
-                        document.getElementById(id).scrollIntoView({ behavior: 'smooth' });
-                    };
-
-                    li.appendChild(a);
-                    tocList.appendChild(li);
-                });
-            }
-        });
-
-        // Hàm Ẩn/Hiện mục lục
-        function toggleToc() {
-            const list = document.getElementById('toc-list');
-            const toggleBtn = document.querySelector('.toc-toggle a');
-            
-            if (list.style.display === 'none') {
-                list.style.display = 'block';
-                toggleBtn.innerText = 'Ẩn';
-            } else {
-                list.style.display = 'none';
-                toggleBtn.innerText = 'Hiện';
-            }
+                li.appendChild(a);
+                tocList.appendChild(li);
+            });
+        } else {
+            tocContainer.style.display = 'none';
         }
-    </script>
+    });
+
+    function toggleToc() {
+        const list = document.getElementById('toc-list');
+        const toggleText = document.querySelector('.toc-toggle a'); 
+        
+        if (list.style.display === 'none') {
+            list.style.display = 'block';
+            toggleText.innerText = 'Ẩn';
+        } else {
+            list.style.display = 'none';
+            toggleText.innerText = 'Hiện';
+        }
+    }
+</script>
 
 </body>
 </html>

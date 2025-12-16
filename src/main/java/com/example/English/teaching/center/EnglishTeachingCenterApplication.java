@@ -11,7 +11,7 @@ public class EnglishTeachingCenterApplication {
 		SpringApplication.run(EnglishTeachingCenterApplication.class, args);
 
 		// BCryptPasswordEncoder encoder = new BCryptPasswordEncoder();
-        // String rawPassword = ""; 
+        // String rawPassword = "@Nhom3PTDA"; 
         // String encodedPassword = encoder.encode(rawPassword);
         // System.out.println("Password:"+ encodedPassword);
 	}

@@ -13,4 +13,7 @@ public interface PostRepository extends JpaRepository<Post, Long>{
     List<Post> findByTypeInOrderByPublishedAtDesc(List<Post.PostType> types);
 
     Optional<Post> findBySlug(String slug);
+
+    // Tìm bài viết theo tiêu đề
+    List<Post> findByTitleContaining(String title);
 }

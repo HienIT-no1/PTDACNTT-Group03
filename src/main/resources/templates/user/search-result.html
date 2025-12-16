@@ -1,52 +1,19 @@
 <!DOCTYPE html>
-<html lang="vi" xmlns:th="http://www.thymeleaf.org">
+<html xmlns:th="http://www.thymeleaf.org">
 <head>
-    <meta charset="UTF-8">
-    <title>Kết quả bài thi</title>
+    <title>Kết quả tìm kiếm</title>
     <link rel="stylesheet" href="/css/common.css">
     <style>
-        .result-container {
-            max-width: 600px;
-            margin: 50px auto;
-            background: #fff;
-            padding: 40px;
-            border-radius: 10px;
-            box-shadow: 0 4px 15px rgba(0,0,0,0.1);
-            text-align: center;
-        }
-        .score-circle {
-            width: 150px;
-            height: 150px;
-            border-radius: 50%;
-            background: #f8f9fa;
-            border: 5px solid #28a745;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            margin: 0 auto 20px;
-            font-size: 36px;
-            font-weight: bold;
-            color: #28a745;
-        }
-        .result-detail {
-            font-size: 18px;
-            margin-bottom: 30px;
-            color: #555;
-        }
-        .btn-home {
-            display: inline-block;
-            padding: 10px 25px;
-            background: #007bff;
-            color: #fff;
-            text-decoration: none;
-            border-radius: 5px;
-            transition: 0.3s;
-        }
-        .btn-home:hover { background: #0056b3; }
+        .search-page-container { max-width: 900px; margin: 40px auto; padding: 0 20px; min-height: 60vh;}
+        .result-item { display: flex; gap: 15px; margin-bottom: 20px; padding: 15px; background: #f9f9f9; border-radius: 8px; text-decoration: none; color: #333;}
+        .result-item:hover { background: #eee; }
+        .result-img { width: 100px; height: 70px; object-fit: cover; border-radius: 5px; }
+        .badge { font-size: 11px; padding: 3px 8px; border-radius: 4px; color: #fff; background: #666; margin-left: 10px;}
+        .badge.COURSE { background: #2196F3; } 
+        .badge.INSTRUCTOR { background: #9C27B0; } 
     </style>
 </head>
 <body>
-
     <header class="navbar">
         <a th:href="@{/user/home}" class="logo">GO-E</a>
         <nav class="nav-links">
@@ -95,21 +62,27 @@
         </div>
     </header>
 
-    <div class="container">
-        <div class="result-container">
-            <h2 th:text="'Kết quả: ' + ${test.title}">Kết quả bài thi</h2>
-            <hr style="margin: 20px 0; border: 0; border-top: 1px solid #eee;">
-            
-            <div class="score-circle">
-                <span th:text="${correctCount} + '/' + ${totalQuestions}">8/10</span>
-            </div>
+    <div class="search-page-container">
+        <h2>Kết quả tìm kiếm cho: "<span style="color:red" th:text="${keyword}"></span>"</h2>
+        <p>Tìm thấy <b th:text="${resultCount}"></b> kết quả.</p>
+        <hr style="margin: 20px 0; border: 0; border-top: 1px solid #ddd;">
 
-            <div class="result-detail">
-                <p>Bạn đã trả lời đúng <strong><span th:text="${correctCount}"></span></strong> câu hỏi.</p>
-                <p>Tổng điểm đạt được: <strong><span th:text="${totalScore}"></span></strong> điểm.</p>
-            </div>
+        <div th:if="${resultCount > 0}">
+            <a th:each="item : ${results}" th:href="${item.url}" class="result-item">
+                <img th:src="${item.image}" class="result-img" onerror="this.src='/images/no-image.jpg'">
+                <div>
+                    <h3 style="margin: 0 0 5px 0;">
+                        <span th:text="${item.title}">Tiêu đề</span>
+                        <span class="badge" th:classappend="${item.type}" th:text="${item.typeLabel}">Loại</span>
+                    </h3>
+                    <p style="margin: 0; color: #666; font-size: 14px;" th:text="${item.description}">Mô tả...</p>
+                </div>
+            </a>
+        </div>
 
-            <a th:href="@{/user/test}" class="btn-home">Quay lại danh sách bài thi</a>
+        <div th:if="${resultCount == 0}" style="text-align: center; margin-top: 50px; color: #888;">
+            <h3>Không tìm thấy kết quả nào!</h3>
+            <p>Vui lòng thử từ khóa khác.</p>
         </div>
     </div>
 

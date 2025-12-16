@@ -6,17 +6,22 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 
+import com.example.English.teaching.center.model.Instructor;
 import com.example.English.teaching.center.model.Post;
+import com.example.English.teaching.center.repository.InstructorRepository;
 import com.example.English.teaching.center.service.PostService;
 
 @Controller
 public class UserController {
 
     private final PostService postService;
+    private final InstructorRepository instructorRepository;
 
-    public UserController(PostService postService) {
+    public UserController(PostService postService,
+                        InstructorRepository instructorRepository
+    ) {
         this.postService = postService;
-
+        this.instructorRepository = instructorRepository;
     }
 
     @GetMapping("/")
@@ -35,7 +40,10 @@ public class UserController {
     }
 
     @GetMapping("/user/i-teacher")
-    public String userITeacher() {
+    public String userITeacher(Model model) {
+        List<Instructor> teachers = instructorRepository.findAll();
+
+        model.addAttribute("teachers", teachers);
         return "user/i-teacher";
     }
 

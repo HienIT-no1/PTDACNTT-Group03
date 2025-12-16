@@ -41,26 +41,36 @@
             </ul>
         </nav>
         <div class="search-container">
-            <div class="search-icon">🔍</div>
-            <input type="text" placeholder="search" id="searchInput">
-            <button class="clear-btn" onclick="clearSearch()">✖</button>
+            <form action="/user/search" method="get" style="display: flex; align-items: center; width: 100%;">
+                
+                <button type="submit" class="search-icon" style="background: none; border: none; cursor: pointer; color: inherit;">
+                    🔍
+                </button>
+                
+                <input type="text" name="keyword" placeholder="Tìm kiếm..." id="searchInput" 
+                    style="border: none; outline: none; padding: 5px; flex: 1;">
+                
+                <button type="button" class="clear-btn" onclick="clearSearch()" style="background: none; border: none; cursor: pointer;">
+                    ✖
+                </button>
+            </form>
         </div>
     </header>
 
     <section class="hero">
         <div class="form-box">
             <h3>Đăng ký nhận tư vấn</h3>
-            <form id="registerForm">
-                <input type="text" placeholder="Họ và tên" required>
-                <input type="tel" placeholder="Số điện thoại" required>
-                <input type="email" placeholder="Email" required>
-                <select id="location" class="form-box_selection">
+            <form id="registerForm" onsubmit="handleRegister(event, 'registerForm')">
+                <input type="text" name="fullName" placeholder="Họ và tên" required>
+                <input type="tel" name="phoneNumber" placeholder="Số điện thoại" required>
+                <input type="email" name="email" placeholder="Email" required>
+                <select name="location" class="form-box_selection">
                     <option value="" disabled selected>-- Chọn cơ sở học --</option>
-                    <option value="hanoi">Số 44, Ngõ 40, Tạ Quang Bửu, Bách Khoa, Hà Nội</option>
-                    <option value="hcm">Số 9C8, ngõ 261 Trần Quốc Hoàn, Cầu Giấy, Hà Nội</option>
-                    <option value="danang">Số 3, ngõ 34 Nguyễn Hoàng, Mỹ Đình, Hà Nội</option>
+                    <option value="Cơ sở 1 - Hà Nội">Số 44, Ngõ 40, Tạ Quang Bửu, Bách Khoa, Hà Nội</option>
+                    <option value="Cơ sở 2 - Cầu Giấy">Số 9C8, ngõ 261 Trần Quốc Hoàn, Cầu Giấy, Hà Nội</option>
+                    <option value="Cơ sở 3 - Mỹ Đình">Số 3, ngõ 34 Nguyễn Hoàng, Mỹ Đình, Hà Nội</option>
                 </select>
-                <input type="text" placeholder="Mong muốn học tập">
+                <input type="text" name="learningNeeds" placeholder="Mong muốn học tập" required>
                 <button type="submit">Đăng ký ngay</button>
             </form>
         </div>
@@ -157,26 +167,80 @@
         </div>
     </footer>
 
-<!-- Modal for signup form (appears after 5 seconds) -->
-    <div id="modal-overlay" class="modal-overlay">
-        <div class="modal-content">
-            <button class="modal-close" id="modal-close-btn">&times;</button>
-            <h3>Đăng ký nhận tư vấn</h3>
-            <form id="modalRegisterForm">
-                <input type="text" placeholder="Họ và tên" required>
-                <input type="tel" placeholder="Số điện thoại" required>
-                <input type="email" placeholder="Email" required>
-                <select class="form-box_selection">
-                    <option value="" disabled selected>-- Chọn cơ sở học --</option>
-                    <option value="hanoi">Số 44, Ngõ 40, Tạ Quang Bửu, Bách Khoa, Hà Nội</option>
-                    <option value="hcm">Số 9C8, ngõ 261 Trần Quốc Hoàn, Cầu Giấy, Hà Nội</option>
-                    <option value="danang">Số 3, ngõ 34 Nguyễn Hoàng, Mỹ Đình, Hà Nội</option>
-                </select>
-                <input type="text" placeholder="Mong muốn học tập">
-                <button type="submit">Đăng ký ngay</button>
-            </form>
-        </div>
-    </div>
+  
+<script>
+    async function handleRegister(event, formId) {
+        event.preventDefault(); 
+        
+        const form = document.getElementById(formId);
+        
+        if (!form) return;
 
+        const submitBtn = form.querySelector('button[type="submit"]');
+        
+        const formData = new FormData(form);
+        const data = {};
+        
+        formData.forEach((value, key) => {
+            data[key] = typeof value === 'string' ? value.trim() : value;
+        });
+
+
+        if (!data.fullName || data.fullName.length < 2) {
+            alert("Vui lòng nhập họ tên đầy đủ!");
+            return;
+        }
+
+        const vnf_regex = /((09|03|07|08|05)+([0-9]{8})\b)/g;
+        if (!vnf_regex.test(data.phoneNumber)) {
+            alert("Số điện thoại không hợp lệ (Phải là 10 số, đầu số VN)");
+            return;
+        }
+
+        const email_regex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+        if (!email_regex.test(data.email)) {
+            alert("Email không đúng định dạng!");
+            return;
+        }
+
+        if (!data.location) {
+            alert("Vui lòng chọn cơ sở bạn muốn học!");
+            return;
+        }
+
+        const originalBtnText = submitBtn.innerText;
+        submitBtn.innerText = "Đang xử lý...";
+        submitBtn.disabled = true;
+        submitBtn.style.opacity = "0.7";
+        submitBtn.style.cursor = "not-allowed";
+
+        try {
+            const response = await fetch('/api/consultation/register', {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json'
+                },
+                body: JSON.stringify(data)
+            });
+
+            if (response.ok) {
+                alert("✅ Đăng ký thành công! Tư vấn viên sẽ liên hệ bạn trong 24h tới.");
+                form.reset(); 
+            } else {
+                const errorText = await response.text();
+                alert("⚠️ Có lỗi xảy ra: " + errorText);
+            }
+
+        } catch (error) {
+            console.error('Error:', error);
+            alert("❌ Lỗi kết nối! Vui lòng kiểm tra mạng và thử lại.");
+        } finally {
+            submitBtn.innerText = originalBtnText;
+            submitBtn.disabled = false;
+            submitBtn.style.opacity = "1";
+            submitBtn.style.cursor = "pointer";
+        }
+    }
+</script>
 </body>
 </html>

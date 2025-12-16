@@ -1,10 +1,11 @@
 package com.example.English.teaching.center.model;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import jakarta.persistence.*;
 import lombok.*;
 import java.math.BigDecimal;
 import java.time.LocalDateTime;
-
 
 @Entity
 @Table(name = "courses")
@@ -17,12 +18,18 @@ public class Course {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
-    @ManyToOne
+    @ManyToOne(fetch = FetchType.EAGER) 
     @JoinColumn(name = "category_id")
+    @ToString.Exclude        
+    @EqualsAndHashCode.Exclude   
+    @JsonIgnoreProperties("courses") 
     private Category category;
 
-    @ManyToOne
+    @ManyToOne(fetch = FetchType.EAGER)
     @JoinColumn(name = "instructor_id")
+    @ToString.Exclude
+    @EqualsAndHashCode.Exclude
+    @JsonIgnoreProperties("courses")
     private Instructor instructor;
 
     @Column(nullable = false)
@@ -40,7 +47,6 @@ public class Course {
     @Column(name = "is_active")
     private Boolean isActive;
 
-    // --- Chi tiết khóa học ---
     @Column(name = "target_audience", columnDefinition = "TEXT")
     private String targetAudience;
 
@@ -78,7 +84,20 @@ public class Course {
     @Column(name = "commitment_writing", columnDefinition = "TEXT")
     private String commitmentWriting;
 
-    // --- Timestamps ---
+    @ManyToOne(fetch = FetchType.LAZY)
+    @JoinColumn(name = "created_by")
+    @ToString.Exclude
+    @EqualsAndHashCode.Exclude
+    @JsonIgnore 
+    private Admin createdBy;
+
+    @ManyToOne(fetch = FetchType.LAZY)
+    @JoinColumn(name = "updated_by")
+    @ToString.Exclude
+    @EqualsAndHashCode.Exclude
+    @JsonIgnore
+    private Admin updatedBy;
+
     @Column(name = "created_at", updatable = false)
     private LocalDateTime createdAt;
 
@@ -95,8 +114,7 @@ public class Course {
     protected void onUpdate() {
         updatedAt = LocalDateTime.now();
     }
-
-    // Xử lí đầu ra cam kết 
+ 
     private String[] parseCommitment(String content){
         if(content == null || content.trim().isEmpty()){
             return new String[0];

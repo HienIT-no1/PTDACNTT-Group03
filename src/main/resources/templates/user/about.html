@@ -10,9 +10,7 @@
 
 </head>
 <body>
-
-    <!-- nav -->
-    <header class="navbar">  
+    <header class="navbar">
         <a th:href="@{/user/home}" class="logo">GO-E</a>
         <nav class="nav-links">
             <ul>
@@ -24,32 +22,42 @@
                     </ul>
                 </li> 
                 <li class="dropdown">
-                    <a href="#">Khóa học</a>
+                    <a>Khóa học</a>
                     <ul class="dropdown-menu">
-                        <li><a href="#">IELTS</a></li>
-                        <li><a href="#">Khóa tiếng Anh giao tiếp online</a></li>
-                        <li><a href="#">Khóa tiếng Anh trẻ em</a></li>
+                        <li><a th:href="@{/user/course(category='IELTS')}">IELTS</a></li>
+                        <li><a th:href="@{/user/course(category='COMMUNICATE')}">Khóa tiếng Anh giao tiếp online</a></li>
+                        <li><a th:href="@{/user/course(category='CHILDREN')}">Khóa tiếng Anh trẻ em</a></li>
                     </ul>
                 </li>
-                <li><a href="#">Cảm nhận học viên</a></li>
+                <li><a th:href="@{/user/student-feelings}">Cảm nhận học viên</a></li>
                 <li class="dropdown">
-                    <a href="#">Thư viện</a>
+                    <a>Thư viện</a>
                     <ul class="dropdown-menu">
-                        <li><a href="#">Tài liệu</a></li>
-                        <li><a href="#">Blog</a></li>
+                        <li><a th:href="@{/user/document}">Tài liệu</a></li>
+                        <li><a th:href="@{/user/test}">Bài kiểm tra</a></li>
+                        <li><a th:href="@{/user/blog}">Blog</a></li>
                     </ul>
                 </li>
-                <li><a href="#">Tin tức & Sự kiện</a></li>
+                <li><a th:href="@{/user/new-events}">Tin tức & Sự kiện</a></li>
             </ul>
         </nav>
         <div class="search-container">
-            <div class="search-icon">🔍</div>
-            <input type="text" placeholder="search" id="searchInput">
-            <button class="clear-btn" onclick="clearSearch()">✖</button>
+            <form action="/user/search" method="get" style="display: flex; align-items: center; width: 100%;">
+                
+                <button type="submit" class="search-icon" style="background: none; border: none; cursor: pointer; color: inherit;">
+                    🔍
+                </button>
+                
+                <input type="text" name="keyword" placeholder="Tìm kiếm..." id="searchInput" 
+                    style="border: none; outline: none; padding: 5px; flex: 1;">
+                
+                <button type="button" class="clear-btn" onclick="clearSearch()" style="background: none; border: none; cursor: pointer;">
+                    ✖
+                </button>
+            </form>
         </div>
     </header>
 
-    <!-- main -->
     <main>
         <section class="about-hero">
             <div class="container hero-container">
@@ -57,23 +65,29 @@
                     <span class="logo-text">Logo</span>
                     <h1>TRUNG TÂM NGOẠI NGỮ <br> DÀNH CHO MỌI NGƯỜI</h1>
                     <p>Với phương châm 'English Center for Everyone', trung tâm ngoại ngữ ECE hướng tới việc tổ chức các lớp học Tiếng Anh phù hợp với tất cả mọi người. Đặc biệt, khóa học IELTS – sản phẩm chủ lực của trung tâm – được thiết kế để đáp ứng đa dạng mục tiêu và trình độ của học viên.</p>
-                    <a href="/khoa-hoc" class="btn btn-primary">
+                    <a th:href="@{/user/course(category='IELTS')}" class="btn btn-primary">
                         Xem ngay khóa học <i class="fa-solid fa-paper-plane"></i>
                     </a>
                 </div>
                 <div class="hero-image-wrapper">
-                    <img src="/images/i-teacher.jpeg" alt="Giám đốc trung tâm ECE">
+                    <img src="/images/teacher.png" alt="Giám đốc trung tâm ECE">
                     <div class="stat-box stat-1">
-                        <strong>15K+</strong>
-                        <span>Khách hàng</span>
+                        <i class="fa-solid fa-users"></i> <div>
+                            <strong>15K+</strong>
+                            <span>Khách hàng</span>
+                        </div>
                     </div>
                     <div class="stat-box stat-2">
-                        <strong>15 năm</strong>
-                        <span>Kinh nghiệm</span>
+                        <i class="fa-solid fa-briefcase"></i> <div>
+                            <strong>15 năm</strong>
+                            <span>Kinh nghiệm</span>
+                        </div>
                     </div>
                     <div class="stat-box stat-3">
-                        <strong>3 cơ sở</strong>
-                        <span></span>
+                        <i class="fa-solid fa-school"></i> <div>
+                            <strong>3 cơ sở</strong>
+                            <span>Tại Hà Nội</span>
+                        </div>
                     </div>
                 </div>
             </div>
@@ -149,7 +163,7 @@
         <section class="info-blocks">
             <div class="info-block">
                 <div class="info-image">
-                    <img src="/images/lop-hoc-1.jpg" alt="Lớp học tại ECE">
+                    <img src="/images/home1.webp" alt="Lớp học tại ECE">
                 </div>
                 <div class="info-text bg-yellow">
                     <h3>Tầm nhìn</h3>
@@ -163,7 +177,7 @@
             
             <div class="info-block reverse">
                 <div class="info-image">
-                    <img src="/images/lop-hoc-2.jpg" alt="Học viên ECE">
+                    <img src="/images/home2.jpg" alt="Học viên ECE">
                 </div>
                 <div class="info-text">
                     <h3>Sứ mệnh</h3>
@@ -173,7 +187,7 @@
 
             <div class="info-block">
                 <div class="info-image">
-                    <img src="/images/lop-hoc-3.jpg" alt="Học viên ECE chụp ảnh tốt nghiệp">
+                    <img src="/images/home4.jpg" alt="Học viên ECE chụp ảnh tốt nghiệp">
                 </div>
                 <div class="info-text bg-yellow">
                     <h3>Địa điểm & hình thức học</h3>
@@ -189,7 +203,7 @@
 
             <div class="info-block reverse">
                 <div class="info-image">
-                    <img src="/images/doi-ngu-ece.jpg" alt="Đội ngũ giảng viên ECE">
+                    <img src="/images/home3.png" alt="Đội ngũ giảng viên ECE">
                 </div>
                 <div class="info-text">
                     <h3>Đội ngũ chuyên nghiệp</h3>

@@ -8,8 +8,6 @@
     <link rel="stylesheet" href="/css/common.css">
     <link rel="stylesheet" href="/css/user/document.css">
 </head>
-<body>
-
     <header class="navbar">
         <a th:href="@{/user/home}" class="logo">GO-E</a>
         <nav class="nav-links">
@@ -34,6 +32,7 @@
                     <a>Thư viện</a>
                     <ul class="dropdown-menu">
                         <li><a th:href="@{/user/document}">Tài liệu</a></li>
+                        <li><a th:href="@{/user/test}">Bài kiểm tra</a></li>
                         <li><a th:href="@{/user/blog}">Blog</a></li>
                     </ul>
                 </li>
@@ -41,9 +40,19 @@
             </ul>
         </nav>
         <div class="search-container">
-            <div class="search-icon">🔍</div>
-            <input type="text" placeholder="search" id="searchInput">
-            <button class="clear-btn" onclick="clearSearch()">✖</button>
+            <form action="/user/search" method="get" style="display: flex; align-items: center; width: 100%;">
+                
+                <button type="submit" class="search-icon" style="background: none; border: none; cursor: pointer; color: inherit;">
+                    🔍
+                </button>
+                
+                <input type="text" name="keyword" placeholder="Tìm kiếm..." id="searchInput" 
+                    style="border: none; outline: none; padding: 5px; flex: 1;">
+                
+                <button type="button" class="clear-btn" onclick="clearSearch()" style="background: none; border: none; cursor: pointer;">
+                    ✖
+                </button>
+            </form>
         </div>
     </header>
 
@@ -104,8 +113,18 @@
                             Tiêu đề bài viết...
                         </h3>
                         
-                        <a th:href="${material.fileUrl}" class="btn-download" target="_blank">
-                            <i class="fas fa-download"></i> DOWNLOAD
+                        <a th:if="${material.type == 'YOUTUBE'}" 
+                        th:href="${material.fileUrl}" 
+                        class="btn-action btn-youtube" 
+                        target="_blank">
+                            <i class="fab fa-youtube"></i> XEM VIDEO
+                        </a>
+
+                        <a th:unless="${material.type == 'YOUTUBE'}" 
+                        th:href="${material.fileUrl}" 
+                        class="btn-action btn-download" 
+                        target="_blank">
+                            <i class="fas fa-download"></i> TẢI XUỐNG
                         </a>
                     </div>
                 </div>

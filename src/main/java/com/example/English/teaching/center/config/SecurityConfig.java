@@ -22,10 +22,13 @@ public class SecurityConfig {
         @Lazy CustomAuthenticationProvider customAuthProvider
     ) throws Exception {
         http
+            .csrf(csrf -> csrf.disable())    
+
             .authorizeHttpRequests(authorize -> authorize
                 .requestMatchers("/css/**", "/js/**", "/images/**").permitAll()
                 .requestMatchers("/", "/user/**").permitAll()
                 .requestMatchers("/admin/login").permitAll()
+                .requestMatchers("/api/consultation/**").permitAll()
                 .requestMatchers("/admin/**").authenticated() 
                 
                 .anyRequest().authenticated() 

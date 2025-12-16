@@ -1,9 +1,3 @@
-* {
-    /* margin: 0;
-    padding: 0; */
-    box-sizing: border-box;
-}
-
 body {
     font-family: Arial, Helvetica, sans-serif;
     background: #fff;
@@ -22,10 +16,7 @@ body {
     max-width: 100%;
     height: 400px;
     
-    /* --- THAY ĐỔI Ở ĐÂY --- */
-    /* Thay vì dùng background-color phẳng, hãy dùng gradient */
     background: linear-gradient(135deg, #c62828 0%, #8e0000 100%);
-    /* Màu đỏ này (Material Red 800 -> 900) nhìn sẽ sâu và sang hơn */
     
     color: #fff;
     display: flex;
@@ -36,9 +27,8 @@ body {
     padding: 20px;
 }
 
-/* --- PHẦN NỘI DUNG --- */
 .content {
-    z-index: 2; /* Để nội dung nổi lên trên họa tiết */
+    z-index: 2;
     text-align: center;
     max-width: 700px;
 }
@@ -53,13 +43,10 @@ body {
 .content p {
     font-size: 1rem;
     line-height: 1.6;
-    color: #8fa6c9; /* Màu chữ xám xanh nhạt */
+    color: #8fa6c9;
     font-weight: 400;
 }
 
-/* --- CÁC HỌA TIẾT TRANG TRÍ (DECORATION) --- */
-
-/* 1. Đường kẻ chéo góc trái trên */
 .decor-lines {
     position: absolute;
     top: -20px;
@@ -80,7 +67,6 @@ body {
 .line:nth-child(2) { top: 50px; left: -20px; }
 .line:nth-child(3) { top: 70px; left: -20px; }
 
-/* 2. Mũi tên vẽ tay góc phải (Dùng SVG) */
 .decor-arrow {
     position: absolute;
     top: 15%;
@@ -91,22 +77,20 @@ body {
     transform: rotate(10deg);
 }
 
-/* Màu của mũi tên */
 .decor-arrow path {
-    stroke: #3b82f6; /* Màu xanh dương sáng */
+    stroke: #3b82f6; 
     stroke-width: 2;
     fill: none;
     stroke-linecap: round;
 }
 
-/* 3. Dấu chấm tròn góc phải dưới */
 .decor-dots {
     position: absolute;
     bottom: 30px;
     right: 30px;
     display: grid;
-    grid-template-columns: repeat(6, 1fr); /* 6 cột */
-    gap: 15px; /* Khoảng cách giữa các chấm */
+    grid-template-columns: repeat(6, 1fr);
+    gap: 15px; 
 }
 
 .dot {
@@ -114,10 +98,9 @@ body {
     height: 12px;
     background-color: #ffffff;
     border-radius: 50%;
-    opacity: 0.3; /* Độ mờ của chấm */
+    opacity: 0.3; 
 }
 
-/* Đường kẻ ngang */
 .separator {
     height: 2.5px;
     width: 500px;
@@ -125,7 +108,6 @@ body {
     margin: 10px auto 30px auto;
 }
 
-/* Tabs */
 .tabs {
     display: flex;
     justify-content: space-between;
@@ -161,14 +143,12 @@ body {
     background: #00c8e6;
 }
 
-/* Layout 2 cột */
 .main-wrapper {
     display: flex;
     gap: 40px;
 }
 
 .news-section {
-    /* flex: 3; */
     width: 850px;
 }
 
@@ -179,27 +159,33 @@ body {
     gap: 25px;
 }
 
-/* Bài viết chung */
 .news-article {
     display: flex;
     align-items: flex-start;
     border-radius: 12px;
     padding: 15px;
     margin-bottom: 7px;
-    /* border: 1px solid #333; */
     min-height: 180px;
 }
 
 .article-img {
     flex: 0 0 220px;
     height: 130px;
-    background: #f5f5f5;
+    background-color: #f5f5f5;
     border-radius: 10px;
+    margin-right: 25px;
+    
+    /* --- PHẦN QUAN TRỌNG MỚI THÊM --- */
+    background-size: cover;      /* Co ảnh để lấp đầy khung */
+    background-position: center; /* Căn giữa ảnh */
+    background-repeat: no-repeat;/* Không lặp lại ảnh */
+    /* -------------------------------- */
+    
+    /* Giữ nguyên các thuộc tính flex cũ nếu bạn muốn căn giữa icon khi không có ảnh */
     display: flex;
     align-items: center;
     justify-content: center;
     color: #999;
-    margin-right: 25px;
 }
 
 #img1{
@@ -248,11 +234,8 @@ body {
     color: #444;
 }
 
-
-/* Các box Tin hot ở sidebar phải */
 .hot-item {
     display: flex;
-    /* border: 1px dashed #00c8e6; */
     border-radius: 12px;
     padding: 10px 10px;
     text-align: center;
@@ -261,25 +244,22 @@ body {
 .hot-small-img {
     height: 80px;
     width: 110px;
-    background: #f5f5f5;
-    /* border-radius: 8px; */
+    background-color: #f5f5f5;
+    margin-bottom: 7px;
+    border-radius: 5px; /* Bo góc nhẹ cho đẹp */
+    
+    /* --- PHẦN QUAN TRỌNG MỚI THÊM --- */
+    background-size: cover;      /* Co ảnh để lấp đầy khung */
+    background-position: center; /* Căn giữa ảnh */
+    background-repeat: no-repeat;/* Không lặp lại ảnh */
+    flex-shrink: 0;              /* Đảm bảo ảnh không bị bóp méo khi tiêu đề dài */
+    /* -------------------------------- */
+
     display: flex;
     align-items: center;
     justify-content: center;
-    margin-bottom: 7px;
 }
 
-#small-img1{
-    background-image: url("/images/event1.jpg");
-    background-size: cover;
-    background-repeat: no-repeat;
-}
-
-#small-img2{
-    background-image: url("/images/small-img2.jpg");
-    background-size: cover;
-    background-repeat: no-repeat;
-}
 
 .hot-small-text {
     font-size: 13px;
@@ -288,7 +268,6 @@ body {
     color: #444;
 }
 
-/* Responsive cho mobile */
 @media (max-width: 992px) {
     .main-wrapper {
         flex-direction: column;
@@ -316,8 +295,6 @@ body {
     }
 }
 
-
-/* css cho số trang */
 .pagination {
     display: flex;
     gap: 8px;
@@ -337,7 +314,6 @@ body {
     font-size: 16px;
     cursor: pointer;
     border-radius: 4px;
-    /* Bo tròn nhẹ các góc */
     transition: all 0.2s;
 }
 
@@ -346,24 +322,19 @@ body {
     border-color: #dee2e6;
 }
 
-/* Trạng thái đang được chọn (Active) */
 .page-btn.active {
     background-color: #0d6efd;
-    /* Màu xanh dương giống trong ảnh */
     color: white;
     border-color: #0d6efd;
 }
 
-/* Trạng thái vô hiệu hóa (cho nút Prev/Next khi ở đầu/cuối) */
 .page-btn:disabled {
     color: #ccc;
     cursor: not-allowed;
     background-color: #f8f9fa;
 }
 
-/* Icon mũi tên */
 .arrow {
     font-weight: bold;
     font-family: monospace;
-    /* Để mũi tên trông thanh mảnh hơn */
 }

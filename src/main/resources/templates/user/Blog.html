@@ -15,35 +15,46 @@
         <nav class="nav-links">
             <ul>
                 <li class="dropdown">
-                    <a href="#">Giới thiệu</a>
+                    <a>Giới thiệu</a>
                     <ul class="dropdown-menu">
                         <li><a th:href="@{/user/about}">Về trung tâm</a></li>
                         <li><a th:href="@{/user/i-teacher}">Đội ngũ giảng viên</a></li>
                     </ul>
                 </li> 
                 <li class="dropdown">
-                    <a href="#">Khóa học</a>
+                    <a>Khóa học</a>
                     <ul class="dropdown-menu">
-                        <li><a href="#">IELTS</a></li>
-                        <li><a href="#">Khóa tiếng Anh giao tiếp online</a></li>
-                        <li><a href="#">Khóa tiếng Anh trẻ em</a></li>
+                        <li><a th:href="@{/user/course(category='IELTS')}">IELTS</a></li>
+                        <li><a th:href="@{/user/course(category='COMMUNICATE')}">Khóa tiếng Anh giao tiếp online</a></li>
+                        <li><a th:href="@{/user/course(category='CHILDREN')}">Khóa tiếng Anh trẻ em</a></li>
                     </ul>
                 </li>
-                <li><a href="#">Cảm nhận học viên</a></li>
+                <li><a th:href="@{/user/student-feelings}">Cảm nhận học viên</a></li>
                 <li class="dropdown">
-                    <a href="#">Thư viện</a>
+                    <a>Thư viện</a>
                     <ul class="dropdown-menu">
-                        <li><a href="#">Tài liệu</a></li>
-                        <li><a href="#">Blog</a></li>
+                        <li><a th:href="@{/user/document}">Tài liệu</a></li>
+                        <li><a th:href="@{/user/test}">Bài kiểm tra</a></li>
+                        <li><a th:href="@{/user/blog}">Blog</a></li>
                     </ul>
                 </li>
                 <li><a th:href="@{/user/new-events}">Tin tức & Sự kiện</a></li>
             </ul>
         </nav>
         <div class="search-container">
-            <div class="search-icon">🔍</div>
-            <input type="text" placeholder="search" id="searchInput">
-            <button class="clear-btn" onclick="clearSearch()">✖</button>
+            <form action="/user/search" method="get" style="display: flex; align-items: center; width: 100%;">
+                
+                <button type="submit" class="search-icon" style="background: none; border: none; cursor: pointer; color: inherit;">
+                    🔍
+                </button>
+                
+                <input type="text" name="keyword" placeholder="Tìm kiếm..." id="searchInput" 
+                    style="border: none; outline: none; padding: 5px; flex: 1;">
+                
+                <button type="button" class="clear-btn" onclick="clearSearch()" style="background: none; border: none; cursor: pointer;">
+                    ✖
+                </button>
+            </form>
         </div>
     </header>
 
@@ -80,7 +91,7 @@
         <div class="separator"></div>
 
         <div class="tabs">
-            <div class="tab tab-news">Tin tức & Sự kiện</div>
+            <div class="tab tab-news">Bài viết Blog</div>
             <div class="tab tab-hot">
                 <div class="tab-hot-margin"></div>
                 Tin hot 🔥
@@ -106,7 +117,7 @@
                             </a>
                         </h2>
                         
-                        <p class="summary" th:text="${post.summary}">
+                        <p class="summary" th:text="${post.shortDescription}">
                             Nội dung tóm tắt...
                         </p>
                     </div>
@@ -130,10 +141,8 @@
         </div>
     </div>
 
-    <!-- số trang -->
     <div class="pagination" id="pagination-container"></div>
 
-    <!-- Footer -->
     <footer>
         <div class="footer-container">
             <!-- column left -->
@@ -216,7 +225,6 @@ document.addEventListener("DOMContentLoaded", function() {
     let currentPage = 1;
     const container = document.getElementById('pagination-container');
 
-    /* --- HIỂN THỊ BÀI VIẾT THEO TRANG --- */
     function showItemsForPage(page) {
         const startIndex = (page - 1) * itemsPerPage;
         const endIndex = startIndex + itemsPerPage;
@@ -230,7 +238,6 @@ document.addEventListener("DOMContentLoaded", function() {
         });
     }
 
-    /* --- HÀM VẼ NÚT PHÂN TRANG --- */
     function renderPagination() {
         container.innerHTML = ''; 
 
@@ -264,7 +271,6 @@ document.addEventListener("DOMContentLoaded", function() {
         container.appendChild(nextBtn);
     }
 
-    /* --- HÀM CHUYỂN TRANG --- */
     function changePage(page) {
         if (page < 1 || page > totalPages) return;
         
