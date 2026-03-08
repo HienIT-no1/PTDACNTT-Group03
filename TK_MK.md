@@ -1,0 +1,3 @@
+- Test chức năng của admin thì vào http://localhost:8080/admin/login
+- Tk: admin
+- MK: @Nhom3PTDA
